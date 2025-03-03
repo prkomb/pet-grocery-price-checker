@@ -1,0 +1,86 @@
+# Node.js dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.pnpm-debug.log*
+
+# Environment files
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+lerna-debug.log*
+.debug
+
+# Build output
+/dist
+/build
+/public/build
+/.parcel-cache
+
+# Vite & Webpack cache
+/.cache
+/.vite
+/.next
+/out
+.vite/
+.vitepress/
+.nuxt/
+.svelte-kit/
+
+# TypeScript
+*.tsbuildinfo
+*.tscache
+
+# Babel
+.babelrc
+.babelrc.json
+.babelrc.js
+.babelrc.cjs
+.babelrc.mjs
+.browserslistrc
+
+# Editor & OS-specific files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.history
+*.bak
+
+# Git-related
+.git/
+.git-credentials
+.gitconfig
+.gitmodules
+
+# Jest
+/coverage
+/.nyc_output
+jest.config.js
+jest.config.cjs
+jest.config.mjs
+jest.config.ts
+
+# ESLint, Prettier, Linting
+.eslintcache
+.stylelintcache
+.prettier.cache
+
+# MacOS
+._*
