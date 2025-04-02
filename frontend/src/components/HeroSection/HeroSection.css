@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+@theme {
+  --hero-section-color: #1b1f3b;
+}
+
+.hero-section {
+  background-color: var(--hero-section-color);
+  color: white;
+}
