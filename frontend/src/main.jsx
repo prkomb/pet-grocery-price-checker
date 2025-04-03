@@ -3,6 +3,8 @@ import { createRoot } from "react-dom/client";
 import "@fontsource/poppins/800.css";
 import "@fontsource/poppins/600.css";
 import "@fontsource/poppins/800-italic.css";
+
+import "@fontsource-variable/manrope";
 import "@fontsource/pacifico";
 import "./index.css";
 import App from "./App.jsx";
