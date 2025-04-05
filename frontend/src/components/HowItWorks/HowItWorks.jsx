@@ -3,6 +3,7 @@ import Grid from "@mui/material/Grid";
 import SearchIcon from "@mui/icons-material/Search";
 import CompareIcon from "@mui/icons-material/Compare";
 import TrackChangesIcon from "@mui/icons-material/TrackChanges";
+import StepCard from "./StepCard";
 
 const features = [
   {
@@ -48,52 +49,13 @@ const HowItWorks = () => {
         >
           {features.map(({ id, title, description, icon, bg }) => {
             return (
-              <Grid item xs={12} md={4} key={id}>
-                <Box
-                  sx={{
-                    textAlign: "center",
-                  }}
-                >
-                  <Box
-                    sx={{
-                      display: "inline-block",
-                      padding: "25px 26px",
-                      borderRadius: "20px",
-                      background: bg,
-                      height: "100%",
-                    }}
-                  >
-                    {icon}
-                  </Box>
-                </Box>
-                <Typography
-                  sx={{
-                    fontWeight: "600",
-                    fontFamily: "Manrope Variable",
-                    textAlign: "center",
-                    marginBottom: "15px",
-                    marginTop: "50px",
-                    fontSize: "22px",
-                    color: "#000000",
-                  }}
-                >
-                  {title}
-                </Typography>
-                <Typography sx={{ textAlign: "center" }} variant="body2">
-                  <Box
-                    component="span"
-                    sx={{
-                      width: "250px",
-                      display: "inline-block",
-                      lineHeight: "26px",
-                      fontSize: "16px",
-                      color: "#333333",
-                    }}
-                  >
-                    {description}
-                  </Box>
-                </Typography>
-              </Grid>
+              <StepCard
+                id={id}
+                title={title}
+                description={description}
+                icon={icon}
+                bg={bg}
+              ></StepCard>
             );
           })}
         </Grid>
