@@ -27,7 +27,7 @@ export default function WhyPriceHunt() {
       >
         Why PriceHunt?
       </Typography>
-      <ul className="grid grid-cols-1 md:grid-cols-4  gap-4 max-w-6xl mx-auto mt-15 flex justify-center">
+      <ul className="grid-cols-1 md:grid-cols-4  gap-4 max-w-6xl mx-auto mt-15 flex justify-center m-auto flex-wrap">
         {benefits.map((item, index) => (
           <li
             key={index}
