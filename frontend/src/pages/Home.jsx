@@ -5,6 +5,7 @@ import TopCategories from "../components/TopCategories/TopCategories";
 import WhyPriceHunt from "../components/BenefitSection/BenefitSection";
 import Testimonals from "../components/Testimonials/Testimonials";
 import Subscribe from "../components/Subscibe/Subscribe";
+import Footer from "../components/Footer/Footer";
 
 const Home = () => {
   return (
@@ -16,6 +17,7 @@ const Home = () => {
       <WhyPriceHunt></WhyPriceHunt>
       <Testimonals></Testimonals>
       <Subscribe></Subscribe>
+      <Footer></Footer>
     </>
   );
 };

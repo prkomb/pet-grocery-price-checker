@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Home from "../pages/Home";
 import Products from "../pages/Products";
 import NotFound from "../pages/NotFound";
+import ResponsiveHeader from "../components/Header/ResponsiveHeader/ResponsiveHeader";
 
 export default createBrowserRouter([
   {
@@ -16,4 +17,5 @@ export default createBrowserRouter([
     path: "*",
     Component: NotFound,
   },
+  { path: "/responsive-header", Component: ResponsiveHeader },
 ]);

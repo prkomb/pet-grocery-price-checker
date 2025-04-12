@@ -13,7 +13,7 @@ const Subscribe = () => {
       >
         <Box
           sx={{
-            maxWidth: "1242px",
+            maxWidth: "1293px",
             width: "100%",
             mx: "auto",
             px: { xs: 4, md: 8 },
@@ -26,6 +26,7 @@ const Subscribe = () => {
             display="flex"
             justifyContent="space-between"
             alignItems="center"
+            flexWrap="wrap"
           >
             <Typography
               variant="body1"
@@ -33,24 +34,32 @@ const Subscribe = () => {
                 fontFamily: "Poppins",
                 fontWeight: "bold",
                 color: "white",
-                fontSize: "34px",
+
+                fontSize: {
+                  sm: "14px",
+                  md: "34px",
+                },
+
+                margin: { sm: "20px 0", xl: "0" },
                 width: "507px",
               }}
             >
               Don't miss out on discounts — subscribe to notifications
             </Typography>
-            <Button
-              variant="contained"
-              sx={{
-                color: "#000",
-                borderRadius: "50px",
-                fontFamily: "Poppins",
-                fontWeight: "bold",
-                bgcolor: "white",
-              }}
-            >
-              Subscribe
-            </Button>
+            <Box sx={{ mx: { xs: "auto", sm: "auto", md: "0" } }}>
+              <Button
+                variant="contained"
+                sx={{
+                  color: "#000",
+                  borderRadius: "50px",
+                  fontFamily: "Poppins",
+                  fontWeight: "bold",
+                  bgcolor: "white",
+                }}
+              >
+                Subscribe
+              </Button>
+            </Box>
           </Box>
         </Box>
       </Box>

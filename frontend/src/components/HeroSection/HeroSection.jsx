@@ -38,13 +38,13 @@ const HeroSection = () => {
         sx={{ position: "absolute", bottom: 0 }}
       ></Box> */}
 
-      <Container sx={{ width: "780px" }}>
-        <Box sx={{ width: "759px" }}>
+      <Container sx={{ width: "780px", maxWidth: "100%" }}>
+        <Box sx={{ width: "759px", maxWidth: "100%" }}>
           <Typography
+            className="sm: text-2xl"
             sx={{
               textAlign: "center",
               fontSize: "56px",
-
               fontFamily: "Poppins",
               fontWeight: 600,
               fontStyle: "italic",
@@ -56,7 +56,7 @@ const HeroSection = () => {
 
         <Box className="text-center">
           <OutlinedInput
-            className="bg-white w-[572px] h-[76px]"
+            className="bg-white w-[572px] h-[76px] max-w-[100%]"
             sx={{
               borderRadius: "24px",
               marginX: "8px",
