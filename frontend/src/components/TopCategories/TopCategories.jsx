@@ -14,7 +14,7 @@ export default function TopCategories() {
     <Box>
       <h2 className="text-2xl text-center mt-[64px]">Top Categories</h2>
 
-      <div className="flex justify-center gap-6 mt-[58px] flex-wrap">
+      <div className="flex justify-center gap-6 mt-[58px] ">
         {categories.map((category) => {
           return (
             <CategoryCard
