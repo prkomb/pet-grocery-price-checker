@@ -36,6 +36,12 @@ export default function TopCategories() {
             fontFamily: "Poppins",
             textTransform: "none",
             cursor: "pointer",
+            transition: "all 0.2s linear",
+            "&:hover": {
+              bgcolor: "#34D399",
+              boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.25)",
+              color: "white",
+            },
           }}
         >
           Show More

@@ -9,6 +9,12 @@ const CategoryCard = ({ icon, label }) => {
 
         backgroundColor: "#E5E7EB",
         borderRadius: "16px",
+        transition: "all 2s linear ease",
+        cursor: "pointer",
+        "&:hover": {
+          backgroundColor: "white",
+          boxShadow: "0px 0px 19px 4px rgba(0,0,0,0.75)",
+        },
       }}
     >
       <CardContent className="flex flex-col justify-between items-center h-full text-center px-4">
