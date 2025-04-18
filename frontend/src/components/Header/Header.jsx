@@ -42,7 +42,7 @@ const Header = () => {
               backgroundColor: "#efefef",
               display: {
                 xs: "none",
-                md: "block",
+                lg: "flex",
               },
             }}
             size="small"

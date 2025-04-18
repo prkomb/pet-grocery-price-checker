@@ -12,6 +12,7 @@ const Subscribe = () => {
         }}
       >
         <Box
+          gap={{ xs: "4px" }}
           sx={{
             maxWidth: "1293px",
             width: "100%",
@@ -40,6 +41,7 @@ const Subscribe = () => {
                   md: "34px",
                 },
 
+                textAlign: { xs: "center" },
                 margin: { sm: "20px 0", xl: "0" },
                 width: "507px",
               }}
@@ -50,6 +52,7 @@ const Subscribe = () => {
               <Button
                 variant="contained"
                 sx={{
+                  marginTop: { xs: "15px", sm: "0" },
                   color: "#000",
                   borderRadius: "50px",
                   fontFamily: "Poppins",

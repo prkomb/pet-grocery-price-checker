@@ -13,9 +13,12 @@ import Brand from "@/assets/images/Brand.png";
 const Footer = () => {
   return (
     <Box
+      component="footer"
       sx={{
         bgcolor: "#1B1F3B",
+        // maxWidth: "100%",
         height: "319px",
+        maxHeight: "100%",
         display: "flex",
         alignItems: "center",
       }}
@@ -24,6 +27,7 @@ const Footer = () => {
         <Box
           display="flex"
           justifyContent="space-between"
+          flexWrap="wrap"
           sx={{ width: "100%" }}
         >
           <Box>

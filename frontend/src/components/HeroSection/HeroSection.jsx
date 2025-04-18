@@ -26,25 +26,15 @@ const HeroSection = () => {
       <LeftStartsPair></LeftStartsPair>
       <RightStartsPair></RightStartsPair>
 
-      {/* <Box
-        component="img"
-        src={Star}
-        sx={{ position: "absolute", bottom: 0, left: 175 }}
-      ></Box>
-
-      <Box
-        component="img"
-        src={BigStar}
-        sx={{ position: "absolute", bottom: 0 }}
-      ></Box> */}
-
       <Container sx={{ width: "780px", maxWidth: "100%" }}>
         <Box sx={{ width: "759px", maxWidth: "100%" }}>
           <Typography
             className="sm: text-2xl"
             sx={{
               textAlign: "center",
-              fontSize: "56px",
+              fontSize: { xs: "24px", sm: "32px", md: "40px", lg: "56px" },
+
+              // fontSize: "56px",
               fontFamily: "Poppins",
               fontWeight: 600,
               fontStyle: "italic",
@@ -77,7 +67,6 @@ const HeroSection = () => {
                   sx={{
                     paddingX: "35px",
                     paddingY: "15px",
-
                     borderRadius: "16px",
                     backgroundColor: "#00FF84",
                     border: "none",

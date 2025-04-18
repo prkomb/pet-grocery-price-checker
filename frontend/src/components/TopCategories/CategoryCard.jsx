@@ -6,7 +6,7 @@ const CategoryCard = ({ icon, label }) => {
       sx={{
         width: "170px",
         height: "170px",
-
+        textAlign: "center",
         backgroundColor: "#E5E7EB",
         borderRadius: "16px",
         transition: "all 2s linear ease",

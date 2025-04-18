@@ -37,7 +37,13 @@ const Testimonals = () => {
             1024: { slidesPerView: 3 },
           }}
         >
-          <Box display="flex" justifyContent="center" gap={4} flexWrap="wrap">
+          {/* <Box
+            display="flex"
+            justifyContent="center"
+            // gap={4}
+            flexWrap="wrap"
+            sx={{ textAlign: "-webkit-center" }}
+          >
             {testimonials.map((testimonial, index) => {
               return (
                 <SwiperSlide>
@@ -51,7 +57,30 @@ const Testimonals = () => {
                 </SwiperSlide>
               );
             })}
-          </Box>
+          </Box> */}
+
+          <Swiper
+            slidesPerView={3}
+            spaceBetween={30}
+            breakpoints={{
+              320: { slidesPerView: 1 },
+              640: { slidesPerView: 2 },
+              1024: { slidesPerView: 3 },
+            }}
+          >
+            {testimonials.map((testimonial, index) => (
+              <SwiperSlide key={index}>
+                <Box display="flex" justifyContent="center">
+                  <TestimonalsCard
+                    name={testimonial.name}
+                    location={testimonial.location}
+                    quote={testimonial.quote}
+                    rating={testimonial.rating}
+                  />
+                </Box>
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </Swiper>
       </Container>
     </Box>
