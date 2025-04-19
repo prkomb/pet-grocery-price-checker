@@ -1,74 +1,101 @@
-const testimonials = [
+import {
+  aishaImg,
+  chloeImg,
+  darrenImg,
+  graceImg,
+  juliaImg,
+  markImg,
+  omarImg,
+  sofiaImg,
+  tomImg,
+} from "../../assets/images/avatars/index";
+
+import { mapUserByProperties } from "@/helpers/mapUserByProperties";
+
+let testimonials = [
   {
     name: "Julia M.",
     location: "Birmingham, England",
+    image: juliaImg,
     rating: 5,
     quote:
-      "I was surprised how easy it is to find the best grocery deals. I literally saved 25% on my weekly shopping!",
+      "Absolutely love it — I saved 25% on my weekly shopping without any hassle. A total game changer!",
   },
   {
     name: "Mark T.",
     location: "London, England",
+    image: markImg,
     rating: 4,
     quote:
-      "Fast, clean, and super useful. PriceHunt is now my go-to before I head to any store.",
+      "Really helpful and efficient, though there’s room for a few more features. Still, I use it regularly!",
   },
   {
     name: "Sofia R.",
     location: "Manchester, England",
     rating: 5,
+    image: sofiaImg,
     quote:
-      "I love that there’s no sign-up or clutter. It just works — and helps me save every time.",
+      "No sign-ups, no fluff — just real savings every single time. It’s become part of my routine!",
   },
   {
     name: "Darren L.",
     location: "Leeds, England",
     rating: 5,
+    image: darrenImg,
     quote:
-      "I used to waste time checking every store’s app. Now I just check here and go. Brilliant!",
+      "What used to take me ages now takes seconds. It’s honestly brilliant and super reliable.",
   },
   {
     name: "Emily W.",
     location: "Brighton, England",
     rating: 4,
+    image: sofiaImg,
     quote:
-      "Simple and really effective. I found my regular items cheaper at a different store I wouldn’t have checked!",
+      "Works really well and definitely helps find better deals, though it could expand to more stores.",
   },
   {
     name: "Aisha N.",
     location: "Bristol, England",
     rating: 5,
+    image: aishaImg,
     quote:
-      "It’s like having a personal shopping assistant. I check prices while I’m in-store and save on the spot!",
+      "Feels like a smart shopping buddy in my pocket. I’m saving money in real time — love it!",
   },
   {
     name: "Tom B.",
     location: "Newcastle, England",
     rating: 4,
+    image: tomImg,
     quote:
-      "Love the clean layout and no ads. It’s focused on one thing — finding the lowest prices — and it nails it.",
+      "Great design and it does what it promises. A few more advanced options would make it perfect.",
   },
   {
     name: "Grace H.",
     location: "Sheffield, England",
-    rating: 5,
+    rating: 2,
+    image: graceImg,
     quote:
-      "I compared the cost of my weekly list and ended up saving over £10. That adds up fast!",
+      "It helped me save some money, but I found it a bit limited in terms of coverage and updates.",
   },
   {
     name: "Omar Y.",
     location: "Nottingham, England",
     rating: 5,
+    image: omarImg,
     quote:
-      "This app helps me stay within budget, especially with prices going up everywhere. It’s a must-have.",
+      "With everything getting pricier, this app has been a lifesaver. I recommend it to everyone!",
   },
   {
     name: "Chloe K.",
     location: "Southampton, England",
-    rating: 4,
+    rating: 2,
+    image: chloeImg,
     quote:
-      "Great tool for families trying to cut down grocery costs. I even use it to plan my shopping routes!",
+      "The idea is solid and it can be useful, but it didn’t always match what I saw in-store. Needs improvement.",
   },
 ];
+
+const userNames = mapUserByProperties(testimonials, "name");
+console.log(userNames);
 
 export default testimonials;

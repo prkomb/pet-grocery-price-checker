@@ -6,9 +6,8 @@ import {
   Typography,
   Rating,
 } from "@mui/material";
-// import {} from "@mui/";
 
-function TestimonalsCard({ name, location, rating, quote }) {
+function TestimonalsCard({ name, location, rating, quote, image }) {
   return (
     <>
       <Card
@@ -31,7 +30,7 @@ function TestimonalsCard({ name, location, rating, quote }) {
             justifyContent="center"
             sx={{ marginBottom: "10px" }}
           >
-            <Avatar sx={{ textAlign: "center" }}></Avatar>
+            <Avatar sx={{ textAlign: "center" }} src={image}></Avatar>
           </Box>
 
           <Box>

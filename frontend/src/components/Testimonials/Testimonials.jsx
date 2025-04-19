@@ -72,6 +72,7 @@ const Testimonals = () => {
               <SwiperSlide key={index}>
                 <Box display="flex" justifyContent="center">
                   <TestimonalsCard
+                    image={testimonial.image}
                     name={testimonial.name}
                     location={testimonial.location}
                     quote={testimonial.quote}

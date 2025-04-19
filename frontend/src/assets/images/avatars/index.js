@@ -1,0 +1,9 @@
+export { default as aishaImg } from "./Aisiha N.jpg";
+export { default as chloeImg } from "./Chhole K.jpg";
+export { default as darrenImg } from "./Darren L.jpg";
+export { default as graceImg } from "./Grace H.jpg";
+export { default as juliaImg } from "./Julia M.jpg";
+export { default as markImg } from "./Mark T.jpg";
+export { default as omarImg } from "./Omar Y.jpg";
+export { default as sofiaImg } from "./Sofia R.jpg";
+export { default as tomImg } from "./Tom B.jpg";
