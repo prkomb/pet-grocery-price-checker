@@ -8,7 +8,7 @@ import {
   omarImg,
   sofiaImg,
   tomImg,
-} from "../../assets/images/avatars/index";
+} from "../../../assets/images/avatars/index";
 
 import { mapUserByProperties } from "@/helpers/mapUserByProperties";
 

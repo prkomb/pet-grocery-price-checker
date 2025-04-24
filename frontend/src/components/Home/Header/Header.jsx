@@ -1,5 +1,5 @@
 // import "./../Header/Header.css";
-import "@/components/Header/Header.css";
+import "@/components/Home/Header/Header.css";
 
 import {
   Box,

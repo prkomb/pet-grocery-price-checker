@@ -37,28 +37,6 @@ const Testimonals = () => {
             1024: { slidesPerView: 3 },
           }}
         >
-          {/* <Box
-            display="flex"
-            justifyContent="center"
-            // gap={4}
-            flexWrap="wrap"
-            sx={{ textAlign: "-webkit-center" }}
-          >
-            {testimonials.map((testimonial, index) => {
-              return (
-                <SwiperSlide>
-                  <TestimonalsCard
-                    key={index}
-                    name={testimonial.name}
-                    location={testimonial.location}
-                    quote={testimonial.quote}
-                    rating={testimonial.rating}
-                  ></TestimonalsCard>
-                </SwiperSlide>
-              );
-            })}
-          </Box> */}
-
           <Swiper
             slidesPerView={3}
             spaceBetween={30}
