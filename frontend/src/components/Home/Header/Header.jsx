@@ -1,5 +1,6 @@
 // import "./../Header/Header.css";
 import "@/components/Home/Header/Header.css";
+import { NavLink } from "react-router-dom";
 
 import {
   Box,
@@ -12,7 +13,7 @@ import {
   Button,
 } from "@mui/material";
 import { Search, Menu } from "@mui/icons-material";
-import Brand from "@/assets/images/Brand.png";
+import Brand from "@/assets/images/Brand.svg";
 import CustomDrawer from "./Drawer";
 
 const Header = () => {
@@ -26,6 +27,8 @@ const Header = () => {
             color="inherit"
             aria-label="menu"
             sx={{ mr: 2 }}
+            component={NavLink}
+            to="/"
           >
             <Box component="img" src={Brand}></Box>
           </IconButton>

@@ -9,7 +9,7 @@ import {
   ListItemText,
   Button,
 } from "@mui/material";
-import Brand from "@/assets/images/Brand.png";
+import Brand from "@/assets/images/Brand.svg";
 import { Search, Close } from "@mui/icons-material";
 import { responsiveHeaderPages } from "./ResponsiveHeaderData";
 import { NavLink } from "react-router-dom";

@@ -1,6 +1,6 @@
 import { Box, Button, Typography } from "@mui/material";
 import { NavLink } from "react-router-dom";
-import Brand from "@/assets/images/Brand.png";
+import Brand from "@/assets/images/LogoWelcome.svg";
 
 function WelcomePage() {
   return (
@@ -108,24 +108,21 @@ function WelcomePage() {
               >
                 Get Started
               </NavLink>
-              {/* <Button
-                size="small"
-                variant="outlined"
-                sx={{
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  fontWeight: 700,
-                  fontSize: "14px",
-                  color: "transparent",
-                  backgroundColor: "#fff",
-                  padding: "5px 20px",
-                  "&:hover": {
+
+              <Box position="absolute" bottom={10} left={0} right={0}>
+                <Typography
+                  variant="body1"
+                  color="initial"
+                  sx={{
+                    fontFamily: "Poppins",
+                    fontSize: "12px",
+                    fontWeight: "500",
                     color: "white",
-                  },
-                }}
-              >
-                Get Started
-              </Button> */}
+                  }}
+                >
+                  &#169; {new Date().getFullYear()} PriceHunt
+                </Typography>
+              </Box>
             </Box>
           </Box>
         </Box>
