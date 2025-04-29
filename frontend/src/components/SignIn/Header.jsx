@@ -1,5 +1,6 @@
 import { Stack, Box, Typography, Button } from "@mui/material";
 import Brand from "@/assets/images/Brand.svg";
+import { NavLink } from "react-router-dom";
 const Header = () => {
   return (
     <Stack
@@ -17,6 +18,8 @@ const Header = () => {
       </Stack>
       <Stack>
         <Button
+          component={NavLink}
+          to="/register"
           size="small"
           sx={{
             color: "white",

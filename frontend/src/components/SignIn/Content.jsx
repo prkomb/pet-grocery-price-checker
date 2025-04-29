@@ -10,6 +10,7 @@ import {
   Checkbox,
   Button,
 } from "@mui/material";
+import { NavLink } from "react-router-dom";
 
 function Content() {
   return (
@@ -139,9 +140,10 @@ function Content() {
                 Create an account
               </Typography>
               <Typography
+                component={NavLink}
+                to="/register"
                 variant="body1"
                 color="initial"
-                component="span"
                 sx={{
                   color: "white",
                   display: "inline-block",

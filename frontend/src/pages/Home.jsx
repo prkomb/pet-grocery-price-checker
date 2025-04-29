@@ -10,7 +10,6 @@ import Footer from "@/components/Home/Footer/Footer";
 const Home = () => {
   return (
     <>
-      <Header></Header>
       <HeroSection></HeroSection>
       <HowItWorks></HowItWorks>
       <TopCategories></TopCategories>
