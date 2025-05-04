@@ -1,0 +1,48 @@
+export const randomProducts = [
+  {
+    id: 1,
+    title: "Walkers Ready Salted Crisps",
+    weight: "6 x 25g",
+    price: 1.85,
+    pricePer100g: "£1.23/100g",
+    promo: "2 for £3",
+    store: "Tesco",
+    shelfLife: "Life 2w+",
+    image: "https://placehold.co/150x150?text=Crisps",
+  },
+  {
+    id: 2,
+    title: "Alpro Almond Milk Unsweetened",
+    weight: "1L",
+    price: 1.9,
+    pricePer100g: "£0.19/100ml",
+    promo: "Clubcard Price: £1.60",
+    store: "Sainsbury’s",
+    shelfLife: "Life 10d",
+    image: "https://placehold.co/150x150?text=Almond+Milk",
+  },
+  {
+    id: 3,
+    title: "Ben & Jerry’s Cookie Dough",
+    weight: "465ml",
+    price: 4.5,
+    pricePer100g: "£0.97/100ml",
+    promo: "Was £5.50",
+    store: "ASDA",
+    shelfLife: "Frozen",
+    image: "https://placehold.co/150x150?text=Ice+Cream",
+  },
+  {
+    id: 4,
+    title: "Hovis Wholemeal Bread",
+    weight: "800g",
+    price: 1.2,
+    pricePer100g: "£0.15/100g",
+    promo: "Buy 1 get 1 half price",
+    store: "Morrisons",
+    shelfLife: "Life 4d",
+    image: "https://placehold.co/150x150?text=Bread",
+  },
+];
+
+export default randomProducts;
