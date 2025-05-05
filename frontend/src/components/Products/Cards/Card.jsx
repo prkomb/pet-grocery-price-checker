@@ -21,6 +21,7 @@ const ProductCard = (props) => {
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
+        borderRadius: "10px",
       }}
     >
       <CardMedia
@@ -31,8 +32,13 @@ const ProductCard = (props) => {
           borderRadius: "8px",
         }}
       />
-      <CardContent>
-        <Typography variant="body1" color="initial">
+      <CardContent sx={{ paddingLeft: "0" }}>
+        <Typography
+          variant="body1"
+          color="initial"
+          whiteSpace="nowrap"
+          sx={{ fontFamily: "Poppins", fontWeight: 600, fontSize: "14px" }}
+        >
           {title}
         </Typography>
 
@@ -41,27 +47,41 @@ const ProductCard = (props) => {
           color="green"
           fontWeight="bold"
           my={2}
-          sx={{ fontFamily: "Poppins" }}
+          sx={{ fontFamily: "Poppins", fontSize: "12px", color: "#34D399" }}
         >
           £{price}
         </Typography>
         <Typography
           variant="body1"
           color="gray"
-          sx={{ fontFamily: "Poppins", fontWeight: 600 }}
+          sx={{ fontFamily: "Poppins", fontWeight: 600, fontSize: "12px" }}
         >
           {promo}
         </Typography>
       </CardContent>
-      <CardActions sx={{ justifyContent: "center" }}>
+      <CardActions
+        sx={{ justifyContent: "center", padding: 0, margin: "10px 0" }}
+      >
         <Button
+          disableRipple
+          disableFocusRipple
           fullWidth
           sx={{
             bgcolor: "#4CAF50",
             color: "white",
             fontFamily: "Poppins",
             textTransform: "capitalize",
+            fontWeight: 600,
             marginTop: "0 auto",
+            borderRadius: "10px",
+            background: "#34D399",
+            transition: "all .5s linear",
+            "&:hover": {
+              outline: "1px solid rgba(0, 0, 0, 0.1)",
+              backgroundColor: "#45a049",
+              boxShadow: "0 4px 10px rgba(0, 0, 0, 0.15)",
+              transform: "translateY(-5px)",
+            },
           }}
         >
           Add to Cart
