@@ -38,6 +38,24 @@ const HeroSection = () => {
         </Typography>
       </Box>
 
+      <Box>
+        <Button
+          color="success"
+          variant="contained"
+          bgcolor="success"
+          sx={{
+            fontFamily: "Poppins",
+            fontWeight: "bold",
+            bgcolor: "#4CAF50",
+            padding: "10px 20px",
+            marginTop: "20px",
+            borderRadius: "12px",
+          }}
+        >
+          Start Browsing
+        </Button>
+      </Box>
+
       <Stack
         direction="row"
         justifyContent="center"
@@ -47,7 +65,7 @@ const HeroSection = () => {
         padding="10px 0"
         borderRadius="20px"
         margin="0 auto"
-        mt={8}
+        mt={4}
       >
         <FormControl>
           <FormLabel></FormLabel>
