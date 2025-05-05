@@ -1,0 +1,24 @@
+.container {
+  display: flex;
+  align-items: center;
+  width: 300px;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  height: 49vw;
+  max-height: 100vh;
+}
+
+.tracker {
+  border: 1px solid;
+  width: 600px;
+  height: 200px;
+  display: flex;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+.block {
+  height: 100%;
+  width: 100%;
+  border: 1px solid;
+}
