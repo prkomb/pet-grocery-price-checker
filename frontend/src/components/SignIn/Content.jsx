@@ -11,8 +11,15 @@ import {
   Button,
 } from "@mui/material";
 import { NavLink } from "react-router-dom";
+import { useForm } from "react-hook-form";
 
 function Content() {
+  const { register, handleSubmit } = useForm();
+  console.log(handleSubmit);
+  const onSave = (data) => {
+    console.log(data);
+  };
+
   return (
     <>
       <Stack
@@ -37,12 +44,18 @@ function Content() {
             Login Now
           </Typography>
 
-          <Stack component="form" sx={{ maxWidth: "100%" }}>
+          <Stack
+            component="form"
+            sx={{ maxWidth: "100%" }}
+            onSubmit={handleSubmit(onSave)}
+          >
             <FormControl sx={{ maxWidth: "100%" }}>
               <FormLabel sx={{ margin: "15px 0", color: "white" }}>
                 Email
               </FormLabel>
               <TextField
+                name="email"
+                {...register("email")}
                 size="small"
                 placeholder="Enter your email id"
                 variant="outlined"
@@ -78,6 +91,8 @@ function Content() {
                 Password
               </FormLabel>
               <TextField
+                {...register("password")}
+                name="password"
                 size="small"
                 placeholder="Enter your email id"
                 variant="outlined"
@@ -123,6 +138,8 @@ function Content() {
             </Stack>
 
             <Button
+              type="submit"
+              // component="button"
               variant="outlined"
               sx={{
                 margin: "20px 0",
@@ -135,7 +152,6 @@ function Content() {
             </Button>
 
             <Typography variant="body1" color="initial" textAlign="center">
-              Not registered yet?{" "}
               <Typography component="span" sx={{ color: "#474BCA" }}>
                 Create an account
               </Typography>

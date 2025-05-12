@@ -9,13 +9,30 @@ import {
   FormControlLabel,
   Checkbox,
   Button,
+  FormHelperText,
 } from "@mui/material";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
+
+import { useDispatch } from "react-redux";
+import { useForm } from "react-hook-form";
+
+import { loginUser } from "../store/features/login/loginThunk";
 
 function AuthForm() {
+  const navigate = useNavigate();
   const { title, buttonText, bottomText, bottomLinkHref, bottomLinkText } =
     useLoaderData();
-  console.log(title);
+
+  const { register, handleSubmit } = useForm();
+  const dispatch = useDispatch();
+
+  const onSaveForm = (data) => {
+    console.log(data);
+    dispatch(
+      loginUser({ email: data.email, password: data.password, navigate })
+    );
+  };
+
   return (
     <>
       <Box
@@ -32,7 +49,6 @@ function AuthForm() {
           flexWrap="wrap"
           sx={{ minHeight: "100vh", px: 5 }}
         >
-          {/* Left Side */}
           <Box sx={{ maxWidth: "400px", width: "100%" }}>
             <Typography
               variant="h2"
@@ -48,11 +64,17 @@ function AuthForm() {
               {title}
             </Typography>
 
-            <Stack component="form" spacing={3}>
+            <Stack
+              component="form"
+              spacing={3}
+              onSubmit={handleSubmit(onSaveForm)}
+            >
               <FormControl fullWidth>
                 <FormLabel sx={{ mb: 1, color: "white" }}>Email</FormLabel>
                 <TextField
                   size="small"
+                  {...register("email")}
+                  name="email"
                   placeholder="Enter your email"
                   variant="outlined"
                   fullWidth
@@ -72,6 +94,8 @@ function AuthForm() {
               <FormControl fullWidth>
                 <FormLabel sx={{ mb: 1, color: "white" }}>Password</FormLabel>
                 <TextField
+                  {...register("password")}
+                  name="password"
                   size="small"
                   placeholder="Enter your password"
                   variant="outlined"
@@ -107,6 +131,7 @@ function AuthForm() {
               </Stack>
 
               <Button
+                type="submit"
                 variant="contained"
                 fullWidth
                 sx={{

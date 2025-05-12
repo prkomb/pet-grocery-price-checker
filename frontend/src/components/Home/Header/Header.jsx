@@ -1,6 +1,6 @@
-// import "./../Header/Header.css";
 import "@/components/Home/Header/Header.css";
 import { NavLink } from "react-router-dom";
+import { Menu, MenuItem, ListItem } from "@mui/material";
 
 import {
   Box,
@@ -11,12 +11,32 @@ import {
   InputAdornment,
   IconButton,
   Button,
+  Avatar,
 } from "@mui/material";
-import { Search, Menu } from "@mui/icons-material";
+import { Search, Logout } from "@mui/icons-material";
+import MenuIcon from "@mui/icons-material/Menu";
 import Brand from "@/assets/images/Brand.svg";
 import CustomDrawer from "./Drawer";
+import { useRef, useState } from "react";
+import { getUser } from "../../../helpers/localStorage";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { logout } from "../../../store/features/logout";
 
 const Header = () => {
+  const user = getUser();
+  const anchorElement = useRef();
+  const navigate = useNavigate();
+  const [open, setOpen] = useState(false);
+  // tommorow fix this
+
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    console.log("logout");
+    dispatch(logout({ navigate }));
+  };
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" sx={{ paddingY: "20px" }} color="">
@@ -61,46 +81,87 @@ const Header = () => {
 
           <Box sx={{ flexGrow: 1 }}></Box>
 
-          <Button
-            variant="outlined"
-            className=""
-            sx={{
-              mr: 2,
-              width: "91px",
-              height: "54px",
-              borderRadius: "76px",
-              color: "#170f49",
-              border: "1px solid #d9dbe9",
-              display: {
-                xs: "none",
-                sm: "block",
-              },
-            }}
-          >
-            Login
-          </Button>
+          {user ? (
+            <>
+              <Box
+                display="flex"
+                alignItems="center"
+                gap={2}
+                ref={anchorElement}
+                onClick={() => setOpen(true)}
+              >
+                <Avatar src=""></Avatar>
+                <Typography variant="body1" color="initial">
+                  {user.email}
+                </Typography>
+              </Box>
 
-          <Button
-            variant="outlined"
-            className="text-poppins-800"
-            sx={{
-              backgroundColor: "#34d399",
-              fontSize: "16px",
-              borderRadius: "40px",
-              width: "153px",
-              height: "49px",
-              color: "white",
-              border: "none",
-              textTransform: "capitalize",
-              display: {
-                xs: "none",
-                sm: "none",
-                md: "block",
-              },
-            }}
-          >
-            Get started
-          </Button>
+              <Menu open={open} anchorEl={anchorElement.current}>
+                <MenuItem>
+                  <Button
+                    fullWidth
+                    startIcon={<Logout fontSize="small" />}
+                    onClick={() => handleLogout()}
+                    sx={{
+                      fontSize: "Poppins",
+                      fontWeight: "bold",
+                      textTransform: "capitalize",
+                      color: "red",
+                    }}
+                  >
+                    Logout
+                  </Button>
+                </MenuItem>
+              </Menu>
+            </>
+          ) : (
+            <Box display="flex">
+              <Button
+                component={NavLink}
+                to="/login"
+                variant="outlined"
+                sx={{
+                  mr: 2,
+                  width: "91px",
+                  height: "54px",
+                  borderRadius: "76px",
+                  color: "#170f49",
+                  border: "1px solid #d9dbe9",
+                  display: {
+                    xs: "none",
+                    sm: "block",
+                    md: "flex",
+                  },
+                }}
+              >
+                Login
+              </Button>
+
+              <Button
+                variant="outlined"
+                className="text-poppins-800"
+                component={NavLink}
+                to="/register"
+                sx={{
+                  backgroundColor: "#34d399",
+                  fontSize: "16px",
+                  borderRadius: "40px",
+                  width: "153px",
+                  height: "49px",
+                  color: "white",
+                  border: "none",
+                  textTransform: "capitalize",
+                  display: {
+                    xs: "none",
+                    sm: "none",
+                    md: "flex",
+                  },
+                }}
+              >
+                Get started
+              </Button>
+            </Box>
+          )}
 
           <CustomDrawer></CustomDrawer>
         </Toolbar>

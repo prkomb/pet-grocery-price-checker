@@ -28,6 +28,7 @@ export default createBrowserRouter([
   {
     path: "/login",
     Component: AuthForm,
+
     loader() {
       return {
         title: "Login Now",
@@ -56,8 +57,4 @@ export default createBrowserRouter([
     path: "*",
     Component: NotFound,
   },
-
-  // some extra links will delete later
-  { path: "/responsive-header", Component: ResponsiveHeader },
-  { path: "/responsive-testimonals", Component: ResponseTestimonals },
 ]);
