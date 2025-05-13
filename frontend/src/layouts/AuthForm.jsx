@@ -12,18 +12,24 @@ import {
   FormHelperText,
 } from "@mui/material";
 import { useLoaderData, useNavigate } from "react-router-dom";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 
 import { loginUser } from "../store/features/login/loginThunk";
+import { loginSchema } from "../helpers/yupHandler/loginFormValidation";
 
 function AuthForm() {
   const navigate = useNavigate();
   const { title, buttonText, bottomText, bottomLinkHref, bottomLinkText } =
     useLoaderData();
 
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(loginSchema) });
   const dispatch = useDispatch();
 
   const onSaveForm = (data) => {
@@ -89,6 +95,9 @@ function AuthForm() {
                     },
                   }}
                 />
+                <FormHelperText sx={{ color: "#DC2626" }}>
+                  {errors.email?.message}
+                </FormHelperText>
               </FormControl>
 
               <FormControl fullWidth>
@@ -110,7 +119,11 @@ function AuthForm() {
                       fontWeight: "bold",
                     },
                   }}
+                  type="password"
                 />
+                <FormHelperText sx={{ color: "#DC2626" }}>
+                  {errors.password?.message}
+                </FormHelperText>
               </FormControl>
 
               <Stack

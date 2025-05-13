@@ -13,7 +13,7 @@ import {
   Button,
   Avatar,
 } from "@mui/material";
-import { Search, Logout } from "@mui/icons-material";
+import { Search, Logout, Person } from "@mui/icons-material";
 import MenuIcon from "@mui/icons-material/Menu";
 import Brand from "@/assets/images/Brand.svg";
 import CustomDrawer from "./Drawer";
@@ -97,6 +97,17 @@ const Header = () => {
               </Box>
 
               <Menu open={open} anchorEl={anchorElement.current}>
+                <MenuItem>
+                  <Button
+                    component={NavLink}
+                    to="/profile"
+                    sx={{ textTransform: "capitalize", fontFamily: "Poppins" }}
+                    startIcon={<Person fontSize="small" />}
+                    fullWidth
+                  >
+                    Profile
+                  </Button>
+                </MenuItem>
                 <MenuItem>
                   <Button
                     fullWidth

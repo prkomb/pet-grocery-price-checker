@@ -7,6 +7,7 @@ import ResponseTestimonals from "../components/Home/Testimonials/ResponsiveTesti
 import WelcomePage from "../pages/WelcomePage";
 import AuthForm from "../layouts/AuthForm";
 import HeaderLayout from "../layouts/Header";
+import Profile from "../pages/Profile";
 
 export default createBrowserRouter([
   {
@@ -20,6 +21,7 @@ export default createBrowserRouter([
     children: [
       { path: "home", Component: Home },
       { path: "products", Component: Products },
+      { path: "profile", Component: Profile },
     ],
   },
 
