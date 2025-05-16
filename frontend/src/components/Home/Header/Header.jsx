@@ -28,7 +28,10 @@ const Header = () => {
   const anchorElement = useRef();
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
-  // tommorow fix this
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const dispatch = useDispatch();
 
@@ -86,9 +89,10 @@ const Header = () => {
               <Box
                 display="flex"
                 alignItems="center"
+                aria-controls={open && "basic-menu"}
                 gap={2}
                 ref={anchorElement}
-                onClick={() => setOpen(true)}
+                onClick={setOpen}
               >
                 <Avatar src=""></Avatar>
                 <Typography variant="body1" color="initial">
@@ -96,7 +100,11 @@ const Header = () => {
                 </Typography>
               </Box>
 
-              <Menu open={open} anchorEl={anchorElement.current}>
+              <Menu
+                open={open}
+                anchorEl={anchorElement.current}
+                onClose={handleClose}
+              >
                 <MenuItem>
                   <Button
                     component={NavLink}

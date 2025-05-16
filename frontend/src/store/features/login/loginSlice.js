@@ -1,9 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { registerUser } from "../../../helpers/auth/auth";
 import { loginUser } from "./loginThunk";
 import { logout } from "../logout";
 import { saveUser } from "../../../helpers/localStorage";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 
 const auth = getAuth();
 console.log(auth);
@@ -18,17 +17,27 @@ const initialState = {
 const loginSlice = createSlice({
   name: "login",
   initialState,
-
+  reducers: {
+    setUser: (state, action) => {
+      console.log(action.payload);
+      const user = {
+        uid: action.payload.uid,
+        email: action.payload.email,
+        displayName: action.payload.displayName,
+        photoURL: action.payload.photoURL,
+      };
+      return { ...state, user, token: action.payload.uid };
+    },
+  },
   extraReducers(builder) {
     builder
       .addCase(loginUser.fulfilled, (state, action) => {
         console.log("Done");
-        console.log(action.payload);
+
         saveUser(action.payload);
         return { ...state, user: action.payload };
       })
       .addCase(loginUser.rejected, (state, action) => {
-        // console.log("error");
         return { ...state, error: action.payload };
       })
       .addCase(logout.fulfilled, (state) => {
@@ -39,4 +48,5 @@ const loginSlice = createSlice({
   },
 });
 
+export const { setUser } = loginSlice.actions;
 export default loginSlice.reducer;

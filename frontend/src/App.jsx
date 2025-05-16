@@ -1,22 +1,22 @@
 import "./App.css";
-// import Header from "./components/Header/Header.jsx";
-// import HeroSection from "./components/HeroSection/HeroSection.jsx";
-// import HowItWorks from "./components/HowItWorks/HowItWorks.jsx";
-// import TopCategories from "./components/TopCategories/TopCategories.jsx";
-// import WhyPriceHunt from "./components/BenefitSection/BenefitSection.jsx";
-// import Testimonals from "./components/Testimonials/Testimonials.jsx";
 import { RouterProvider } from "react-router-dom";
 import router from "./routes/router.js";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useEffect } from "react";
-
+import { setUser } from "./store/features/login/loginSlice.js";
+import { useDispatch } from "react-redux";
+import { getUid } from "./store/features/profile/profileSlice.js";
 const auth = getAuth();
 
 const App = () => {
+  const dispatch = useDispatch();
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
+      console.log(user);
       if (user) {
         console.log(user);
+        dispatch(setUser(user));
+        dispatch(getUid(user.uid));
       }
     });
   });
