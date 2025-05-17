@@ -8,13 +8,19 @@ import {
   Divider,
   ListItemText,
   Button,
+  Avatar,
 } from "@mui/material";
 import Brand from "@/assets/images/Brand.svg";
 import { Search, Close } from "@mui/icons-material";
 import { responsiveHeaderPages } from "./ResponsiveHeaderData";
 import { NavLink } from "react-router-dom";
 
+import { useState } from "react";
+
 const ResponsiveHeader = ({ closeDrawer }) => {
+  const userEmail = useState(JSON.parse(localStorage.getItem("user")));
+  console.log(userEmail.at(0).email);
+
   return (
     <>
       <header className="header">
@@ -57,17 +63,26 @@ const ResponsiveHeader = ({ closeDrawer }) => {
               {responsiveHeaderPages.map(({ label, href, id }) => (
                 <ListItem disableGutters key={id}>
                   {label === "Login/ Sign up" ? (
-                    <Button
-                      sx={{
-                        bgcolor: "#00FF84",
-                        padding: "12px",
-                        fontFamily: "Poppins",
-                        color: "white",
-                        borderRadius: "8px",
-                      }}
-                    >
-                      <NavLink to={href}>{label}</NavLink>
-                    </Button>
+                    <>
+                      {userEmail.at(0).email ? (
+                        <ListItemText>
+                          <Typography>{userEmail.at(0).email}</Typography>
+                        </ListItemText>
+                      ) : (
+                        <Button
+                          sx={{
+                            bgcolor: "#00FF84",
+                            padding: "12px",
+                            fontFamily: "Poppins",
+                            color: "white",
+                            borderRadius: "8px",
+                          }}
+                        >
+                          <Avatar src={userEmail.at(0).avatar}></Avatar>
+                          <NavLink to={href}>{label}</NavLink>
+                        </Button>
+                      )}
+                    </>
                   ) : (
                     <ListItemText>
                       <NavLink to={href}>{label}</NavLink>

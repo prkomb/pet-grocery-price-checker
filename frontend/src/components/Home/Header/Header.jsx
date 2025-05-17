@@ -86,52 +86,57 @@ const Header = () => {
 
           {user ? (
             <>
-              <Box
-                display="flex"
-                alignItems="center"
-                aria-controls={open && "basic-menu"}
-                gap={2}
-                ref={anchorElement}
-                onClick={setOpen}
-              >
-                <Avatar src=""></Avatar>
-                <Typography variant="body1" color="initial">
-                  {user.email}
-                </Typography>
-              </Box>
+              <Box sx={{ display: { xs: "none", sm: "flex" } }}>
+                <Box
+                  display="flex"
+                  alignItems="center"
+                  aria-controls={open && "basic-menu"}
+                  gap={2}
+                  ref={anchorElement}
+                  onClick={setOpen}
+                >
+                  <Avatar src=""></Avatar>
+                  <Typography variant="body1" color="initial">
+                    {user.email}
+                  </Typography>
+                </Box>
 
-              <Menu
-                open={open}
-                anchorEl={anchorElement.current}
-                onClose={handleClose}
-              >
-                <MenuItem>
-                  <Button
-                    component={NavLink}
-                    to="/profile"
-                    sx={{ textTransform: "capitalize", fontFamily: "Poppins" }}
-                    startIcon={<Person fontSize="small" />}
-                    fullWidth
-                  >
-                    Profile
-                  </Button>
-                </MenuItem>
-                <MenuItem>
-                  <Button
-                    fullWidth
-                    startIcon={<Logout fontSize="small" />}
-                    onClick={() => handleLogout()}
-                    sx={{
-                      fontSize: "Poppins",
-                      fontWeight: "bold",
-                      textTransform: "capitalize",
-                      color: "red",
-                    }}
-                  >
-                    Logout
-                  </Button>
-                </MenuItem>
-              </Menu>
+                <Menu
+                  open={open}
+                  anchorEl={anchorElement.current}
+                  onClose={handleClose}
+                >
+                  <MenuItem>
+                    <Button
+                      component={NavLink}
+                      to="/profile"
+                      sx={{
+                        textTransform: "capitalize",
+                        fontFamily: "Poppins",
+                      }}
+                      startIcon={<Person fontSize="small" />}
+                      fullWidth
+                    >
+                      Profile
+                    </Button>
+                  </MenuItem>
+                  <MenuItem>
+                    <Button
+                      fullWidth
+                      startIcon={<Logout fontSize="small" />}
+                      onClick={() => handleLogout()}
+                      sx={{
+                        fontSize: "Poppins",
+                        fontWeight: "bold",
+                        textTransform: "capitalize",
+                        color: "red",
+                      }}
+                    >
+                      Logout
+                    </Button>
+                  </MenuItem>
+                </Menu>
+              </Box>
             </>
           ) : (
             <Box display="flex">
