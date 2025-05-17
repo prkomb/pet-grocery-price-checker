@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { getFirestore, setDoc, doc } from "firebase/firestore";
+import { getFirestore, setDoc, doc, getDoc } from "firebase/firestore";
 
 export const saveProfile = createAsyncThunk(
   "profile/saveProfile",
@@ -12,6 +12,25 @@ export const saveProfile = createAsyncThunk(
       return profileData;
     } catch (error) {
       console.log(error);
+      throw new Error(error.message);
+    }
+  }
+);
+
+export const getProfile = createAsyncThunk(
+  "profile/getProfile",
+  async (uid) => {
+    try {
+      const db = getFirestore();
+      const userRef = doc(db, "users", uid);
+      const docSnap = await getDoc(userRef);
+
+      if (docSnap.exists()) {
+        return docSnap.data();
+      } else {
+        throw new Error("Profile not found");
+      }
+    } catch (error) {
       throw new Error(error.message);
     }
   }

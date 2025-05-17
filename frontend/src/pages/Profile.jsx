@@ -17,20 +17,34 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import profileFormValidation from "@/helpers/yupHandler/profileFormValidation";
 import { useSelector, useDispatch } from "react-redux";
 import { saveProfile } from "@/store/features/profile/profileFormThunk";
+import { useEffect } from "react";
+import { getProfile } from "@/store/features/profile/profileFormThunk";
 
 const Profile = () => {
   const dispatch = useDispatch();
+  const profile = useSelector((state) => state.profile);
+  const usersProfile = useSelector((state) => state.profile.profile);
+  console.log(usersProfile);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(profileFormValidation),
+    values: {
+      name: usersProfile?.name,
+      surname: usersProfile?.surname,
+      phone: usersProfile?.phone,
+      city: usersProfile?.city,
+      town: usersProfile?.town,
+      postcode: usersProfile?.postcode,
+    },
   });
-
-  // const login = useSelector((state) => state.login);
-  const profile = useSelector((state) => state.profile);
-  console.log(profile.uid);
+  useEffect(() => {
+    if (profile.uid) {
+      dispatch(getProfile(profile.uid));
+    }
+  }, [profile.uid]);
 
   const onSaveForm = (data) => {
     dispatch(saveProfile({ uid: profile.uid, ...data }));
@@ -38,22 +52,37 @@ const Profile = () => {
 
   return (
     <>
-      <Box>
+      <Box
+        sx={{
+          height: "calc(100dvh - 120px)",
+          maxHeight: "100%",
+          alignContent: "center",
+          overflowY: "hidden",
+        }}
+        borderRadius={2}
+        borderColor="grey.300"
+      >
         <Box
           component="form"
           onSubmit={handleSubmit(onSaveForm)}
-          border={1}
           sx={{
             borderRadius: 2,
             width: "calc(100% / 12 * 9)",
+            boxShadow: `0px 5px 22px rgba(0, 0, 0, .6);`,
             maxWidth: "100%",
             margin: "0 auto",
+            padding: "20px",
           }}
         >
           <Typography
             variant="h4"
             textAlign="center"
-            sx={{ fontFamily: "Poppins", fontWeight: "bold", fontSize: "30px" }}
+            sx={{
+              fontFamily: "Poppins",
+              fontWeight: "bold",
+              fontSize: "30px",
+              margin: "20px",
+            }}
           >
             Personal Information
           </Typography>
@@ -135,9 +164,7 @@ const Profile = () => {
                         display: "inline-block",
                         marginLeft: "10px",
                       }}
-                    >
-                      +44
-                    </Typography>
+                    ></Typography>
                   </InputAdornment>
                 }
               ></OutlinedInput>
@@ -175,7 +202,10 @@ const Profile = () => {
                 sx={{ "& .MuiFormLabel-asterisk": { color: "red" } }}
               >
                 <FormLabel>Town / City </FormLabel>
-                <OutlinedInput placeholder="Enter your town / city" />
+                <OutlinedInput
+                  placeholder="Enter your town / city"
+                  {...register("town")}
+                />
               </FormControl>
             </Box>
           </Stack>

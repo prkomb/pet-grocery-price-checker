@@ -24,6 +24,14 @@ const profileFormValidation = yup.object().shape({
       "City can only contain letters, spaces, hyphens and apostrophes"
     ),
 
+  town: yup
+    .string()
+    .required("Town is required")
+    .min(4, "Town must be at least 4 characters")
+    .matches(
+      /^[A-Za-z\s\-']+$/,
+      "Town can only contain letters, spaces, hyphens and apostrophes"
+    ),
   phone: yup
     .string()
     .required("Phone number is required")

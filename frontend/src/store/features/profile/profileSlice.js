@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { saveProfile } from "./profileFormThunk";
+import { saveProfile, getProfile } from "./profileFormThunk";
 
 const initialState = {
   profile: null,
@@ -22,6 +22,12 @@ const profileSlice = createSlice({
     });
     builder.addCase(saveProfile.rejected, (state, action) => {
       return { ...state, error: action.payload };
+    });
+    // get profile
+
+    builder.addCase(getProfile.fulfilled, (state, action) => {
+      console.log(action.payload);
+      return { ...state, profile: action.payload };
     });
   },
 });

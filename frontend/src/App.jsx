@@ -15,7 +15,13 @@ const App = () => {
       console.log(user);
       if (user) {
         console.log(user);
-        dispatch(setUser(user));
+        const userData = {
+          uid: user.uid,
+          email: user.email,
+          displayName: user.displayName,
+          photoURL: user.photoURL,
+        };
+        dispatch(setUser(userData));
         dispatch(getUid(user.uid));
       }
     });

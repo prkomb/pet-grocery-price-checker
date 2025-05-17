@@ -19,7 +19,6 @@ const loginSlice = createSlice({
   initialState,
   reducers: {
     setUser: (state, action) => {
-      console.log(action.payload);
       const user = {
         uid: action.payload.uid,
         email: action.payload.email,
