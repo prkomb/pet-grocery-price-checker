@@ -9,17 +9,25 @@ import {
   ListItemText,
   Button,
   Avatar,
+  Menu,
+  MenuItem,
 } from "@mui/material";
 import Brand from "@/assets/images/Brand.svg";
 import { Search, Close } from "@mui/icons-material";
 import { responsiveHeaderPages } from "./ResponsiveHeaderData";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 
 import { useState } from "react";
 
 const ResponsiveHeader = ({ closeDrawer }) => {
-  const userEmail = useState(JSON.parse(localStorage.getItem("user")));
-  console.log(userEmail.at(0).email);
+  const [user] = useState(JSON.parse(localStorage.getItem("user")));
+  console.log(user.email);
+
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
+
+  const handleMenuOpen = (e) => setAnchorEl(e.currentTarget);
+  const handleMenuClose = () => setAnchorEl(null);
 
   return (
     <>
@@ -64,23 +72,49 @@ const ResponsiveHeader = ({ closeDrawer }) => {
                 <ListItem disableGutters key={id}>
                   {label === "Login/ Sign up" ? (
                     <>
-                      {userEmail.at(0).email ? (
-                        <ListItemText>
-                          <Typography>{userEmail.at(0).email}</Typography>
-                        </ListItemText>
+                      {user.email ? (
+                        <>
+                          <Typography
+                            aria-controls={open ? "basic-menu" : undefined}
+                            aria-haspopup="true"
+                            onClick={handleMenuOpen}
+                            aria-expanded={open ? "true" : undefined}
+                            sx={{
+                              padding: "12px",
+
+                              fontFamily: "Poppins",
+                              color: "black",
+                              borderRadius: "8px",
+                            }}
+                          >
+                            {user.email}
+                          </Typography>
+
+                          <Menu
+                            id="basic-menu"
+                            anchorEl={anchorEl}
+                            open={open}
+                            onClose={handleMenuClose}
+                          >
+                            <MenuItem
+                              onClick={handleMenuClose}
+                              component={Link}
+                              to={"/profile"}
+                            >
+                              Profile
+                            </MenuItem>
+                            <MenuItem onClick={handleMenuClose}>
+                              My account
+                            </MenuItem>
+                            <MenuItem onClick={handleMenuClose}>
+                              Logout
+                            </MenuItem>
+                          </Menu>
+                        </>
                       ) : (
-                        <Button
-                          sx={{
-                            bgcolor: "#00FF84",
-                            padding: "12px",
-                            fontFamily: "Poppins",
-                            color: "white",
-                            borderRadius: "8px",
-                          }}
-                        >
-                          <Avatar src={userEmail.at(0).avatar}></Avatar>
-                          <NavLink to={href}>{label}</NavLink>
-                        </Button>
+                        <div>
+                          <Button>ss</Button>
+                        </div>
                       )}
                     </>
                   ) : (
