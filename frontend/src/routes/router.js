@@ -8,7 +8,7 @@ import WelcomePage from "../pages/WelcomePage";
 import AuthForm from "../layouts/AuthForm";
 import HeaderLayout from "../layouts/Header";
 import Profile from "../pages/Profile";
-
+import AboutUs from "../pages/AboutUs";
 export default createBrowserRouter([
   {
     path: "/",
@@ -25,6 +25,7 @@ export default createBrowserRouter([
     ],
   },
 
+  { path: "/about-us", Component: AboutUs },
   { path: "/welcomePage", Component: WelcomePage },
   { path: "/welcome", Component: WelcomePage },
   {

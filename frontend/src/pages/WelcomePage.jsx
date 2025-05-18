@@ -14,6 +14,8 @@ function WelcomePage() {
       >
         <Box textAlign="end" padding={2}>
           <Button
+            component={NavLink}
+            to="/about-us"
             sx={{
               border: "1px solid white",
               color: "white",
@@ -99,11 +101,14 @@ function WelcomePage() {
                   backgroundColor: "#fff",
                   border: "2px solid white",
                   borderRadius: "8px",
-                  backgroundImage: "linear-gradient(90deg, #4F46E5, #10B981)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  color: "transparent",
+
+                  color: "initial",
                   transition: "all 0.3s ease",
+                  "&:hover": {
+                    bgcolor: "#F9FAFB",
+                    color: "transparent",
+                    border: "1px solid white",
+                  },
                 }}
               >
                 Get Started

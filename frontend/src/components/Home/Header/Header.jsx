@@ -13,7 +13,7 @@ import {
   Button,
   Avatar,
 } from "@mui/material";
-import { Search, Logout, Person } from "@mui/icons-material";
+import { Search, Logout, Person, Bookmark } from "@mui/icons-material";
 import MenuIcon from "@mui/icons-material/Menu";
 import Brand from "@/assets/images/Brand.svg";
 import CustomDrawer from "./Drawer";
@@ -118,6 +118,13 @@ const Header = () => {
                       fullWidth
                     >
                       Profile
+                    </Button>
+                  </MenuItem>
+                  <MenuItem>
+                    <Button fullWidth startIcon={<Bookmark fontSize="small" />}>
+                      <Typography sx={{ textTransform: "capitalize" }}>
+                        Saved
+                      </Typography>
                     </Button>
                   </MenuItem>
                   <MenuItem>
