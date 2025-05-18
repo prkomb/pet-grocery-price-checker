@@ -23,7 +23,6 @@ import { useState } from "react";
 
 const ResponsiveHeader = ({ closeDrawer }) => {
   const [user] = useState(JSON.parse(localStorage.getItem("user")));
-  console.log(user.email);
 
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -82,7 +81,7 @@ const ResponsiveHeader = ({ closeDrawer }) => {
                 <ListItem disableGutters key={id}>
                   {label === "Login/ Sign up" ? (
                     <>
-                      {user.email ? (
+                      {user?.email ? (
                         <>
                           <Typography
                             aria-controls={open ? "basic-menu" : undefined}
@@ -128,7 +127,27 @@ const ResponsiveHeader = ({ closeDrawer }) => {
                         </>
                       ) : (
                         <div>
-                          <Button>ss</Button>
+                          <Button
+                            variant="outlined"
+                            component={NavLink}
+                            to="/login"
+                            sx={{
+                              padding: "10px",
+                              color: "black",
+                              borderRadius: "8px",
+                              fontFamily: "Poppins",
+                              bgcolor: "#34D399",
+                              fontWeight: "600",
+                              transition: "all 0.3s ease",
+                              "&:hover": {
+                                bgcolor: "#F9FAFB",
+                                color: "#34D399",
+                                border: "1px solid #34D399",
+                              },
+                            }}
+                          >
+                            Login / Sign up
+                          </Button>
                         </div>
                       )}
                     </>
