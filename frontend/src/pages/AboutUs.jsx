@@ -1,5 +1,6 @@
 import { Container, Box, Typography, Stack, Button } from "@mui/material";
 import Brand from "@/assets/images/Brand.svg";
+import { Link } from "react-router-dom";
 const AboutUs = () => {
   return (
     <Box
@@ -74,6 +75,8 @@ const AboutUs = () => {
             </Typography>
             <Box sx={{ textAlign: { sm: "center", md: "left" } }}>
               <Button
+                component={Link}
+                to="/home"
                 variant="contained"
                 textAlign="left"
                 sx={{
@@ -90,7 +93,7 @@ const AboutUs = () => {
                   },
                 }}
               >
-                Get Started
+                Explore
               </Button>
             </Box>
           </Box>
