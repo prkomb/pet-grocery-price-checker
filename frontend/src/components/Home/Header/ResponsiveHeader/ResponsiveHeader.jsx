@@ -137,6 +137,7 @@ const ResponsiveHeader = ({ closeDrawer }) => {
                               borderRadius: "8px",
                               fontFamily: "Poppins",
                               bgcolor: "#34D399",
+                              border: "1px solid #34D399",
                               fontWeight: "600",
                               transition: "all 0.3s ease",
                               "&:hover": {
