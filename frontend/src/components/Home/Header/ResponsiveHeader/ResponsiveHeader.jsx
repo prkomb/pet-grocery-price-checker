@@ -16,7 +16,9 @@ import Brand from "@/assets/images/Brand.svg";
 import { Search, Close } from "@mui/icons-material";
 import { responsiveHeaderPages } from "./ResponsiveHeaderData";
 import { NavLink, Link } from "react-router-dom";
-
+import { useDispatch } from "react-redux";
+import { logout } from "@/store/features/logout";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 const ResponsiveHeader = ({ closeDrawer }) => {
@@ -25,6 +27,14 @@ const ResponsiveHeader = ({ closeDrawer }) => {
 
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
+
+  const dispatch = useDispatch();
+
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    console.log("Here");
+    dispatch(logout({ navigate }));
+  };
 
   const handleMenuOpen = (e) => setAnchorEl(e.currentTarget);
   const handleMenuClose = () => setAnchorEl(null);
@@ -106,7 +116,12 @@ const ResponsiveHeader = ({ closeDrawer }) => {
                             <MenuItem onClick={handleMenuClose}>
                               My account
                             </MenuItem>
-                            <MenuItem onClick={handleMenuClose}>
+                            <MenuItem
+                              component="button"
+                              onClick={() => {
+                                handleLogout();
+                              }}
+                            >
                               Logout
                             </MenuItem>
                           </Menu>
