@@ -16,17 +16,26 @@ const Footer = () => {
       component="footer"
       sx={{
         bgcolor: "#1B1F3B",
+        padding: "20px 0",
         // maxWidth: "100%",
         height: "319px",
+        minHeight: "fit-content",
         maxHeight: "100%",
         display: "flex",
         alignItems: "center",
       }}
     >
-      <Box sx={{ mx: "auto", width: "80%", maxWidth: "100%" }}>
+      <Box
+        sx={{
+          mx: "auto",
+
+          width: "80%",
+          maxWidth: "100%",
+        }}
+      >
         <Box
           display="flex"
-          justifyContent="space-between"
+          justifyContent={{ xs: "center", md: "space-between" }}
           flexWrap="wrap"
           sx={{ width: "100%" }}
         >
@@ -61,11 +70,13 @@ const Footer = () => {
               <Box component="nav">
                 <Stack
                   component="ul"
-                  direction="row"
+                  direction={{ xs: "column", md: "row" }}
                   spacing={4}
                   sx={{
                     color: "white",
+                    textAlign: { xs: "center", lg: "left" },
                     margin: "39px 0",
+
                     fontFamily: "Poppins",
                     fontWeight: 400,
                   }}
@@ -83,7 +94,10 @@ const Footer = () => {
               </Box>
             </Box>
           </Box>
-          <Box textAlign="">
+          <Box
+            textAlign={{ xs: "center", md: "left" }}
+            width={{ xs: "100%", md: "50%" }}
+          >
             <Typography
               variant="body1"
               sx={{ color: "white", fontFamily: "Poppins", fontWeight: "600" }}
@@ -131,10 +145,11 @@ const Footer = () => {
             </Stack>
           </Box>
         </Box>
-        <Divider color="white" />
+        <Divider color="white" sx={{ margin: "15px 0" }} />
         <Box
           display="flex"
           justifyContent="space-between"
+          alignItems={{ xs: "center", md: "flex-start" }}
           sx={{ mt: "20px", color: "white" }}
         >
           <Box>
@@ -143,7 +158,11 @@ const Footer = () => {
             </Typography>
           </Box>
           <Box>
-            <Stack direction="row" spacing={3}>
+            <Stack
+              direction={{ xs: "column", md: "row" }}
+              spacing={3}
+              justifyContent={{ xs: "center", md: "flex-end" }}
+            >
               {rulesLinks.map((rule) => {
                 return (
                   <>
