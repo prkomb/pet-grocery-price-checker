@@ -11,17 +11,21 @@ import {
   Button,
   FormHelperText,
 } from "@mui/material";
-import { useLoaderData, useNavigate } from "react-router-dom";
+
+import { useLoaderData, useNavigate, useLocation } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 
 import { loginUser } from "../store/features/login/loginThunk";
+import { registerUser } from "../store/features/register/registerThunk";
 import { loginSchema } from "../helpers/yupHandler/loginFormValidation";
 
 function AuthForm() {
   const navigate = useNavigate();
+  const location = useLocation().pathname;
+
   const { title, buttonText, bottomText, bottomLinkHref, bottomLinkText } =
     useLoaderData();
 
@@ -33,11 +37,16 @@ function AuthForm() {
   const dispatch = useDispatch();
 
   const onSaveForm = (data) => {
-    console.log(data);
-    dispatch(
-      loginUser({ email: data.email, password: data.password, navigate })
-    );
+    if (location == "/register") {
+      dispatch(registerUser({ email: data.email, password: data.password }));
+    } else if (location == "/login") {
+      dispatch(
+        loginUser({ email: data.email, password: data.password, navigate })
+      );
+    }
   };
+
+  // create a register logic here
 
   return (
     <>
