@@ -60,11 +60,12 @@ const Categories = () => {
       justifyContent="center"
       alignItems="center"
       sx={(theme) => ({
-        height: "100vh",
+        height: { xs: "100%", md: "100vh" },
+
         backgroundImage: `linear-gradient(${theme.palette.brandColor.royalBlue}, ${theme.palette.brandColor.teal})`,
       })}
     >
-      <Box sx={{ width: "50%", maxWidth: "100%" }}>
+      <Box sx={{ width: "50%", maxWidth: "100%", height: "100%" }}>
         <Typography
           variant="body1"
           textAlign="center"
