@@ -1,4 +1,5 @@
 import { Card, CardContent, Typography, Button, Box } from "@mui/material";
+import { NavLink } from "react-router-dom";
 import CategoryCard from "./CategoryCard";
 
 import { useState } from "react";
@@ -28,6 +29,8 @@ export default function TopCategories() {
 
       <div className="text-center mt-10">
         <Button
+          component={NavLink}
+          to="/categories"
           sx={{
             boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.25)",
             px: 2.25,
