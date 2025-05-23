@@ -47,7 +47,7 @@ const Testimonals = () => {
             }}
           >
             {testimonials.map((testimonial, index) => (
-              <SwiperSlide key={index}>
+              <SwiperSlide key={index} className="mt-2">
                 <Box display="flex" justifyContent="center">
                   <TestimonalsCard
                     image={testimonial.image}

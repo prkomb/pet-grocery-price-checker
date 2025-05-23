@@ -16,7 +16,6 @@ const Home = () => {
       <WhyPriceHunt></WhyPriceHunt>
       <Testimonals></Testimonals>
       <Subscribe></Subscribe>
-      <Footer></Footer>
     </>
   );
 };

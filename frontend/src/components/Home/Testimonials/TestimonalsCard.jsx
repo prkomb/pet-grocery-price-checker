@@ -15,7 +15,7 @@ function TestimonalsCard({ name, location, rating, quote, image }) {
           width: "100%",
           maxWidth: 350,
           background: "#fff",
-          boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
+          boxShadow: "0 4px 24px rgba(0,0,0,0.1)",
           borderRadius: 3,
           p: 3,
           transition: "transform 0.3s ease",
