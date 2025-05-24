@@ -17,14 +17,16 @@ import { Search, Logout, Person, Bookmark } from "@mui/icons-material";
 import MenuIcon from "@mui/icons-material/Menu";
 import Brand from "@/assets/images/Brand.svg";
 import CustomDrawer from "./Drawer";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { getUser } from "../../../helpers/localStorage";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../../../store/features/logout";
+import { getUserByData } from "@/helpers/firestore/getUserByData";
 
 const Header = () => {
   const user = getUser();
+  const [userData, setUserData] = useState(null);
   const anchorElement = useRef();
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
@@ -32,6 +34,17 @@ const Header = () => {
   const handleClose = () => {
     setOpen(false);
   };
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      const data = await getUserByData(user.uid);
+      setUserData(data);
+    };
+
+    fetchUserData();
+  }, [user.uid]);
+
+  console.log(userData);
 
   const dispatch = useDispatch();
 
@@ -97,7 +110,8 @@ const Header = () => {
                 >
                   <Avatar src=""></Avatar>
                   <Typography variant="body1" color="initial">
-                    {user.email}
+                    {/* {user.email} */}
+                    {userData?.name} {userData?.surname}
                   </Typography>
                 </Box>
 

@@ -4,9 +4,11 @@ import {
   Typography,
   CardContent,
   CardMedia,
+  Button,
   Icon,
 } from "@mui/material";
 import { useState } from "react";
+import { KeyboardBackspace } from "@mui/icons-material";
 import { NavLink } from "react-router-dom";
 
 const Categories = () => {
@@ -65,7 +67,14 @@ const Categories = () => {
         backgroundImage: `linear-gradient(${theme.palette.brandColor.royalBlue}, ${theme.palette.brandColor.teal})`,
       })}
     >
-      <Box sx={{ width: "50%", maxWidth: "100%", height: "100%" }}>
+      <Box
+        sx={{
+          width: "50%",
+          maxWidth: "100%",
+          height: "100dvh",
+          maxHeight: "100vh",
+        }}
+      >
         <Typography
           variant="body1"
           textAlign="center"
@@ -87,7 +96,17 @@ const Categories = () => {
         </Typography>
         <Box
           mt={2}
-          sx={{ border: "1px solid #FFFFFF", borderRadius: "12px" }}
+          sx={{
+            border: "1px solid #FFFFFF",
+            borderRadius: "12px",
+            overflowY: "scroll",
+            height: "575px",
+            scrollbarWidth: "none", // Firefox
+            msOverflowStyle: "none",
+            "&::-webkit-scrollbar": {
+              display: "none", // Chrome, Safari, Edge
+            },
+          }}
           p={2}
           mb={2}
           mx={2}
@@ -148,6 +167,21 @@ const Categories = () => {
               </Card>
             );
           })}
+        </Box>
+        <Box textAlign="center" mt={4}>
+          <Button
+            component={NavLink}
+            to="/home"
+            startIcon={<KeyboardBackspace />}
+            variant="contained"
+            fullWidth
+            sx={(theme) => ({
+              color: "black",
+              bgcolor: `${theme.palette.BrandTitle.mainColor}`,
+            })}
+          >
+            Back Home
+          </Button>
         </Box>
       </Box>
     </Box>
