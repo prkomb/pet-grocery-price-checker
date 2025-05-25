@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import { KeyboardBackspace } from "@mui/icons-material";
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
 const Categories = () => {
@@ -55,6 +56,12 @@ const Categories = () => {
       key: "produce",
     },
   ]);
+
+  const topProducts = useSelector((state) => state.dummyJson.products).slice(
+    0,
+    7
+  );
+  console.log(topProducts);
 
   return (
     <Box
@@ -116,12 +123,12 @@ const Categories = () => {
           flexBasis={3}
           justifyContent="space-evenly"
         >
-          {categories.map((category) => {
+          {topProducts.map((category) => {
             return (
               <Card
                 component={NavLink}
                 to="/category"
-                key={category.key}
+                key={category.title}
                 sx={{
                   width: "189px",
                   borderRadius: "8px",
@@ -148,6 +155,7 @@ const Categories = () => {
                       fontFamily: "Poppins",
                       fontWeight: "bold",
                       fontSize: "10px",
+                      textTransform: "capitalize",
                     }}
                   >
                     {category.title}

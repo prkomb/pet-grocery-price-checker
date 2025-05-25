@@ -25,7 +25,11 @@ const CategoryCard = ({ icon, label }) => {
         <Typography
           variant="body1"
           className="text-gray-800 text-center font-medium"
-          sx={{ fontFamily: "Manrope Variable", fontWeight: "600" }}
+          sx={{
+            fontFamily: "Manrope Variable",
+            fontWeight: "600",
+            textTransform: "capitalize",
+          }}
         >
           {label}
         </Typography>
