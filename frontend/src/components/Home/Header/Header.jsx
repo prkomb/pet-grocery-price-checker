@@ -36,13 +36,15 @@ const Header = () => {
   };
 
   useEffect(() => {
+    if (!user?.uid) return;
+
     const fetchUserData = async () => {
       const data = await getUserByData(user.uid);
       setUserData(data);
     };
 
     fetchUserData();
-  }, [user.uid]);
+  }, [user?.uid]);
 
   console.log(userData);
 
