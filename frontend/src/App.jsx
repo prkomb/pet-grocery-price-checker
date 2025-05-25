@@ -6,11 +6,14 @@ import { useEffect } from "react";
 import { setUser } from "./store/features/login/loginSlice.js";
 import { useDispatch } from "react-redux";
 import { getUid } from "./store/features/profile/profileSlice.js";
+import { getProducts } from "./store/features/data/dummyJsonThunk.js";
 const auth = getAuth();
 
 const App = () => {
   const dispatch = useDispatch();
   useEffect(() => {
+    dispatch(getProducts());
+
     onAuthStateChanged(auth, (user) => {
       console.log(user);
       if (user) {
