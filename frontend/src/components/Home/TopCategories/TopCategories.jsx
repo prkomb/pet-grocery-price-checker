@@ -2,26 +2,26 @@ import { Card, CardContent, Typography, Button, Box } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import CategoryCard from "./CategoryCard";
 
-import { useState } from "react";
+import { useSelector } from "react-redux";
 
 export default function TopCategories() {
-  const [categories] = useState([
-    { icon: "🥩", label: "Meat & Poultry", id: "1" },
-    { icon: "🍞", label: "Breads & Grains", id: "2" },
-    { icon: "🍏", label: "Fruits & Vegetables", id: "3" },
-    { icon: "🧃", label: "Beverages", id: "4" },
-  ]);
+  const topProducts = useSelector((state) => state.dummyJson.products).slice(
+    0,
+    4
+  );
+  console.log(topProducts);
+
   return (
     <Box>
       <h2 className="text-2xl text-center mt-[64px]">Top Categories</h2>
 
       <div className="flex justify-center gap-6 mt-[58px] flex-wrap">
-        {categories.map((category) => {
+        {topProducts.map((category) => {
           return (
             <CategoryCard
-              key={category.id}
+              key={category.title}
               icon={category.icon}
-              label={category.label}
+              label={category.title}
             ></CategoryCard>
           );
         })}
