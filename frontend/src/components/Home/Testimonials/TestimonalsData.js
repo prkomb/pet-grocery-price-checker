@@ -96,6 +96,5 @@ let testimonials = [
 ];
 
 const userNames = mapUserByProperties(testimonials, "name");
-console.log(userNames);
 
 export default testimonials;

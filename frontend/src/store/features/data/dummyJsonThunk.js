@@ -29,7 +29,7 @@ export const getProducts = createAsyncThunk("data/getProducts", async () => {
           description: emojiMap[item].description,
         };
       });
-    console.log(productsTag);
+
     return productsTag;
   } catch (error) {
     throw new Error(error);

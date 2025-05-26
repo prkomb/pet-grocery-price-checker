@@ -5,7 +5,6 @@ import { saveUser } from "../../../helpers/localStorage";
 import { getAuth } from "firebase/auth";
 
 const auth = getAuth();
-console.log(auth);
 
 const initialState = {
   user: null,
@@ -31,8 +30,6 @@ const loginSlice = createSlice({
   extraReducers(builder) {
     builder
       .addCase(loginUser.fulfilled, (state, action) => {
-        console.log("Done");
-
         saveUser(action.payload);
         return { ...state, user: action.payload };
       })
@@ -40,7 +37,6 @@ const loginSlice = createSlice({
         return { ...state, error: action.payload };
       })
       .addCase(logout.fulfilled, (state) => {
-        console.log("logout");
         localStorage.removeItem("user");
         return { ...state, user: null };
       });

@@ -46,12 +46,9 @@ const Header = () => {
     fetchUserData();
   }, [user?.uid]);
 
-  console.log(userData);
-
   const dispatch = useDispatch();
 
   const handleLogout = () => {
-    console.log("logout");
     dispatch(logout({ navigate }));
   };
 
@@ -110,7 +107,9 @@ const Header = () => {
                   ref={anchorElement}
                   onClick={setOpen}
                 >
-                  <Avatar src=""></Avatar>
+                  <Avatar
+                    src={`https://ui-avatars.com/api/?name=${userData?.name}+${userData?.surname}&background=34D399`}
+                  ></Avatar>
                   <Typography variant="body1" color="initial">
                     {/* {user.email} */}
                     {userData?.name} {userData?.surname}
@@ -210,7 +209,7 @@ const Header = () => {
             </Box>
           )}
 
-          <CustomDrawer></CustomDrawer>
+          <CustomDrawer userData={userData}></CustomDrawer>
         </Toolbar>
       </AppBar>
     </Box>
