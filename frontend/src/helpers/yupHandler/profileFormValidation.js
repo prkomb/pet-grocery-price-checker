@@ -47,6 +47,16 @@ const profileFormValidation = yup.object().shape({
       /^[A-Z]{1,2}[0-9][A-Z0-9]? ?[0-9][A-Z]{2}$/i,
       "Please enter a valid UK postcode"
     ),
+
+  bio: yup
+    .string()
+    .min(10, "Bio must be at least 10 characters")
+    .max(300, "Bio can be at most 300 characters")
+    .matches(
+      /^[a-zA-ZÀ-ÿ0-9.,'’"!?()\- \n]+$/,
+      "Bio contains invalid characters"
+    )
+    .required("Bio is required"),
 });
 
 export default profileFormValidation;

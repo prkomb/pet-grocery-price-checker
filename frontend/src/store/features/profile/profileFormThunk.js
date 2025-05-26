@@ -5,10 +5,10 @@ export const saveProfile = createAsyncThunk(
   "profile/saveProfile",
   async (profileData) => {
     try {
-      const { uid, name, surname, phone, city, postcode } = profileData;
+      const { uid, ...otherUserDetails } = profileData;
       const db = getFirestore();
       const userRef = doc(db, "users", uid);
-      await setDoc(userRef, { name, phone, city, postcode, surname });
+      await setDoc(userRef, { ...otherUserDetails });
       return profileData;
     } catch (error) {
       console.log(error);

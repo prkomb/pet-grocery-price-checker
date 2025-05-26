@@ -10,6 +10,7 @@ import {
   InputAdornment,
   Avatar,
   Button,
+  TextareaAutosize,
 } from "@mui/material";
 import UKFlag from "@/assets/images/UK.png";
 import { useForm } from "react-hook-form";
@@ -24,7 +25,7 @@ const Profile = () => {
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.profile);
   const usersProfile = useSelector((state) => state.profile.profile);
-  console.log(usersProfile);
+
   const {
     register,
     handleSubmit,
@@ -38,6 +39,7 @@ const Profile = () => {
       city: usersProfile?.city,
       town: usersProfile?.town,
       postcode: usersProfile?.postcode,
+      bio: usersProfile?.bio,
     },
   });
   useEffect(() => {
@@ -47,6 +49,7 @@ const Profile = () => {
   }, [profile.uid]);
 
   const onSaveForm = (data) => {
+    console.log(data);
     dispatch(saveProfile({ uid: profile.uid, ...data }));
   };
 
@@ -223,6 +226,34 @@ const Profile = () => {
               />
               <FormHelperText sx={{ color: "red" }}>
                 {errors.postcode?.message}
+              </FormHelperText>
+            </FormControl>
+          </Box>
+          <Box sx={{ mt: 2 }}>
+            <FormControl
+              required
+              fullWidth
+              size="small"
+              sx={{
+                "& .MuiFormLabel-asterisk": { color: "red" },
+              }}
+            >
+              <FormLabel>Bio</FormLabel>
+              <TextareaAutosize
+                {...register("bio")}
+                placeholder="Tell us a bit about yourself — like where you're based, what you're interested in, or how you use PriceHunt."
+                minRows={{ xs: 3, md: 5 }}
+                border
+                style={{
+                  boxSizing: "border-box",
+                  width: "100%",
+                  border: "0.5px solid gray",
+                  borderRadius: "6px",
+                  padding: "6px",
+                }}
+              ></TextareaAutosize>
+              <FormHelperText sx={{ color: "red" }}>
+                {errors.bio?.message}
               </FormHelperText>
             </FormControl>
           </Box>
