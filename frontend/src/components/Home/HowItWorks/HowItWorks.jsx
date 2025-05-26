@@ -50,6 +50,7 @@ const HowItWorks = () => {
           {features.map(({ id, title, description, icon, bg }) => {
             return (
               <StepCard
+                key={id}
                 id={id}
                 title={title}
                 description={description}

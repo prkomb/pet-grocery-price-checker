@@ -3,7 +3,7 @@ import { Menu } from "@mui/icons-material";
 import ResponsiveHeader from "./ResponsiveHeader/ResponsiveHeader";
 import { useState } from "react";
 
-const CustomDrawer = () => {
+const CustomDrawer = ({ userData }) => {
   const [open, setOpen] = useState(false);
 
   const closeDrawer = () => {
@@ -20,7 +20,11 @@ const CustomDrawer = () => {
       </IconButton>
 
       <Drawer anchor="top" open={open}>
-        <ResponsiveHeader closeDrawer={closeDrawer}></ResponsiveHeader>
+        <ResponsiveHeader
+          closeDrawer={closeDrawer}
+          userName={userData?.name}
+          userSurname={userData?.surname}
+        ></ResponsiveHeader>
       </Drawer>
     </>
   );

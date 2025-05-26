@@ -21,7 +21,7 @@ import { logout } from "@/store/features/logout";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-const ResponsiveHeader = ({ closeDrawer }) => {
+const ResponsiveHeader = ({ closeDrawer, userName, userSurname }) => {
   const [user] = useState(JSON.parse(localStorage.getItem("user")));
 
   const [anchorEl, setAnchorEl] = useState(null);
@@ -83,6 +83,9 @@ const ResponsiveHeader = ({ closeDrawer }) => {
                     <>
                       {user?.email ? (
                         <>
+                          <Avatar
+                            src={`https://ui-avatars.com/api/?name=${userName}+${userSurname}&background=34D399`}
+                          ></Avatar>
                           <Typography
                             aria-controls={open ? "basic-menu" : undefined}
                             aria-haspopup="true"
@@ -96,7 +99,7 @@ const ResponsiveHeader = ({ closeDrawer }) => {
                               borderRadius: "8px",
                             }}
                           >
-                            {user.email}
+                            {userName} {userSurname}
                           </Typography>
 
                           <Menu

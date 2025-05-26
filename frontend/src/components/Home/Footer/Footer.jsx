@@ -167,6 +167,7 @@ const Footer = () => {
                 return (
                   <>
                     <Link
+                      key={rule.id}
                       sx={{
                         fontFamily: "Poppins",
                         fontWeight: "400",

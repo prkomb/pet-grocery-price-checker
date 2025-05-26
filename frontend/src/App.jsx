@@ -15,9 +15,7 @@ const App = () => {
     dispatch(getProducts());
 
     onAuthStateChanged(auth, (user) => {
-      console.log(user);
       if (user) {
-        console.log(user);
         const userData = {
           uid: user.uid,
           email: user.email,
