@@ -12,7 +12,12 @@ import {
   FormHelperText,
 } from "@mui/material";
 
-import { useLoaderData, useNavigate, useLocation } from "react-router-dom";
+import {
+  useLoaderData,
+  useNavigate,
+  useLocation,
+  NavLink,
+} from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 import { useDispatch } from "react-redux";
@@ -46,7 +51,12 @@ function AuthForm() {
     }
   };
 
-  // create a register logic here
+  const refreshPage = ({ to }) => {
+    navigate("/refresh");
+    setTimeout(() => {
+      navigate(to, { replace: true });
+    }, 50);
+  };
 
   return (
     <>
@@ -187,8 +197,8 @@ function AuthForm() {
                   {bottomLinkText}
                 </Box>
                 <Box
-                  component="a"
-                  href={bottomLinkHref}
+                  onClick={() => refreshPage({ to: bottomLinkHref })}
+                  component={NavLink}
                   sx={{
                     color: "white",
                     textDecoration: "underline",

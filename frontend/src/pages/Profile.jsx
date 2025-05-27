@@ -53,6 +53,17 @@ const Profile = () => {
     dispatch(saveProfile({ uid: profile.uid, ...data }));
   };
 
+  const note = () => {
+    Notification.requestPermission().then((perm) => {
+      if (perm === "granted") {
+        new Notification("✅ Data saved successfully!");
+      } else {
+        alert("Notifications are not enabled.");
+      }
+    });
+    // Notification
+  };
+
   return (
     <>
       <Box
@@ -269,6 +280,7 @@ const Profile = () => {
             >
               Save and Exit
             </Button>
+            <Button onClick={note()}>Note</Button>
           </Box>
         </Box>
       </Box>
