@@ -26,7 +26,6 @@ const profileSlice = createSlice({
     // get profile
 
     builder.addCase(getProfile.fulfilled, (state, action) => {
-      console.log(action.payload);
       return { ...state, profile: action.payload };
     });
   },

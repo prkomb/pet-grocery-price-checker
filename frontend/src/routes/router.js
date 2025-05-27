@@ -11,6 +11,7 @@ import Profile from "../pages/Profile";
 import AboutUs from "../pages/AboutUs";
 import Categories from "../pages/Categories";
 import CurrentCategory from "../pages/CurrentCategory";
+import FakeReload from "../layouts/FakeReload";
 export default createBrowserRouter([
   {
     path: "/",
@@ -62,6 +63,11 @@ export default createBrowserRouter([
         bottomLinkHref: "/login",
       };
     },
+  },
+
+  {
+    path: "/refresh",
+    element: null,
   },
 
   {
