@@ -11,6 +11,8 @@ import {
   Avatar,
   Button,
   TextareaAutosize,
+  Snackbar,
+  Alert,
 } from "@mui/material";
 import UKFlag from "@/assets/images/UK.png";
 import { useForm } from "react-hook-form";
@@ -53,16 +55,7 @@ const Profile = () => {
     dispatch(saveProfile({ uid: profile.uid, ...data }));
   };
 
-  const note = () => {
-    Notification.requestPermission().then((perm) => {
-      if (perm === "granted") {
-        new Notification("✅ Data saved successfully!");
-      } else {
-        alert("Notifications are not enabled.");
-      }
-    });
-    // Notification
-  };
+  const note = () => {};
 
   return (
     <>
@@ -280,7 +273,20 @@ const Profile = () => {
             >
               Save and Exit
             </Button>
-            <Button onClick={note()}>Note</Button>
+            <Snackbar
+              open={open}
+              onClose={() => console.log("Hello")}
+              autoHideDuration={6000}
+            >
+              <Alert
+                variant="filled"
+                sx={{ bgcolor: "#34D399" }}
+                onClose={() => console.log("Hello")}
+                // Add here logic about closing
+              >
+                Your profile has been updated.
+              </Alert>
+            </Snackbar>
           </Box>
         </Box>
       </Box>
