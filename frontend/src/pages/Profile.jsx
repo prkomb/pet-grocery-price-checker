@@ -20,13 +20,28 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import profileFormValidation from "@/helpers/yupHandler/profileFormValidation";
 import { useSelector, useDispatch } from "react-redux";
 import { saveProfile } from "@/store/features/profile/profileFormThunk";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getProfile } from "@/store/features/profile/profileFormThunk";
+import { createContext } from "react";
+import CustomSnackBar from "../layouts/customSnackBar";
 
 const Profile = () => {
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.profile);
   const usersProfile = useSelector((state) => state.profile.profile);
+  const profileError = useSelector((state) => state.profile.error);
+  console.log(profileError);
+
+  const [isOpenPushNotification, setIsOpenPushNotification] = useState(false);
+  const [isErrorOpenPushNotification, setErrorOpenPushNotification] =
+    useState(false);
+
+  const CustomSnackBarContext = createContext({
+    isErrorOpenPushNotification,
+    isOpenPushNotification,
+    setIsOpenPushNotification,
+    setErrorOpenPushNotification,
+  });
 
   const {
     register,
@@ -53,9 +68,14 @@ const Profile = () => {
   const onSaveForm = (data) => {
     console.log(data);
     dispatch(saveProfile({ uid: profile.uid, ...data }));
+    if (!profileError) {
+      setTimeout(() => {
+        setIsOpenPushNotification(true);
+      }, 2000);
+    } else {
+      setErrorOpenPushNotification(true);
+    }
   };
-
-  const note = () => {};
 
   return (
     <>
@@ -273,20 +293,13 @@ const Profile = () => {
             >
               Save and Exit
             </Button>
-            <Snackbar
-              open={open}
-              onClose={() => console.log("Hello")}
-              autoHideDuration={6000}
-            >
-              <Alert
-                variant="filled"
-                sx={{ bgcolor: "#34D399" }}
-                onClose={() => console.log("Hello")}
-                // Add here logic about closing
-              >
-                Your profile has been updated.
-              </Alert>
-            </Snackbar>
+
+            <CustomSnackBar
+              isErrorOpenPushNotification={isErrorOpenPushNotification}
+              isOpenPushNotification={isOpenPushNotification}
+              setErrorOpenPushNotification={setErrorOpenPushNotification}
+              setIsOpenPushNotification={setIsOpenPushNotification}
+            />
           </Box>
         </Box>
       </Box>
