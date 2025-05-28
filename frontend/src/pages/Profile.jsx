@@ -22,7 +22,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { saveProfile } from "@/store/features/profile/profileFormThunk";
 import { useEffect, useState } from "react";
 import { getProfile } from "@/store/features/profile/profileFormThunk";
-import { createContext } from "react";
+
 import CustomSnackBar from "@/layouts/customSnackBar";
 
 const Profile = () => {
@@ -34,13 +34,6 @@ const Profile = () => {
   const [isOpenPushNotification, setIsOpenPushNotification] = useState(false);
   const [isErrorOpenPushNotification, setErrorOpenPushNotification] =
     useState(false);
-
-  const CustomSnackBarContext = createContext({
-    isErrorOpenPushNotification,
-    isOpenPushNotification,
-    setIsOpenPushNotification,
-    setErrorOpenPushNotification,
-  });
 
   const {
     register,
