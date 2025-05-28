@@ -23,7 +23,7 @@ import { saveProfile } from "@/store/features/profile/profileFormThunk";
 import { useEffect, useState } from "react";
 import { getProfile } from "@/store/features/profile/profileFormThunk";
 import { createContext } from "react";
-import CustomSnackBar from "../layouts/customSnackBar";
+import CustomSnackBar from "@/layouts/customSnackBar";
 
 const Profile = () => {
   const dispatch = useDispatch();
