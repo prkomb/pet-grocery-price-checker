@@ -31,7 +31,7 @@ const features = [
 
 const HowItWorks = () => {
   return (
-    <div className="container mx-auto " sx={{}}>
+    <Box className="container mx-auto">
       <Typography
         className="text-center font-bold"
         sx={{ fontFamily: "Poppins", fontSize: "28px", marginTop: "35px" }}
@@ -39,7 +39,7 @@ const HowItWorks = () => {
         How it works?
       </Typography>
 
-      <Box sx={{ display: "flex" }}>
+      <Box sx={{ display: "flex", justifyContent: "center" }}>
         <Grid
           container
           justifyContent="center"
@@ -61,7 +61,7 @@ const HowItWorks = () => {
           })}
         </Grid>
       </Box>
-    </div>
+    </Box>
   );
 };
 
