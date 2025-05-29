@@ -20,7 +20,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import profileFormValidation from "@/helpers/yupHandler/profileFormValidation";
 import { useSelector, useDispatch } from "react-redux";
 import { saveProfile } from "@/store/features/profile/profileFormThunk";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getProfile } from "@/store/features/profile/profileFormThunk";
 
 const Profile = () => {
