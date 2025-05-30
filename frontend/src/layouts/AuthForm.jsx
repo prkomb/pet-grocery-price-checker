@@ -11,6 +11,7 @@ import {
   Button,
   FormHelperText,
 } from "@mui/material";
+import { ChevronLeft } from "@mui/icons-material";
 
 import {
   useLoaderData,
@@ -88,6 +89,39 @@ function AuthForm() {
             >
               {title}
             </Typography>
+
+            <Button
+              component={NavLink}
+              to="/home"
+              variant="text"
+              disableRipple
+              disableFocusRipple
+              sx={{
+                color: "rgba(255, 255, 255, 0.85)",
+                marginBottom: "23px",
+                fontSize: "13px",
+                textTransform: "capitalize",
+                "&:hover": {
+                  color: "white",
+                },
+
+                "& .MuiButton-startIcon": {
+                  transition: "transform 0.3s ease, opacity 3s ease",
+                  opacity: 1,
+                },
+
+                "&:hover": {
+                  color: "white",
+                },
+                "&:hover .MuiButton-startIcon": {
+                  transform: "translateX(-10px)", // уезжает влево
+                  opacity: 0, // исчезает
+                },
+              }}
+              startIcon={<ChevronLeft />}
+            >
+              Back to Home
+            </Button>
 
             <Stack
               component="form"
