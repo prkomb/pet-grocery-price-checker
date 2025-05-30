@@ -23,7 +23,7 @@ const Testimonals = () => {
 
         <Swiper
           slidesPerView={3}
-          spaceBetween={20}
+          spaceBetween={25}
           modules={[Navigation, Keyboard, Autoplay]}
           keyboard={{ enabled: true, pageUpDown: true }}
           speed={1000}
@@ -38,8 +38,8 @@ const Testimonals = () => {
           }}
         >
           {testimonials.map((testimonial, index) => (
-            <SwiperSlide key={index} className="mt-3">
-              <Box display="flex" justifyContent="space-between">
+            <SwiperSlide key={index} className="mt-2">
+              <Box display="flex" justifyContent="center">
                 <TestimonalsCard
                   image={testimonial.image}
                   name={testimonial.name}
