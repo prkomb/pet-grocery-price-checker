@@ -59,7 +59,7 @@ const Categories = () => {
 
   const topProducts = useSelector((state) => state.dummyJson.products).slice(
     0,
-    7
+    6
   );
   console.log(topProducts);
 
@@ -107,21 +107,22 @@ const Categories = () => {
             border: "1px solid #FFFFFF",
             borderRadius: "12px",
             overflowY: "scroll",
-            height: "575px",
-            scrollbarWidth: "none", // Firefox
+            height: "475px",
+            scrollbarWidth: "none",
             msOverflowStyle: "none",
             "&::-webkit-scrollbar": {
-              display: "none", // Chrome, Safari, Edge
+              display: "none",
             },
           }}
           p={2}
           mb={2}
           mx={2}
-          gap={3}
+          gap={10}
           display="flex"
           flexWrap="wrap"
           flexBasis={3}
           justifyContent="space-evenly"
+          alignItems="center"
         >
           {topProducts.map((category) => {
             return (
@@ -130,14 +131,16 @@ const Categories = () => {
                 to="/category"
                 key={category.title}
                 sx={{
-                  width: "189px",
-                  borderRadius: "8px",
-                  transition: ".5s linear",
-
+                  width: "170px",
+                  height: "170px",
+                  textAlign: "center",
+                  backgroundColor: "#E5E7EB",
+                  borderRadius: "16px",
+                  transition: "all 2s linear ease",
+                  cursor: "pointer",
                   "&:hover": {
-                    bgcolor: "#34D399",
-                    boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.25)",
-                    color: "white",
+                    backgroundColor: "white",
+                    boxShadow: "0px 0px 19px 4px rgba(0,0,0,0.75)",
                   },
                 }}
               >
