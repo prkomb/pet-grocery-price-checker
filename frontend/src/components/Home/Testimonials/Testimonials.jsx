@@ -3,6 +3,8 @@ import TestimonalsCard from "./TestimonalsCard";
 import testimonials from "./TestimonalsData";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Keyboard, Autoplay } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
 
 const Testimonals = () => {
   return (
@@ -23,7 +25,6 @@ const Testimonals = () => {
 
         <Swiper
           slidesPerView={3}
-          spaceBetween={25}
           modules={[Navigation, Keyboard, Autoplay]}
           keyboard={{ enabled: true, pageUpDown: true }}
           speed={1000}
@@ -38,8 +39,8 @@ const Testimonals = () => {
           }}
         >
           {testimonials.map((testimonial, index) => (
-            <SwiperSlide key={index} className="mt-2">
-              <Box display="flex" justifyContent="center">
+            <SwiperSlide key={index} className="mt-2 flex">
+              <Box display="flex">
                 <TestimonalsCard
                   image={testimonial.image}
                   name={testimonial.name}
