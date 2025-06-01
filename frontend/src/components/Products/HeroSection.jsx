@@ -27,7 +27,7 @@ const HeroSection = () => {
 
         <Typography
           sx={{
-            fontFamily: "Poppins, sans-serif", // <- fix here!
+            fontFamily: "Poppins, sans-serif",
             color: "white",
             fontStyle: "italic",
             fontSize: "25px",
@@ -57,7 +57,9 @@ const HeroSection = () => {
       </Box>
 
       <Stack
+        flexWrap="wrap"
         direction="row"
+        sx={{ width: { xs: "100%", md: "fit-content" }, p: 2 }}
         justifyContent="center"
         gap={3}
         bgcolor="#1D1F33"
@@ -67,7 +69,7 @@ const HeroSection = () => {
         margin="0 auto"
         mt={4}
       >
-        <FormControl>
+        <FormControl sx={{ width: { xs: "100%", md: "auto" } }}>
           <FormLabel></FormLabel>
           <TextField
             id=""
@@ -85,9 +87,8 @@ const HeroSection = () => {
           />
         </FormControl>
 
-        <FormControl>
+        <FormControl sx={{ width: { xs: "100%", md: "auto" } }}>
           <TextField
-            id=""
             label=""
             placeholder="Shop"
             sx={{
@@ -103,7 +104,7 @@ const HeroSection = () => {
           />
         </FormControl>
 
-        <FormControl>
+        <FormControl sx={{ width: { xs: "100%", md: "auto" } }}>
           <FormLabel></FormLabel>
           <TextField
             id=""
@@ -123,11 +124,12 @@ const HeroSection = () => {
         <Button
           sx={{
             bgcolor: "#22C55E",
-            padding: "0 10px",
+            padding: "10px 10px",
             borderRadius: "15px",
             fontFamily: "Pacifico",
             color: "#1D1F33",
             textTransform: "capitalize",
+            width: { xs: "100%", md: "auto" },
           }}
         >
           Filter

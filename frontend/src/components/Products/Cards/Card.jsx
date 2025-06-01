@@ -7,9 +7,11 @@ import {
   Button,
 } from "@mui/material";
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
 
 const ProductCard = (props) => {
-  const [{ title, price, promo }] = useState(props);
+  const [{ title, price, promo, id }] = useState(props);
+
   return (
     <Card
       variant="outlined"
@@ -60,7 +62,7 @@ const ProductCard = (props) => {
         </Typography>
       </CardContent>
       <CardActions
-        sx={{ justifyContent: "center", padding: 0, margin: "10px 0" }}
+        sx={{ justifyContent: "space-evenly", padding: 0, margin: "10px 0" }}
       >
         <Button
           disableRipple
@@ -68,6 +70,7 @@ const ProductCard = (props) => {
           fullWidth
           sx={{
             bgcolor: "#4CAF50",
+
             color: "white",
             fontFamily: "Poppins",
             textTransform: "capitalize",
@@ -85,6 +88,35 @@ const ProductCard = (props) => {
           }}
         >
           Add to Cart
+        </Button>
+        <Button
+          sx={{
+            color: "black",
+            fontSize: "10px",
+            fontFamily: "Poppins",
+            color: "white",
+            fontFamily: "Poppins",
+            textTransform: "capitalize",
+            fontWeight: 600,
+            marginTop: "0 auto",
+            borderRadius: "10px",
+            background: "#34D399",
+            border: "none",
+            transition: "all .5s linear",
+            fontSize: "15px",
+            "&:hover": {
+              outline: "1px solid rgba(0, 0, 0, 0.1)",
+              backgroundColor: "#45a049",
+              boxShadow: "0 4px 10px rgba(0, 0, 0, 0.15)",
+              transform: "translateY(-5px)",
+            },
+          }}
+          fullWidth
+          variant="outlined"
+          component={NavLink}
+          to={`/product/${id}`}
+        >
+          Explore...
         </Button>
       </CardActions>
     </Card>
