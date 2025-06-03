@@ -1,6 +1,9 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { emojiMap } from "./emojiArray";
+import { Title } from "@mui/icons-material";
+import getCategories from "./helpers/getCategories";
+import getProductsData from "./helpers/getProducts";
 
 export const getProducts = createAsyncThunk("data/getProducts", async () => {
   try {
@@ -9,6 +12,7 @@ export const getProducts = createAsyncThunk("data/getProducts", async () => {
     );
 
     const productsData = await productsRequest.data.products;
+
     const productsTag = productsData
       .map((data) => {
         return data.tags;
@@ -23,6 +27,7 @@ export const getProducts = createAsyncThunk("data/getProducts", async () => {
         return arc;
       }, [])
       .map((item) => {
+        console.log(item);
         return {
           title: item,
           icon: emojiMap[item].emoji,
@@ -30,7 +35,8 @@ export const getProducts = createAsyncThunk("data/getProducts", async () => {
         };
       });
 
-    return productsTag;
+    const products = productsData.map(getProductsData);
+    return { productCategories: productsTag, products };
   } catch (error) {
     throw new Error(error);
   }
