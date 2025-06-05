@@ -6,7 +6,6 @@ export const logout = createAsyncThunk(
   "auth/logout",
   async ({ navigate }, { rejectWithValue }) => {
     try {
-      console.log("Here");
       await signOut(auth);
 
       navigate("/login");

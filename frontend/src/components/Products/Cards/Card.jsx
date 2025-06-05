@@ -10,7 +10,7 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 
 const ProductCard = (props) => {
-  const [{ title, price, promo, id }] = useState(props);
+  const [{ title, price, id, image }] = useState(props);
 
   return (
     <Card
@@ -28,7 +28,7 @@ const ProductCard = (props) => {
     >
       <CardMedia
         component="img"
-        image={`https://placehold.co/50x50?text=${title}`}
+        image={image}
         sx={{
           boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25);",
           borderRadius: "8px",
@@ -52,13 +52,6 @@ const ProductCard = (props) => {
           sx={{ fontFamily: "Poppins", fontSize: "12px", color: "#34D399" }}
         >
           £{price}
-        </Typography>
-        <Typography
-          variant="body1"
-          color="gray"
-          sx={{ fontFamily: "Poppins", fontWeight: 600, fontSize: "12px" }}
-        >
-          {promo}
         </Typography>
       </CardContent>
       <CardActions

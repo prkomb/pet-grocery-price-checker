@@ -17,15 +17,10 @@ export const loginUser = createAsyncThunk(
         password
       );
       navigate("/home");
-      console.log(userCredential);
       return {
-        uid: userCredential.user.uid,
-        email: userCredential.user.email,
-        displayName: userCredential.user.displayName,
-        photoURL: userCredential.user.photoURL,
+        ...userCredential.user,
       };
     } catch (error) {
-      console.log(error);
       throw new Error(error.message);
     }
   }

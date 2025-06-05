@@ -57,10 +57,9 @@ const Categories = () => {
     },
   ]);
 
-  const topProducts = useSelector((state) => state.dummyJson.products).slice(
-    0,
-    6
-  );
+  const topProducts = useSelector(
+    (state) => state.dummyJson?.products?.productCategories
+  )?.slice(0, 6);
   console.log(topProducts);
 
   return (
@@ -124,7 +123,7 @@ const Categories = () => {
           justifyContent="space-evenly"
           alignItems="center"
         >
-          {topProducts.map((category) => {
+          {topProducts?.map((category) => {
             return (
               <Card
                 component={NavLink}

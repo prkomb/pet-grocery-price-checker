@@ -1,9 +1,16 @@
 import { Typography, Box, Button } from "@mui/material";
 import ProductCard from "./Cards/Card";
 import { randomProducts } from "@/data/products.js";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
 const ProductsCardSection = () => {
-  console.log(randomProducts);
+  // console.log(randomProducts);
+
+  const productsList = useSelector((state) =>
+    state.dummyJson?.products?.products?.slice(0, 4)
+  );
+
   return (
     <>
       <Typography
@@ -21,7 +28,7 @@ const ProductsCardSection = () => {
       </Typography>
 
       <Box display="flex" gap={3} flexWrap="wrap" justifyContent="center">
-        {randomProducts.map((product) => (
+        {productsList?.map((product) => (
           <ProductCard {...product} />
         ))}
       </Box>

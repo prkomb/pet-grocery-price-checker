@@ -5,10 +5,9 @@ import CategoryCard from "./CategoryCard";
 import { useSelector } from "react-redux";
 
 export default function TopCategories() {
-  const topProducts = useSelector((state) => state.dummyJson?.products)?.slice(
-    0,
-    4
-  );
+  const topProducts = useSelector(
+    (state) => state.dummyJson?.products?.productCategories
+  ).slice(0, 4);
 
   return (
     <Box>
