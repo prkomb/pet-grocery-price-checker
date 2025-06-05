@@ -10,6 +10,7 @@ const getProductsData = (product) => {
     reviews: product.reviews,
     warrantyInformation: product.warrantyInformation,
     image: product.thumbnail,
+    stock: product.stock,
   };
 };
 

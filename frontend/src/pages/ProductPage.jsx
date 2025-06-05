@@ -19,7 +19,7 @@ const ProductPage = () => {
 
   return (
     <Container>
-      <Box display="flex" alignItems="center" gap={3}>
+      <Box display="flex" alignItems="center" gap={3} sx={{ padding: "20px" }}>
         <Card sx={{ width: 300 }}>
           <CardMedia
             component="img"
@@ -28,43 +28,153 @@ const ProductPage = () => {
             sx={{ borderRadius: 2 }}
           />
         </Card>
-        <Box alignSelf="start">
-          <Box border="1px solid" sx={{ width: "687px" }}>
-            <Typography
-              variant="body1"
-              color="initial"
+        <Stack rowGap={1}>
+          <Box alignSelf="start">
+            <Box
               sx={{
-                fontFamily: "Poppins",
-                fontSize: "20px",
-                fontWeight: "bold",
+                width: "687px",
+                p: 2,
+                borderRadius: "10px",
+                bgcolor: "#E5E7EB",
+                transition: "all .3s linear",
+                "&:hover": {
+                  bgcolor: "#fff",
+                  boxShadow: "0px 8px 24px rgba(0, 0, 0, 0.5)",
+                },
               }}
             >
-              {currentProduct.title}
-            </Typography>
-            <Box display="flex" alignItems="center">
-              <Button sx={{ bgcolor: "#34D399" }}>Delivery</Button>
-              <Typography variant="body1" color="initial">
-                {currentProduct.shippingInformation}
-              </Typography>
-            </Box>
-            <Stack direction="row" alignItems="center" gap={2}>
-              <Typography variant="body1" color="initial">
-                £{currentProduct.price}
-              </Typography>
               <Typography
                 variant="body1"
                 color="initial"
                 sx={{
-                  textDecoration: "line-through;",
-                  color: "grey",
-                  fontSize: "10px",
+                  pb: 2,
+
+                  fontFamily: "Poppins",
+                  fontSize: "20px",
+                  fontWeight: "bold",
                 }}
               >
-                £{currentProduct.price}
+                {currentProduct?.title}
               </Typography>
-            </Stack>
+
+              <Box
+                display="flex"
+                alignItems="center"
+                gap={2}
+                sx={{
+                  pb: 2,
+                }}
+              >
+                <Button
+                  sx={{
+                    bgcolor: "#34D399",
+                    textTransform: "capitalize",
+                    borderRadius: "20px",
+                    fontSize: "10px",
+                    color: "#000",
+                  }}
+                >
+                  Delivery
+                </Button>
+                <Typography
+                  variant="body1"
+                  color="initial"
+                  sx={{
+                    fontFamily: "Inter",
+                    fontStyle: "italic",
+                  }}
+                >
+                  {currentProduct?.shippingInformation}
+                </Typography>
+              </Box>
+              <Stack direction="row" alignItems="center" gap={2}>
+                <Typography variant="body1" color="initial">
+                  £{currentProduct?.price}
+                </Typography>
+                <Typography
+                  variant="body1"
+                  color="initial"
+                  sx={{
+                    textDecoration: "line-through;",
+                    color: "grey",
+                    fontSize: "10px",
+                  }}
+                >
+                  £{currentProduct?.price}
+                </Typography>
+              </Stack>
+            </Box>
           </Box>
-        </Box>
+          <Box alignSelf="start">
+            <Box
+              sx={{
+                width: "687px",
+                p: 2,
+                borderRadius: "10px",
+                bgcolor: "#E5E7EB",
+                transition: "all .3s linear",
+                "&:hover": {
+                  bgcolor: "#fff",
+                  boxShadow: "0px 8px 24px rgba(0, 0, 0, 0.5)",
+                },
+              }}
+            >
+              <Typography
+                variant="body1"
+                color="initial"
+                sx={{
+                  pb: 2,
+                  fontFamily: "Inter",
+                  color: "#34D399",
+                  fontSize: "20px",
+                  fontWeight: "600",
+                }}
+              >
+                {currentProduct?.availabilityStatus}: {currentProduct?.stock}
+              </Typography>
+
+              <Box display="flex" alignItems="center" gap={2} sx={{ pb: 2 }}>
+                <Button
+                  sx={{
+                    bgcolor: "#34D399",
+                    textTransform: "capitalize",
+                    borderRadius: "20px",
+                    fontSize: "10px",
+                    color: "#000",
+                  }}
+                >
+                  Delivery
+                </Button>
+                <Typography
+                  variant="body1"
+                  color="initial"
+                  sx={{
+                    fontFamily: "Inter",
+                    fontStyle: "italic",
+                  }}
+                >
+                  {currentProduct?.shippingInformation}
+                </Typography>
+              </Box>
+              <Stack direction="row" alignItems="center" gap={2}>
+                <Typography variant="body1" color="initial">
+                  £{currentProduct?.price}
+                </Typography>
+                <Typography
+                  variant="body1"
+                  color="initial"
+                  sx={{
+                    textDecoration: "line-through;",
+                    color: "grey",
+                    fontSize: "10px",
+                  }}
+                >
+                  £{currentProduct?.price}
+                </Typography>
+              </Stack>
+            </Box>
+          </Box>
+        </Stack>
       </Box>
     </Container>
   );
