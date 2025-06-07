@@ -9,6 +9,7 @@ import {
   Button,
   Typography,
 } from "@mui/material";
+import ProductDescriptions from "../layouts/ProductDescriptions";
 
 const ProductPage = () => {
   const productPageParams = useParams();
@@ -17,15 +18,33 @@ const ProductPage = () => {
     (state) => state.dummyJson?.products?.products
   )?.find((item) => item.id == productPageParams.productId);
 
+  function getEntries(sectionValue) {
+    return Object.keys(currentProduct || {}).find((entry) => {
+      return currentProduct[entry] === sectionValue;
+    });
+  }
+
   return (
     <Container>
       <Box display="flex" alignItems="center" gap={3} sx={{ padding: "20px" }}>
-        <Card sx={{ width: 300 }}>
+        <Card
+          sx={{
+            width: 300,
+            transition: "all 0.3s linear",
+            "&:hover": {
+              transform: "scale(1.3)",
+
+              zIndex: "1",
+            },
+          }}
+        >
           <CardMedia
             component="img"
             image={currentProduct?.image}
             alt="Whole chicken"
-            sx={{ borderRadius: 2 }}
+            sx={{
+              borderRadius: 2,
+            }}
           />
         </Card>
         <Stack rowGap={1}>
@@ -178,36 +197,34 @@ const ProductPage = () => {
       </Box>
       <Box
         sx={{
-          border: "1px solid",
-          width: "90%",
+          width: "89%",
           maxWidth: "100%",
           borderRadius: "20px",
           padding: "20px",
+          bgcolor: "#E5E7EB",
+          transition: "all .5s linear",
+          cursor: "pointer",
+          m: "20px 15px",
+          "&:hover": {
+            boxShadow: "0px 4px 33px rgba(0, 0, 0, 0.25)",
+            bgcolor: "white",
+          },
         }}
       >
-        <Box>
-          <Typography
-            variant="body1"
-            color="initial"
-            sx={{ fontFamily: "Poppins", fontSize: "10px", fontWeight: "bold" }}
-          >
-            Category
-          </Typography>
-          <Typography
-            variant="body1"
-            color="initial"
-            sx={{
-              mx: "20px",
-              my: "10px",
-              textTransform: "capitalize",
-              fontWeight: "300",
-              fontSize: "10px",
-              fontFamily: "Poppins",
-            }}
-          >
-            {currentProduct?.category}
-          </Typography>
-        </Box>
+        <ProductDescriptions
+          title={currentProduct?.category}
+          section={getEntries(currentProduct?.category)}
+        />
+        <ProductDescriptions
+          title={currentProduct?.description}
+          section={getEntries(currentProduct?.description)}
+        />
+
+        <ProductDescriptions
+          title={currentProduct?.warranty}
+          section={getEntries(currentProduct?.warranty)}
+        ></ProductDescriptions>
+
         <Box>
           <Typography variant="body1" color="initial"></Typography>
           <Typography variant="body1" color="initial"></Typography>
