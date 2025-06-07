@@ -176,6 +176,43 @@ const ProductPage = () => {
           </Box>
         </Stack>
       </Box>
+      <Box
+        sx={{
+          border: "1px solid",
+          width: "90%",
+          maxWidth: "100%",
+          borderRadius: "20px",
+          padding: "20px",
+        }}
+      >
+        <Box>
+          <Typography
+            variant="body1"
+            color="initial"
+            sx={{ fontFamily: "Poppins", fontSize: "10px", fontWeight: "bold" }}
+          >
+            Category
+          </Typography>
+          <Typography
+            variant="body1"
+            color="initial"
+            sx={{
+              mx: "20px",
+              my: "10px",
+              textTransform: "capitalize",
+              fontWeight: "300",
+              fontSize: "10px",
+              fontFamily: "Poppins",
+            }}
+          >
+            {currentProduct?.category}
+          </Typography>
+        </Box>
+        <Box>
+          <Typography variant="body1" color="initial"></Typography>
+          <Typography variant="body1" color="initial"></Typography>
+        </Box>
+      </Box>
     </Container>
   );
 };
