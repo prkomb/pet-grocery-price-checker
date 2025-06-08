@@ -13,9 +13,17 @@ import {
   Typography,
   Rating,
   CardActions,
+  Link,
+  Divider,
 } from "@mui/material";
 import ProductDescriptions from "../layouts/ProductDescriptions";
 import { useEffect, useState } from "react";
+import Reviews from "../components/ProductPage/Reviews";
+import OveralRating from "../components/ProductPage/OveralRating";
+import DescriptionSection from "../components/ProductPage/DescriptionSection";
+import ProductImage from "../components/ProductPage/ProductImage";
+import MainSideInformation from "../components/ProductPage/MainSideInformation";
+import SecondaryInformation from "../components/ProductPage/SecondaryInformation";
 
 const ProductPage = () => {
   const productPageParams = useParams();
@@ -29,7 +37,7 @@ const ProductPage = () => {
   useEffect(() => {
     if (currentProduct?.reviews) {
       const avg = getProductAverageRating(currentProduct.reviews);
-      setAverageRating(avg);
+      setAverageRating(Math.round(avg));
     }
   }, [currentProduct?.reviews]);
 
@@ -42,242 +50,33 @@ const ProductPage = () => {
   return (
     <Container>
       <Box display="flex" alignItems="center" gap={3} sx={{ padding: "20px" }}>
-        <Card
-          sx={{
-            width: 300,
-            transition: "all 0.3s linear",
-            "&:hover": {
-              transform: "scale(1.3)",
-
-              zIndex: "1",
-            },
-          }}
-        >
-          <CardMedia
-            component="img"
-            image={currentProduct?.image}
-            alt="Whole chicken"
-            sx={{
-              borderRadius: 2,
-            }}
-          />
-        </Card>
+        <ProductImage image={currentProduct?.image} />
         <Stack rowGap={1}>
-          <Box alignSelf="start">
-            <Box
-              sx={{
-                width: "687px",
-                p: 2,
-                borderRadius: "10px",
-                bgcolor: "#E5E7EB",
-                transition: "all .3s linear",
-                "&:hover": {
-                  bgcolor: "#fff",
-                  boxShadow: "0px 8px 24px rgba(0, 0, 0, 0.5)",
-                },
-              }}
-            >
-              <Typography
-                variant="body1"
-                color="initial"
-                sx={{
-                  pb: 2,
+          <MainSideInformation
+            title={currentProduct?.title}
+            shippingInformation={currentProduct?.shippingInformation}
+            warranty={currentProduct?.warranty}
+            price={currentProduct?.price}
+          />
 
-                  fontFamily: "Poppins",
-                  fontSize: "20px",
-                  fontWeight: "bold",
-                }}
-              >
-                {currentProduct?.title}
-              </Typography>
-
-              <Box
-                display="flex"
-                alignItems="center"
-                gap={2}
-                sx={{
-                  pb: 2,
-                }}
-              >
-                <Button
-                  sx={{
-                    bgcolor: "#34D399",
-                    textTransform: "capitalize",
-                    borderRadius: "20px",
-                    fontSize: "10px",
-                    color: "#000",
-                  }}
-                >
-                  Delivery
-                </Button>
-                <Typography
-                  variant="body1"
-                  color="initial"
-                  sx={{
-                    fontFamily: "Inter",
-                    fontStyle: "italic",
-                  }}
-                >
-                  {currentProduct?.shippingInformation}
-                </Typography>
-              </Box>
-              <Stack direction="row" alignItems="center" gap={2}>
-                <Typography variant="body1" color="initial">
-                  £{currentProduct?.price}
-                </Typography>
-                <Typography
-                  variant="body1"
-                  color="initial"
-                  sx={{
-                    textDecoration: "line-through;",
-                    color: "grey",
-                    fontSize: "10px",
-                  }}
-                >
-                  £{currentProduct?.price}
-                </Typography>
-              </Stack>
-            </Box>
-          </Box>
-          <Box alignSelf="start">
-            <Box
-              sx={{
-                width: "687px",
-                p: 2,
-                borderRadius: "10px",
-                bgcolor: "#E5E7EB",
-                transition: "all .3s linear",
-                "&:hover": {
-                  bgcolor: "#fff",
-                  boxShadow: "0px 8px 24px rgba(0, 0, 0, 0.5)",
-                },
-              }}
-            >
-              <Typography
-                variant="body1"
-                color="initial"
-                sx={{
-                  pb: 2,
-                  fontFamily: "Inter",
-                  color: "#34D399",
-                  fontSize: "20px",
-                  fontWeight: "600",
-                }}
-              >
-                {currentProduct?.availabilityStatus}: {currentProduct?.stock}
-              </Typography>
-
-              <Box display="flex" alignItems="center" gap={2} sx={{ pb: 2 }}>
-                <Button
-                  sx={{
-                    bgcolor: "#34D399",
-                    textTransform: "capitalize",
-                    borderRadius: "20px",
-                    fontSize: "10px",
-                    color: "#000",
-                  }}
-                >
-                  Delivery
-                </Button>
-                <Typography
-                  variant="body1"
-                  color="initial"
-                  sx={{
-                    fontFamily: "Inter",
-                    fontStyle: "italic",
-                  }}
-                >
-                  {currentProduct?.shippingInformation}
-                </Typography>
-              </Box>
-              <Stack direction="row" alignItems="center" gap={2}>
-                <Typography variant="body1" color="initial">
-                  £{currentProduct?.price}
-                </Typography>
-                <Typography
-                  variant="body1"
-                  color="initial"
-                  sx={{
-                    textDecoration: "line-through;",
-                    color: "grey",
-                    fontSize: "10px",
-                  }}
-                >
-                  £{currentProduct?.price}
-                </Typography>
-              </Stack>
-            </Box>
-          </Box>
+          <SecondaryInformation
+            availabilityStatus={currentProduct?.availabilityStatus}
+            stock={currentProduct?.stock}
+            shippingInformation={currentProduct?.shippingInformation}
+            price={currentProduct?.price}
+          ></SecondaryInformation>
         </Stack>
       </Box>
-      <Box
-        sx={{
-          width: "89%",
-          maxWidth: "100%",
-          borderRadius: "20px",
-          padding: "20px",
-          bgcolor: "#E5E7EB",
-          transition: "all .5s linear",
-          cursor: "pointer",
-          m: "20px 15px",
-          "&:hover": {
-            boxShadow: "0px 4px 33px rgba(0, 0, 0, 0.25)",
-            bgcolor: "white",
-          },
-        }}
-      >
-        <ProductDescriptions
-          title={currentProduct?.category}
-          section={getEntries(currentProduct?.category)}
-        />
-        <ProductDescriptions
-          title={currentProduct?.description}
-          section={getEntries(currentProduct?.description)}
-        />
+      <DescriptionSection
+        getEntries={getEntries}
+        warranty={currentProduct?.warranty}
+        description={currentProduct?.description}
+        category={currentProduct?.category}
+      />
 
-        <ProductDescriptions
-          title={currentProduct?.warranty}
-          section={getEntries(currentProduct?.warranty)}
-        ></ProductDescriptions>
-      </Box>
-
-      <Box gap={2} display="flex">
-        <Card>
-          <CardContent>
-            <Typography
-              variant="body1"
-              color="initial"
-              sx={{
-                fontFamily: "Poppins",
-                fontSize: "20px",
-                fontWeight: "bold",
-              }}
-            >
-              Reviews and Ratings
-            </Typography>
-
-            <Box display="flex" justifyContent="space-between" mt={3}>
-              <Rating precision={0.1} readOnly value={averageRating} />
-              <Typography variant="body1" color="initial">
-                {averageRating} of 5
-              </Typography>
-            </Box>
-          </CardContent>
-          <CardActions>
-            <Button
-              fullWidth
-              variant="contained"
-              sx={{
-                bgcolor: "#34D399",
-                fontFamily: "Poppins",
-                fontSize: "10px",
-                textTransform: "capitalize",
-              }}
-            >
-              Add Review
-            </Button>
-          </CardActions>
-        </Card>
+      <Box gap={6} display="flex" justifyContent="space-evenly">
+        <OveralRating averageRating={averageRating} />
+        <Reviews />
       </Box>
     </Container>
   );
