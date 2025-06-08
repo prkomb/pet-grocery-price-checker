@@ -1,15 +1,21 @@
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import getProductAverageRating from "../helpers/getProductAverageRating";
+
 import {
   Box,
   Stack,
   Container,
   Card,
   CardMedia,
+  CardContent,
   Button,
   Typography,
+  Rating,
+  CardActions,
 } from "@mui/material";
 import ProductDescriptions from "../layouts/ProductDescriptions";
+import { useEffect, useState } from "react";
 
 const ProductPage = () => {
   const productPageParams = useParams();
@@ -17,6 +23,15 @@ const ProductPage = () => {
   const currentProduct = useSelector(
     (state) => state.dummyJson?.products?.products
   )?.find((item) => item.id == productPageParams.productId);
+
+  const [averageRating, setAverageRating] = useState(0);
+
+  useEffect(() => {
+    if (currentProduct?.reviews) {
+      const avg = getProductAverageRating(currentProduct.reviews);
+      setAverageRating(avg);
+    }
+  }, [currentProduct?.reviews]);
 
   function getEntries(sectionValue) {
     return Object.keys(currentProduct || {}).find((entry) => {
@@ -224,11 +239,45 @@ const ProductPage = () => {
           title={currentProduct?.warranty}
           section={getEntries(currentProduct?.warranty)}
         ></ProductDescriptions>
+      </Box>
 
-        <Box>
-          <Typography variant="body1" color="initial"></Typography>
-          <Typography variant="body1" color="initial"></Typography>
-        </Box>
+      <Box gap={2} display="flex">
+        <Card>
+          <CardContent>
+            <Typography
+              variant="body1"
+              color="initial"
+              sx={{
+                fontFamily: "Poppins",
+                fontSize: "20px",
+                fontWeight: "bold",
+              }}
+            >
+              Reviews and Ratings
+            </Typography>
+
+            <Box display="flex" justifyContent="space-between" mt={3}>
+              <Rating precision={0.1} readOnly value={averageRating} />
+              <Typography variant="body1" color="initial">
+                {averageRating} of 5
+              </Typography>
+            </Box>
+          </CardContent>
+          <CardActions>
+            <Button
+              fullWidth
+              variant="contained"
+              sx={{
+                bgcolor: "#34D399",
+                fontFamily: "Poppins",
+                fontSize: "10px",
+                textTransform: "capitalize",
+              }}
+            >
+              Add Review
+            </Button>
+          </CardActions>
+        </Card>
       </Box>
     </Container>
   );
