@@ -24,6 +24,7 @@ import DescriptionSection from "../components/ProductPage/DescriptionSection";
 import ProductImage from "../components/ProductPage/ProductImage";
 import MainSideInformation from "../components/ProductPage/MainSideInformation";
 import SecondaryInformation from "../components/ProductPage/SecondaryInformation";
+import getProductReviews from "../helpers/getProductReviews";
 
 const ProductPage = () => {
   const productPageParams = useParams();
@@ -36,7 +37,8 @@ const ProductPage = () => {
 
   useEffect(() => {
     if (currentProduct?.reviews) {
-      const avg = getProductAverageRating(currentProduct.reviews);
+      const avg = getProductAverageRating(currentProduct?.reviews);
+      console.log(currentProduct?.reviews);
       setAverageRating(Math.round(avg));
     }
   }, [currentProduct?.reviews]);
@@ -76,7 +78,7 @@ const ProductPage = () => {
 
       <Box gap={6} display="flex" justifyContent="space-evenly">
         <OveralRating averageRating={averageRating} />
-        <Reviews />
+        <Reviews reviews={currentProduct?.reviews} />
       </Box>
     </Container>
   );
