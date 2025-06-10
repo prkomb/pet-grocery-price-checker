@@ -76,7 +76,7 @@ const ProductPage = () => {
         category={currentProduct?.category}
       />
 
-      <Box gap={6} display="flex" justifyContent="space-evenly">
+      <Box gap={6} display="flex" justifyContent="space-evenly" flexWrap="wrap">
         <OveralRating averageRating={averageRating} />
         <Reviews reviews={currentProduct?.reviews} />
       </Box>

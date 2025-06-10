@@ -54,7 +54,9 @@ function Reviews({ reviews }) {
                   }
                   title={review.reviewerName}
                   subheader={formatReviewData(review.date)}
-                  action={<Rating readOnly value={review.rating} />}
+                  action={
+                    <Rating readOnly value={review.rating} precision={0.1} />
+                  }
                 />
 
                 <CardContent>
