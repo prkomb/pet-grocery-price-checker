@@ -12,6 +12,7 @@ import {
   Button,
 } from "@mui/material";
 import formatReviewData from "../../helpers/formatReviewDate";
+import { StarRounded, StarBorderRounded } from "@mui/icons-material";
 
 function Reviews({ reviews }) {
   return (
@@ -34,7 +35,10 @@ function Reviews({ reviews }) {
             alignItems="center"
             justifyContent="space-between"
           >
-            <Rating></Rating>
+            <Rating
+              icon={<StarRounded color="green"></StarRounded>}
+              emptyIcon={<StarBorderRounded fontSize="inherit" />}
+            ></Rating>
             <Link component="a" href="#" sx={{ fontSize: "12px" }}>
               Write A Review
             </Link>
@@ -55,7 +59,13 @@ function Reviews({ reviews }) {
                   title={review.reviewerName}
                   subheader={formatReviewData(review.date)}
                   action={
-                    <Rating readOnly value={review.rating} precision={0.1} />
+                    <Rating
+                      readOnly
+                      value={review.rating}
+                      precision={0.1}
+                      icon={<StarRounded color="green"></StarRounded>}
+                      emptyIcon={<StarBorderRounded fontSize="inherit" />}
+                    />
                   }
                 />
 
