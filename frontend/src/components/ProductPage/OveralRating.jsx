@@ -82,67 +82,88 @@ const OveralRating = ({ averageRating }) => {
           {leaveCommentIsOpen && (
             <Box display="flex" flexDirection="column" gap={2} py={2}>
               <FormControl fullWidth required>
-                <FormLabel>Username:</FormLabel>
+                {/* <FormLabel>Username:</FormLabel> */}
                 {currentUser ? (
-                  <TextField
-                    disabled
-                    {...register("username")}
-                    id=""
-                    label=""
-                    size="small"
-                    sx={{
-                      ".Mui-disabled": {
-                        bgcolor: "#D3D3D3",
-                        cursor: "pointer",
-                      },
-                    }}
-                    title="You can't change username name"
-                  />
+                  <>
+                    <FormLabel>Username:</FormLabel>
+                    <TextField
+                      disabled
+                      {...register("username")}
+                      id=""
+                      label=""
+                      size="small"
+                      sx={{
+                        ".Mui-disabled": {
+                          bgcolor: "#D3D3D3",
+                          cursor: "pointer",
+                        },
+                      }}
+                      title="You can't change username name"
+                    />
+                  </>
                 ) : (
-                  <TextField id="" label="" size="small" />
+                  <p
+                    style={{
+                      color: "red",
+                      fontFamily: "Poppins",
+                      fontSize: "12px",
+                    }}
+                  >
+                    You must be <a href="/login">logged in</a> to leave a
+                    review.
+                  </p>
                 )}
               </FormControl>
-              <FormControl fullWidth>
-                <FormLabel>Comment:</FormLabel>
-                <TextareaAutosize
-                  minRows={3}
-                  {...register("comment", {
-                    required: {
-                      value: true,
-                      message:
-                        "Comment field is required — let others know what you think!",
-                    },
-                  })}
-                  style={{
-                    width: "100%",
-                    padding: "10px",
-                    border: "0.2px solid grey",
-                    borderRadius: "5px",
-                  }}
-                ></TextareaAutosize>
-                <FormHelperText sx={{ color: "red" }}>
-                  {errors.comment?.message}
-                </FormHelperText>
-              </FormControl>
-              <FormControl sx={{ py: 2 }} required>
-                <FormLabel>Rating:</FormLabel>
-                <Controller
-                  control={control}
-                  name="rating"
-                  defaultValue={0}
-                  render={({ field }) => {
-                    return (
-                      <Rating
-                        {...field}
-                        value={field.value}
-                        onChange={(_, newValue) => field.onChange(newValue)}
-                        icon={<StarRounded color="green"></StarRounded>}
-                        emptyIcon={<StarBorderRounded fontSize="inherit" />}
-                      ></Rating>
-                    );
-                  }}
-                ></Controller>
-              </FormControl>
+              {currentUser && (
+                <>
+                  <FormControl fullWidth>
+                    <FormLabel>Comment:</FormLabel>
+                    <TextareaAutosize
+                      minRows={3}
+                      disabled={!currentUser}
+                      {...register("comment", {
+                        required: {
+                          value: true,
+                          message:
+                            "Comment field is required — let others know what you think!",
+                        },
+                      })}
+                      style={{
+                        width: "100%",
+                        padding: "10px",
+                        border: "0.2px solid grey",
+                        borderRadius: "5px",
+                        backgroundColor: !currentUser ? "#f0f0f0" : "white",
+                        color: !currentUser ? "#999" : "black",
+                        cursor: !currentUser ? "not-allowed" : "text",
+                      }}
+                    ></TextareaAutosize>
+                    <FormHelperText sx={{ color: "red" }}>
+                      {errors.comment?.message}
+                    </FormHelperText>
+                  </FormControl>
+                  <FormControl sx={{ py: 2 }} required>
+                    <FormLabel>Rating:</FormLabel>
+                    <Controller
+                      control={control}
+                      name="rating"
+                      defaultValue={0}
+                      render={({ field }) => {
+                        return (
+                          <Rating
+                            {...field}
+                            value={field.value}
+                            onChange={(_, newValue) => field.onChange(newValue)}
+                            icon={<StarRounded color="green"></StarRounded>}
+                            emptyIcon={<StarBorderRounded fontSize="inherit" />}
+                            readOnly={!currentUser}
+                          ></Rating>
+                        );
+                      }}
+                    ></Controller>
+                  </FormControl>
+                </>
+              )}
             </Box>
           )}
         </CardContent>
@@ -162,25 +183,29 @@ const OveralRating = ({ averageRating }) => {
               >
                 Close Review
               </Button>
-              <Button
-                onClick={handleSubmit(saveComment)}
-                disabled={!currentUser}
-                fullWidth
-                variant="contained"
-                sx={{
-                  bgcolor: "#34D399",
-                  fontFamily: "Poppins",
-                  fontSize: "10px",
-                  textTransform: "capitalize",
-                  cursor: "pointer",
-                }}
-              >
-                Save Review
-              </Button>
+              {currentUser && (
+                <Button
+                  onClick={handleSubmit(saveComment)}
+                  disabled={!currentUser}
+                  fullWidth
+                  variant="contained"
+                  sx={{
+                    bgcolor: "#34D399",
+                    fontFamily: "Poppins",
+                    fontSize: "10px",
+                    textTransform: "capitalize",
+                    cursor: "pointer",
+                  }}
+                >
+                  Save Review
+                </Button>
+              )}
             </>
           ) : (
             <Button
               onClick={() => setLeaveCommentIsOpen(!leaveCommentIsOpen)}
+              disabled
+              title={!currentUser ? "You can't leave a comment" : undefined}
               fullWidth
               variant="contained"
               sx={{
