@@ -8,15 +8,21 @@ import {
   Button,
   FormControl,
   TextField,
-  FormHelperText,
   FormLabel,
   TextareaAutosize,
+  FormHelperText,
 } from "@mui/material";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { StarRounded, StarBorderRounded } from "@mui/icons-material";
 import { useState } from "react";
+import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import saveComments from "@/store/features/comments/commentsThunk";
 
 const OveralRating = ({ averageRating }) => {
+  const dispatch = useDispatch();
+  const productPageParams = useParams();
+
   const [leaveCommentIsOpen, setLeaveCommentIsOpen] = useState(false);
   const [currentUser] = useState(() => {
     const savedUser = localStorage.getItem("currentUser");
@@ -28,13 +34,19 @@ const OveralRating = ({ averageRating }) => {
     }
   });
 
-  const { register } = useForm({
+  const saveComment = (data) => {
+    dispatch(saveComments({ ...data, productId: productPageParams.productId }));
+  };
+
+  const {
+    register,
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm({
     values: {
-      name: currentUser?.name,
-      surname: currentUser?.surname,
-      get fullName() {
-        return `${this.name} ${this.surname}`;
-      },
+      username: `${currentUser?.name} ${currentUser?.surname}`,
+      comment: "",
     },
   });
 
@@ -74,7 +86,7 @@ const OveralRating = ({ averageRating }) => {
                 {currentUser ? (
                   <TextField
                     disabled
-                    {...register("fullName")}
+                    {...register("username")}
                     id=""
                     label=""
                     size="small"
@@ -94,6 +106,13 @@ const OveralRating = ({ averageRating }) => {
                 <FormLabel>Comment:</FormLabel>
                 <TextareaAutosize
                   minRows={3}
+                  {...register("comment", {
+                    required: {
+                      value: true,
+                      message:
+                        "Comment field is required — let others know what you think!",
+                    },
+                  })}
                   style={{
                     width: "100%",
                     padding: "10px",
@@ -101,13 +120,28 @@ const OveralRating = ({ averageRating }) => {
                     borderRadius: "5px",
                   }}
                 ></TextareaAutosize>
+                <FormHelperText sx={{ color: "red" }}>
+                  {errors.comment?.message}
+                </FormHelperText>
               </FormControl>
               <FormControl sx={{ py: 2 }} required>
                 <FormLabel>Rating:</FormLabel>
-                <Rating
-                  icon={<StarRounded color="green"></StarRounded>}
-                  emptyIcon={<StarBorderRounded fontSize="inherit" />}
-                ></Rating>
+                <Controller
+                  control={control}
+                  name="rating"
+                  defaultValue={0}
+                  render={({ field }) => {
+                    return (
+                      <Rating
+                        {...field}
+                        value={field.value}
+                        onChange={(_, newValue) => field.onChange(newValue)}
+                        icon={<StarRounded color="green"></StarRounded>}
+                        emptyIcon={<StarBorderRounded fontSize="inherit" />}
+                      ></Rating>
+                    );
+                  }}
+                ></Controller>
               </FormControl>
             </Box>
           )}
@@ -129,7 +163,8 @@ const OveralRating = ({ averageRating }) => {
                 Close Review
               </Button>
               <Button
-                onClick={() => setLeaveCommentIsOpen(!leaveCommentIsOpen)}
+                onClick={handleSubmit(saveComment)}
+                disabled={!currentUser}
                 fullWidth
                 variant="contained"
                 sx={{
@@ -137,6 +172,7 @@ const OveralRating = ({ averageRating }) => {
                   fontFamily: "Poppins",
                   fontSize: "10px",
                   textTransform: "capitalize",
+                  cursor: "pointer",
                 }}
               >
                 Save Review
