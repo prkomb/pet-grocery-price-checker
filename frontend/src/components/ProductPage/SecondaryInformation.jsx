@@ -1,16 +1,13 @@
-import { Box, Typography, Button, Stack } from "@mui/material";
+import { Box, Typography, Button, Stack, Rating } from "@mui/material";
+import { StarRounded, StarBorderRounded } from "@mui/icons-material";
 
-const SecondaryInformation = ({
-  availabilityStatus,
-  stock,
-  shippingInformation,
-  price,
-}) => {
+const SecondaryInformation = ({ availabilityStatus, stock, averageRating }) => {
+  console.log(averageRating);
   return (
-    <Box alignSelf="start">
+    <Box alignSelf={{ xs: "start", md: "center" }}>
       <Box
         sx={{
-          width: "687px",
+          width: { xs: "300px", md: "687px" },
           p: 2,
           borderRadius: "10px",
           bgcolor: "#E5E7EB",
@@ -35,44 +32,47 @@ const SecondaryInformation = ({
           {availabilityStatus}: {stock}
         </Typography>
 
-        <Box display="flex" alignItems="center" gap={2} sx={{ pb: 2 }}>
+        <Rating
+          value={averageRating}
+          precision={0.1}
+          readOnly
+          icon={<StarRounded color="green"></StarRounded>}
+          emptyIcon={<StarBorderRounded fontSize="inherit" />}
+        />
+
+        <Stack gap={2} direction="row">
           <Button
             sx={{
-              bgcolor: "#34D399",
+              fontFamily: "Poppins",
+
               textTransform: "capitalize",
-              borderRadius: "20px",
-              fontSize: "10px",
-              color: "#000",
+              transition: "all .3s linear",
+              "&:hover": {
+                bgcolor: "#34D399",
+                color: "white",
+                border: "none",
+              },
             }}
+            fullWidth
           >
-            Delivery
+            Add to Cart
           </Button>
-          <Typography
-            variant="body1"
-            color="initial"
+          <Button
+            fullWidth
             sx={{
-              fontFamily: "Inter",
-              fontStyle: "italic",
+              fontFamily: "Poppins",
+
+              textTransform: "capitalize",
+              transition: "all .3s linear",
+              "&:hover": {
+                bgcolor: "#34D399",
+                color: "white",
+                border: "none",
+              },
             }}
           >
-            {shippingInformation}
-          </Typography>
-        </Box>
-        <Stack direction="row" alignItems="center" gap={2}>
-          <Typography variant="body1" color="initial">
-            £{price}
-          </Typography>
-          <Typography
-            variant="body1"
-            color="initial"
-            sx={{
-              textDecoration: "line-through;",
-              color: "grey",
-              fontSize: "10px",
-            }}
-          >
-            £{price}
-          </Typography>
+            See Comments
+          </Button>
         </Stack>
       </Box>
     </Box>

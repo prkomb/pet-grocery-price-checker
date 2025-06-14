@@ -24,7 +24,6 @@ import DescriptionSection from "../components/ProductPage/DescriptionSection";
 import ProductImage from "../components/ProductPage/ProductImage";
 import MainSideInformation from "../components/ProductPage/MainSideInformation";
 import SecondaryInformation from "../components/ProductPage/SecondaryInformation";
-import getProductReviews from "../helpers/getProductReviews";
 
 const ProductPage = () => {
   const productPageParams = useParams();
@@ -38,7 +37,7 @@ const ProductPage = () => {
   useEffect(() => {
     if (currentProduct?.reviews) {
       const avg = getProductAverageRating(currentProduct?.reviews);
-      console.log(currentProduct?.reviews);
+
       setAverageRating(Math.round(avg));
     }
   }, [currentProduct?.reviews]);
@@ -51,9 +50,16 @@ const ProductPage = () => {
 
   return (
     <Container>
-      <Box display="flex" alignItems="center" gap={3} sx={{ padding: "20px" }}>
+      <Box
+        display="flex"
+        justifyContent={{ xs: "center", md: "normal" }}
+        alignItems={{ xs: "start", sm: "center" }}
+        gap={3}
+        flexWrap="wrap"
+        sx={{ padding: "20px" }}
+      >
         <ProductImage image={currentProduct?.image} />
-        <Stack rowGap={1}>
+        <Stack rowGap={1} justifyContent={{ xs: "center", md: "normal" }}>
           <MainSideInformation
             title={currentProduct?.title}
             shippingInformation={currentProduct?.shippingInformation}
@@ -66,6 +72,7 @@ const ProductPage = () => {
             stock={currentProduct?.stock}
             shippingInformation={currentProduct?.shippingInformation}
             price={currentProduct?.price}
+            averageRating={averageRating}
           ></SecondaryInformation>
         </Stack>
       </Box>

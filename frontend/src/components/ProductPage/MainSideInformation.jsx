@@ -2,10 +2,11 @@ import { Box, Typography, Button, Stack } from "@mui/material";
 
 const MainSideInformation = ({ shippingInformation, price, title }) => {
   return (
-    <Box alignSelf="start">
+    <Box alignSelf={{ xs: "start", md: "center" }}>
       <Box
         sx={{
-          width: "687px",
+          width: { xs: "300px", md: "687px" },
+          maxWidth: "100%",
           p: 2,
           borderRadius: "10px",
           bgcolor: "#E5E7EB",

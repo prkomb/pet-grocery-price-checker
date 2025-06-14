@@ -82,7 +82,6 @@ const OveralRating = ({ averageRating }) => {
           {leaveCommentIsOpen && (
             <Box display="flex" flexDirection="column" gap={2} py={2}>
               <FormControl fullWidth required>
-                {/* <FormLabel>Username:</FormLabel> */}
                 {currentUser ? (
                   <>
                     <FormLabel>Username:</FormLabel>
