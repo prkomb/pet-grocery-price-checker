@@ -13,8 +13,9 @@ const benefits = [
   },
   {
     icon: "🙌",
-    title: "No Sign-Up Required",
-    description: "Get started instantly — no forms, no accounts.",
+    title: "Quick Sign-Up, Full Access",
+    description:
+      "Create an account in seconds and unlock personalized features",
   },
 ];
 

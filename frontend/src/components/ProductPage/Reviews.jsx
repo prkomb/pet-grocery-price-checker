@@ -34,6 +34,9 @@ function Reviews({ reviews }) {
             display="flex"
             alignItems="center"
             justifyContent="space-between"
+            flexWrap="wrap"
+            gap={2}
+            sx={{ py: "20px" }}
           >
             <Rating
               icon={<StarRounded color="green"></StarRounded>}
@@ -52,21 +55,38 @@ function Reviews({ reviews }) {
                 <CardHeader
                   avatar={
                     <Avatar
-                      aria-label=""
                       src="https://i.pravatar.cc/300"
-                    ></Avatar>
+                      aria-label={review.reviewerName}
+                    />
                   }
-                  title={review.reviewerName}
-                  subheader={formatReviewData(review.date)}
+                  title={
+                    <Typography variant="subtitle1" fontWeight="bold">
+                      {review.reviewerName}
+                    </Typography>
+                  }
+                  subheader={
+                    <Typography variant="body2" color="text.secondary">
+                      {formatReviewData(review.date)}
+                    </Typography>
+                  }
                   action={
                     <Rating
                       readOnly
                       value={review.rating}
                       precision={0.1}
-                      icon={<StarRounded color="green"></StarRounded>}
+                      icon={<StarRounded />}
                       emptyIcon={<StarBorderRounded fontSize="inherit" />}
+                      sx={{
+                        mt: { xs: 1, sm: 0 },
+                        alignSelf: { xs: "flex-start", sm: "center" },
+                      }}
                     />
                   }
+                  sx={{
+                    flexDirection: { xs: "column", sm: "row" },
+                    alignItems: { xs: "flex-start", sm: "center" },
+                    gap: 1,
+                  }}
                 />
 
                 <CardContent>
