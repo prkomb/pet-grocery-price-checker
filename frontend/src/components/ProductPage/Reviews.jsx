@@ -34,6 +34,9 @@ function Reviews({ reviews }) {
             display="flex"
             alignItems="center"
             justifyContent="space-between"
+            flexWrap="wrap"
+            gap={2}
+            sx={{ py: "20px" }}
           >
             <Rating
               icon={<StarRounded color="green"></StarRounded>}
