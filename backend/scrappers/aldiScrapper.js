@@ -1,47 +1,53 @@
-const puppeteer = require("puppeteer");
-const fs = require("fs");
-const serveData = "./../server.json";
+import puppeteer from "puppeteer";
+import fs from "fs";
 
-const url = "https://www.aldi.co.uk/products/fresh-food/k/1588161416978050";
+const url = "https://www.trolley.co.uk/deals/";
 
-async function main() {
-  const browser = await puppeteer.launch({ headless: false });
-  const aldiPage = await browser.newPage();
-  await aldiPage.goto(url);
+const items = [];
 
-  const allProducts = await aldiPage.$$(
-    "div.product-grid > div.product-teaser-item"
-  );
+async function aldiScrapper() {
+  const browser = await puppeteer.launch({ headless: true });
+  const page = await browser.newPage();
 
-  const items = [];
+  await page.goto(url, { waitUntil: "networkidle2" });
 
-  for (product of allProducts) {
-    const title = await aldiPage.evaluate(
-      (product) =>
-        product.querySelector(".product-tile > a > div.product-tile__name > p")
-          .textContent,
-      product
+  const allDeals = await page.$$("#page_1 > .products-grid > .product-item");
+
+  for (const deal of allDeals) {
+    const brand = await page.evaluate(
+      (el) => el.querySelector("div > a > div._info > div._brand").textContent,
+      deal
     );
 
-    const price = await aldiPage.evaluate(
-      (product) =>
-        product.querySelector(
-          ".product-tile > a > div.base-price.base-price--product-tile.product-tile__price > div > span.base-price__regular > span"
-        ).textContent,
-      product
+    const title = await page.evaluate(
+      (el) => el.querySelector("div > a > div._info > div._desc").textContent,
+      deal
     );
 
-    const image = await aldiPage.evaluate(
-      (product) =>
-        product
-          .querySelector(".product-tile > a > div.product-tile__picture > img")
-          .getAttribute("src"),
-      product
+    const time = await page.evaluate(
+      (el) => el.querySelector("div > div._time").textContent,
+      deal
     );
 
-    items.push({ title, price, image });
+    const price = await page.evaluate(
+      (el) => el.querySelector("div > a > div._info > div._price").textContent,
+      deal
+    );
+
+    const [, currentPrice, oldPrice, discountedFee] = price.split(" ");
+    items.push({
+      title,
+      time,
+      currentPrice,
+      oldPrice,
+      discountedFee: discountedFee.trimStart(),
+      brand,
+    });
   }
-  fs.writeFileSync(serveData, JSON.stringify(items, null, 2), "utf-8");
+
+  console.log(items);
+  fs.writeFileSync("server.json", JSON.stringify(items));
+  await browser.close();
 }
 
-main();
+aldiScrapper();
