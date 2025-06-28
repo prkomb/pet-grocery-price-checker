@@ -5,7 +5,7 @@ const url = "https://www.trolley.co.uk/deals/";
 
 const items = [];
 
-async function aldiScrapper() {
+export async function discounts() {
   const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
 
@@ -50,4 +50,4 @@ async function aldiScrapper() {
   await browser.close();
 }
 
-aldiScrapper();
+// aldiScrapper();
