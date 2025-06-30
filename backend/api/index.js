@@ -31,6 +31,10 @@ app.get("/api/health", (req, res) => {
   res.json({ status: "OK", timestamp: new Date().toISOString() });
 });
 
+app.listen(3000, () => {
+  console.log("Listening");
+});
+
 // Export for serverless
 module.exports = app;
 module.exports.handler = serverless(app);
