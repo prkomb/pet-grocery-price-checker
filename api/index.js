@@ -35,3 +35,10 @@ app.get("/api/health", (req, res) => {
 // Export for serverless
 module.exports = app;
 module.exports.handler = serverless(app);
+
+if (require.main === module) {
+  const PORT = process.env.PORT || 3000;
+  app.listen(PORT, () => {
+    console.log("Server started on port", PORT);
+  });
+}

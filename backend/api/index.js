@@ -26,11 +26,6 @@ app.get("/api", (req, res) => {
   res.json({ message: "Grocery Price Checker API", products: productsData });
 });
 
-// Health check endpoint
-app.get("/api/health", (req, res) => {
-  res.json({ status: "OK", timestamp: new Date().toISOString() });
-});
-
 app.listen(3000, () => {
   console.log("Listening");
 });
