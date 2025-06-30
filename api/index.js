@@ -8,7 +8,6 @@ const app = express();
 // Enable CORS for frontend
 app.use(cors());
 app.use(express.json());
-app.use(express.static(path.join(__dirname, "../backend/public")));
 
 // Import your data
 let productsData = [];
@@ -35,10 +34,3 @@ app.get("/api/health", (req, res) => {
 // Export for serverless
 module.exports = app;
 module.exports.handler = serverless(app);
-
-if (require.main === module) {
-  const PORT = process.env.PORT || 3000;
-  app.listen(PORT, () => {
-    console.log("Server started on port", PORT);
-  });
-}
