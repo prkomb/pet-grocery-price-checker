@@ -6,7 +6,7 @@ const app = express();
 const port = 3000;
 
 app.get("/api/products", (req, res) => {
-  res.send(productsJson);
+  res.json(productsJson);
 });
 
 app.listen(port, () => {
