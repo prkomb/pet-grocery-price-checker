@@ -2,6 +2,9 @@
   "name": "grocery-price-checker-backend",
   "version": "1.0.0",
   "main": "api/index.js",
+  "engines": {
+    "node": "22.x"
+  },
   "scripts": {
     "start": "node api/index.js",
     "build": "vite frontend/"
