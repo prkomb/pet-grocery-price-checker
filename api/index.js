@@ -19,7 +19,7 @@ try {
 
 // API Routes
 app.get("/api/products", (req, res) => {
-  res.json({ productsData });
+  res.json(productsData);
 });
 
 app.get("/api", (req, res) => {
