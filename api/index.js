@@ -14,23 +14,17 @@ let productsData = [];
 try {
   productsData = require("../backend/server.json");
 } catch (error) {
-  console.log("No server.json found, using empty array");
+  productsData = [];
 }
 
 // API Routes
 app.get("/api/products", (req, res) => {
-  res.json(productsData);
+  res.json({ productsData });
 });
 
 app.get("/api", (req, res) => {
   res.json({ message: "Grocery Price Checker API", products: productsData });
 });
 
-// Health check endpoint
-app.get("/api/health", (req, res) => {
-  res.json({ status: "OK", timestamp: new Date().toISOString() });
-});
-
-// Export for serverless
 module.exports = app;
 module.exports.handler = serverless(app);
