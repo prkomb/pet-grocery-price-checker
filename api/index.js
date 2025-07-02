@@ -19,6 +19,7 @@ try {
 
 // API Routes
 app.get("/api/products", (req, res) => {
+  res.header("");
   res.json(productsData);
 });
 
@@ -27,4 +28,4 @@ app.get("/api", (req, res) => {
 });
 
 module.exports = app;
-module.exports.handler = serverless(app);
+module.exports = serverless(app);
