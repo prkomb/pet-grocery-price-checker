@@ -1,7 +1,8 @@
 {
   "functions": {
     "api/index.js": {
-      "includeFiles": "backend/server.json"
+      "includeFiles": "backend/server.json",
+      "runtime": "nodejs20.x"
     }
   }
 }
