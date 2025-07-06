@@ -47,7 +47,7 @@ export async function discounts() {
 
   console.log(items);
   fs.writeFileSync("server.json", JSON.stringify(items));
-  await browser.close();
+  // await browser.close();
 }
 
 // aldiScrapper();

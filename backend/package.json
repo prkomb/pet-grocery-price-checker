@@ -4,7 +4,7 @@
   "main": "api/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "scrap": "node scrappers/aldiScrapper.js",
+    "scrap": "node ./scrappers/discounts.js",
     "start": "node api/index.js",
     "dev": "node app.js",
     "build": "echo 'No build step required'"
@@ -12,11 +12,12 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "description": "",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
+    "ejs": "^3.1.10",
     "express": "^4.21.2",
     "node-cron": "^4.1.1",
     "serverless-http": "^3.2.0",
