@@ -17,6 +17,7 @@ export const loginUser = createAsyncThunk(
         password
       );
       navigate("/home");
+      localStorage.setItem("token", await userCredential.user.getIdToken());
       return {
         ...userCredential.user,
       };
