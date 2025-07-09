@@ -33,8 +33,6 @@ app.get('/api/products', (request, response) => {
 })
 
 
-app.listen(3000, () => {
-  console.log("Groccery Price Check is started");
-});
+
 
 export default app;
