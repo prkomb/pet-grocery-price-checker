@@ -6,6 +6,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "scrap": "node ./scrappers/discounts.js",
     "start": "node api/index.js",
+    "api:dev": "nodemon ./index.js",
+    
     "dev": "node app.js",
     "build": "echo 'No build step required'"
   },
@@ -20,6 +22,7 @@
     "ejs": "^3.1.10",
     "express": "^4.21.2",
     "node-cron": "^4.1.1",
+    "nodemon": "^3.1.10",
     "serverless-http": "^3.2.0",
     "vercel": "^44.2.7"
   },

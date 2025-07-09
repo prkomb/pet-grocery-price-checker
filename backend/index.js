@@ -13,10 +13,6 @@ app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs');
 
 app.get('/api', (request, response) => {
-  
-  // const routes = getFormattedRoutes(app)
-  
-
   response.render('index', { 
     title: 'Home Page', 
     price: 23.99, 

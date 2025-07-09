@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "api/index.js",
   "scripts": {
-    "start": "node api/index.js",
+    "start": "nodemon api/index.js",
     "build": "cd frontend && rm -rf node_modules package-lock.json && npm install && npm run build"
   },
   "dependencies": {
