@@ -7,7 +7,6 @@
     "scrap": "node ./scrappers/discounts.js",
     "start": "node api/index.js",
     "api:dev": "nodemon ./index.js",
-    
     "dev": "node app.js",
     "build": "echo 'No build step required'"
   },
@@ -17,12 +16,16 @@
   "type": "module",
   "description": "",
   "dependencies": {
+    "@prisma/client": "^6.11.1",
+    "bcrypt": "^6.0.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "ejs": "^3.1.10",
     "express": "^4.21.2",
     "node-cron": "^4.1.1",
     "nodemon": "^3.1.10",
+    "postgres": "^3.4.7",
+    "prisma": "^6.11.1",
     "serverless-http": "^3.2.0",
     "vercel": "^44.2.7"
   },
