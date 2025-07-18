@@ -24,6 +24,11 @@
         line-height: 1.6;
       }
 
+      .title {
+        font-size: 30px;
+        text-align: center;
+      }
+
       .container {
         max-width: 1200px;
         margin: 0 auto;
@@ -300,24 +305,7 @@
       </div>
 
       <div class="main-content animation-fade-in">
-        <div class="search-section">
-          <h2 class="search-title">Find the Best Prices</h2>
-          <form class="search-form" action="/search" method="GET">
-            <input
-              type="text"
-              name="query"
-              class="search-input"
-              placeholder="Search for products (milk, bread, apples)..."
-              value="<%= locals.searchQuery || '' %>"
-            />
-            <button type="submit" class="search-btn">🔍 Find Prices</button>
-          </form>
-        </div>
-
-        <div class="price-display">
-          <div class="price-label">Current Price</div>
-          <div class="price-value">£<%= price %></div>
-        </div>
+        <h1 class="title">Grocery Price Checker Api</h1>
 
         <div class="supermarkets">
           <div class="supermarket">🛒 Tesco</div>
