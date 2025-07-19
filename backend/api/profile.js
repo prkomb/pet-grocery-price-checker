@@ -17,6 +17,29 @@ router.get("/api/profile/:id", async (request, repsonse) => {
     .send({ message: "Profile page", profile: userProfile });
 });
 
-router.post("/api/profile/:id", (request, response) => {});
+router.patch("/api/profile/:id", async (request, response) => {
+  const {
+    body: { ...profileBody },
+  } = request;
+
+  console.log(profileBody);
+
+  const userId = request.params.id;
+
+  const userProfile = await prisma.profile.findUnique({
+    where: {
+      userId: +userId,
+    },
+  });
+
+  const updateUserProfile = await prisma.profile.update({
+    where: { userId: +userId },
+    data: { ...profileBody },
+  });
+
+  return response
+    .status(200)
+    .send({ message: "User Profile is updated", profile: profileBody });
+});
 
 export default router;
