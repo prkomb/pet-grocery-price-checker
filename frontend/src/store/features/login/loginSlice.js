@@ -45,3 +45,5 @@ const loginSlice = createSlice({
 
 export const { setUser } = loginSlice.actions;
 export default loginSlice.reducer;
+
+// Connect the validate with the route and check them - task for 20 July

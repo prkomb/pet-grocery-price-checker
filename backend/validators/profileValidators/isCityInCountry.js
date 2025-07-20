@@ -1,22 +1,20 @@
 import { Country } from "country-state-city";
 import { CityChecker } from "./city.js";
 
-function isCityInCountry(checkerCountry, checkerCity) {
-  const { getAllCountries } = Country;
+export function isCityInCountryMiddleware(request, response, next) {
+  const {
+    body: { city },
+  } = request;
 
-  const validCountry = getAllCountries().find(
-    (country) => country.name == checkerCountry
-  );
+  const GB_ISO_CODE = "GB";
 
-  if (!validCountry) {
-    throw new Error("The Country was not found");
+  const countryCities = CityChecker(GB_ISO_CODE, city);
+
+  if (!countryCities.includes(city)) {
+    return response
+      .status(400)
+      .send({ error: '"The City was not found in the country"' });
   }
 
-  const countryCities = CityChecker(validCountry.name, checkerCity);
-
-  if (!countryCities.includes(checkerCity)) {
-    throw new Error("The City was not found in the country");
-  }
-
-  return true;
+  next();
 }
