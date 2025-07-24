@@ -1,6 +1,9 @@
 import express from "express";
 import prisma from "../utils/prisma.mjs";
 import { isCityInCountryMiddleware } from "../validators/profileValidators/isCityInCountry.js";
+import { getJWTheader } from "./../utils/getJWTheader.js";
+import { secretTextEncoder } from "./../utils/secretTextEncoder.js";
+import { jwtVerify } from "jose";
 
 const router = express.Router();
 
@@ -46,5 +49,24 @@ router.patch(
       .send({ message: "User Profile is updated", profileData: profileBody });
   }
 );
+
+router.get("/api/profile", async (request, response) => {
+  const authToken = getJWTheader(request.headers.authorization);
+
+  const secret = secretTextEncoder();
+
+  const {
+    payload: { email },
+  } = await jwtVerify(authToken, secret);
+  console.log(email);
+
+  const user = await prisma.user.findUnique({ where: { email: email } });
+  const profile = await prisma.profile.findUnique({
+    where: { userId: user.id },
+    include: { user: { select: { email: true } } },
+  });
+
+  return response.status(200).send({ message: "User profile", profile });
+});
 
 export default router;

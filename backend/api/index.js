@@ -1,6 +1,7 @@
 import express, { response } from "express";
 import data from "../server.json" with { type: "json" };
-import path from 'node:path'
+import shops from '../shops.json' with { type: 'json' };
+import path from 'node:path';
 import { fileURLToPath } from "node:url";
 import { PrismaClient } from "@prisma/client";
 import { getHashPassword } from "../utils/getHashPassword.js";
@@ -26,6 +27,7 @@ app.get('/api', (request, response) => {
     title: 'Home Page', 
     price: 23.99, 
     count: data?.length || 0,
+    shopsList: shops
   })
 })
 

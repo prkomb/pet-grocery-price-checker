@@ -308,11 +308,11 @@
         <h1 class="title">Grocery Price Checker Api</h1>
 
         <div class="supermarkets">
-          <div class="supermarket">🛒 Tesco</div>
-          <div class="supermarket">🛒 ASDA</div>
-          <div class="supermarket">🛒 Sainsbury's</div>
-          <div class="supermarket">🛒 Lidl</div>
-          <div class="supermarket">🛒 Waitrose</div>
+          <% shopsList.forEach(shop => { %>
+
+          <div class="supermarket">🛒 <%= shop.title %></div>
+
+          <% }) %>
         </div>
 
         <div class="stats-section">
@@ -321,7 +321,7 @@
             <div class="stat-label">Products Tracked Today</div>
           </div>
           <div class="stat-card">
-            <div class="stat-number"><%= locals.storeCount || '5' %></div>
+            <div class="stat-number"><%= shopsList.length || '5' %></div>
             <div class="stat-label">Supermarkets</div>
           </div>
           <div class="stat-card">

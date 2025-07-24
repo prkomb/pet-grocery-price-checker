@@ -32,6 +32,7 @@
     "vercel": "^44.2.7"
   },
   "devDependencies": {
+    "jose": "^6.0.12",
     "puppeteer": "^24.10.2"
   }
 }

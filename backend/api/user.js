@@ -1,4 +1,5 @@
 import express from "express";
+import { createJWT } from "./../utils/createNewJwt.js";
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcrypt";
 import { body, validationResult } from "express-validator";
@@ -7,6 +8,7 @@ import { checkUserExitence } from "./../utils/checkUserExistence.js";
 import { userValidator } from "../validators/userValidator.mjs";
 import { registerValidator } from "../validators/registerValidators/registerValidator.js";
 import { getHashPassword } from "../utils/getHashPassword.js";
+
 const router = express.Router();
 const prisma = new PrismaClient();
 
@@ -14,6 +16,8 @@ router.post("/api/login", userValidator, async (request, response) => {
   const {
     body: { email, password },
   } = request;
+
+  const newJWT = await createJWT({ email, password });
 
   const isUserExited = await prisma.user.findUnique({
     where: { email },
@@ -37,10 +41,7 @@ router.post("/api/login", userValidator, async (request, response) => {
 
   return response.status(200).json({
     message: "Login successful",
-    user: {
-      email,
-      ...getProfile,
-    },
+    jwtToken: newJWT,
   });
 });
 
