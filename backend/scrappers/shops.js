@@ -22,7 +22,7 @@ export async function getShops() {
     shops.push({ title });
   }
 
-  fs.writeFileSync("shops.json", JSON.stringify(shops));
+  fs.writeFileSync("results/shops.json", JSON.stringify(shops));
 
   await browser.close();
 }

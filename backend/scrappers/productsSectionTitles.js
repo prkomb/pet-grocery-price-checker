@@ -1,4 +1,5 @@
 import puppeteer from "puppeteer";
+import fs from "fs";
 
 const MAIN_LINK = "https://www.trolley.co.uk/explore";
 
@@ -27,6 +28,8 @@ async function productsSectionTitles() {
       }
     );
 
+    const currentProducts = [];
+
     for (const product of productsList) {
       const brand = await product.$eval(
         "a > div._info > div._brand",
@@ -37,8 +40,19 @@ async function productsSectionTitles() {
         "a > div._info > div._desc",
         (element) => element.textContent
       );
+
+      const price = await product.$eval(
+        "a > div._info > div._price",
+        (element) => element.textContent.trim().split(" ").at(0)
+      );
+
+      const results = { brand, description, price };
+      currentProducts.push(results);
     }
+    categoryAndProduct.push({ title, products: currentProducts });
   }
+
+  fs.writeFileSync("results/products.json", JSON.stringify(categoryAndProduct));
 
   await browser.close();
 }

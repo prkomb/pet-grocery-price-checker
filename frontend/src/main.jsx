@@ -1,5 +1,6 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
+import { mockFetchBackend } from "../mockFetchBackend.js";
 
 import "@fontsource/poppins/400.css";
 import "@fontsource/poppins/800.css";
