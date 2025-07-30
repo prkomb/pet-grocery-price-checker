@@ -28,8 +28,6 @@ import CustomSnackBar from "@/layouts/CustomSnackBar";
 const Profile = () => {
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.profile);
-  const usersProfile = useSelector((state) => state.profile.profile);
-  const profileError = useSelector((state) => state.profile.error);
 
   const [isOpenPushNotification, setIsOpenPushNotification] = useState(false);
   const [isErrorOpenPushNotification, setErrorOpenPushNotification] =
@@ -42,13 +40,13 @@ const Profile = () => {
   } = useForm({
     resolver: yupResolver(profileFormValidation),
     values: {
-      name: usersProfile?.name,
-      surname: usersProfile?.surname,
-      phone: usersProfile?.phone,
-      city: usersProfile?.city,
-      town: usersProfile?.town,
-      postcode: usersProfile?.postcode,
-      bio: usersProfile?.bio,
+      name: "",
+      surname: "",
+      phone: "",
+      city: "",
+      town: "",
+      postcode: "",
+      bio: "",
     },
   });
   useEffect(() => {
@@ -59,14 +57,16 @@ const Profile = () => {
 
   const onSaveForm = (data) => {
     console.log(data);
-    dispatch(saveProfile({ uid: profile.uid, ...data }));
-    if (!profileError) {
-      setTimeout(() => {
-        setIsOpenPushNotification(true);
-      }, 2000);
-    } else {
-      setErrorOpenPushNotification(true);
-    }
+
+    dispatch(saveProfile(data));
+    // dispatch(saveProfile({ uid: profile.uid, ...data }));
+    // if (!profileError) {
+    //   setTimeout(() => {
+    //     setIsOpenPushNotification(true);
+    //   }, 2000);
+    // } else {
+    //   setErrorOpenPushNotification(true);
+    // }
   };
 
   return (

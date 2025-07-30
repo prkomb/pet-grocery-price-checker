@@ -50,6 +50,25 @@ router.patch(
   }
 );
 
+router.patch("/api/profile", async (request, response) => {
+  const { body } = request;
+  console.log(body);
+
+  const jwtToken = getJWTheader(request.headers.authorization);
+
+  const secret = secretTextEncoder();
+  const {
+    payload: { email },
+  } = await jwtVerify(jwtToken, secret);
+
+  const user = await prisma.user.findUnique({ where: { email: email } });
+
+  const profileUpdate = await prisma.profile.update({
+    where: { userId: user.id },
+    data: { ...body },
+  });
+});
+
 router.get("/api/profile", async (request, response) => {
   const authToken = getJWTheader(request.headers.authorization);
 
@@ -66,7 +85,7 @@ router.get("/api/profile", async (request, response) => {
     include: { user: { select: { email: true } } },
   });
 
-  return response.status(200).send({ message: "User profile", profile });
+  return response.status(200).send({ message: "User profile", profile, email });
 });
 
 export default router;

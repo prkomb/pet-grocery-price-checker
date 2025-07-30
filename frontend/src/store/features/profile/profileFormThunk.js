@@ -1,15 +1,24 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 import { getFirestore, setDoc, doc, getDoc } from "firebase/firestore";
 
 export const saveProfile = createAsyncThunk(
   "profile/saveProfile",
   async (profileData) => {
     try {
-      const { uid, ...otherUserDetails } = profileData;
-      const db = getFirestore();
-      const userRef = doc(db, "users", uid);
-      await setDoc(userRef, { ...otherUserDetails });
-      return profileData;
+      // console.log(profileData);
+      const jwtToken = localStorage.getItem("token");
+
+      const request = await axios({
+        method: "patch",
+        url: "/api/profile",
+        data: profileData,
+        headers: {
+          authorization: `Bearer ${jwtToken}`,
+        },
+      });
+      const response = request.data;
+      console.log(response);
     } catch (error) {
       throw new Error(error.message);
     }

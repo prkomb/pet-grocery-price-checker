@@ -5,8 +5,8 @@ const userValidator = [
   body("password")
     .notEmpty()
     .withMessage("Password shouldn't be empty")
-    .isLength({ min: 8 })
-    .withMessage("Minimum 1 character")
+    .isLength({ min: 5 })
+    .withMessage("Minimum 5 character")
     .matches(/\d/)
     .withMessage("Must have 1 digit"),
 

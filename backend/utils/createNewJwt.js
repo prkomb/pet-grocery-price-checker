@@ -7,7 +7,7 @@ export const createJWT = async (userData) => {
   const jwt = await new SignJWT(userData)
     .setProtectedHeader({ alg: "HS256" })
     .setIssuedAt()
-    .setExpirationTime("2h")
+    .setExpirationTime("2d")
     .sign(secret);
 
   return jwt;

@@ -10,7 +10,7 @@ import {
   Checkbox,
   Button,
 } from "@mui/material";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 function Content() {
@@ -139,7 +139,6 @@ function Content() {
 
             <Button
               type="submit"
-              // component="button"
               variant="outlined"
               sx={{
                 margin: "20px 0",

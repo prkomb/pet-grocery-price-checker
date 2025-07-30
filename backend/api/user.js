@@ -37,11 +37,20 @@ router.post("/api/login", userValidator, async (request, response) => {
 
   const getProfile = await prisma.profile.findUnique({
     where: { userId: isUserExited.id },
+    select: {
+      name: true,
+      surname: true,
+      phone: true,
+      city: true,
+      bio: true,
+      postcode: true,
+    },
   });
 
   return response.status(200).json({
     message: "Login successful",
     jwtToken: newJWT,
+    user: { getProfile, email: isUserExited.email },
   });
 });
 
