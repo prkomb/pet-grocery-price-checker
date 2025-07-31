@@ -27,7 +27,8 @@ import CustomSnackBar from "@/layouts/CustomSnackBar";
 
 const Profile = () => {
   const dispatch = useDispatch();
-  const profile = useSelector((state) => state.profile);
+  const profile = useSelector((state) => state.profile.profile?.profile);
+  console.log(profile);
 
   const [isOpenPushNotification, setIsOpenPushNotification] = useState(false);
   const [isErrorOpenPushNotification, setErrorOpenPushNotification] =
@@ -40,20 +41,18 @@ const Profile = () => {
   } = useForm({
     resolver: yupResolver(profileFormValidation),
     values: {
-      name: "",
-      surname: "",
-      phone: "",
-      city: "",
-      town: "",
-      postcode: "",
-      bio: "",
+      name: profile?.name,
+      surname: profile?.surname,
+      phone: profile?.phone,
+      city: profile?.city,
+      town: profile?.town,
+      postcode: profile?.postcode,
+      bio: profile?.bio,
     },
   });
   useEffect(() => {
-    if (profile.uid) {
-      dispatch(getProfile(profile.uid));
-    }
-  }, [profile.uid]);
+    dispatch(getProfile());
+  }, []);
 
   const onSaveForm = (data) => {
     console.log(data);
