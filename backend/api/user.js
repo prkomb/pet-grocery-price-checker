@@ -54,16 +54,17 @@ router.post("/api/login", userValidator, async (request, response) => {
   });
 });
 
-router.post("/api/auth", registerValidator, async (request, response) => {
+router.post("/api/auth", async (request, response) => {
   const {
     body: { email, password },
   } = request;
+  console.log(request.body);
 
   const availableUser = await checkUserExitence(email);
 
   if (availableUser) {
     return response
-      .status(404)
+      .status(409)
       .send({ message: "User with this email is available" });
   }
 

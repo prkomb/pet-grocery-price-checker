@@ -58,14 +58,6 @@ const Profile = () => {
     console.log(data);
 
     dispatch(saveProfile(data));
-    // dispatch(saveProfile({ uid: profile.uid, ...data }));
-    // if (!profileError) {
-    //   setTimeout(() => {
-    //     setIsOpenPushNotification(true);
-    //   }, 2000);
-    // } else {
-    //   setErrorOpenPushNotification(true);
-    // }
   };
 
   return (

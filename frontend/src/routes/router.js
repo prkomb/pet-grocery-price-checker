@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-import axios from "axios";
+
 import Home from "../pages/Home";
 import Products from "../pages/Products";
 import NotFound from "../pages/NotFound";
@@ -11,6 +11,7 @@ import AboutUs from "../pages/AboutUs";
 import Categories from "../pages/Categories";
 import CurrentCategory from "../pages/CurrentCategory";
 import ProductPage from "../pages/ProductPage";
+import ForgotPassword from "../pages/ForgotPassword/ForgotPassword";
 
 export default createBrowserRouter([
   {
@@ -67,6 +68,10 @@ export default createBrowserRouter([
         bottomLinkHref: "/login",
       };
     },
+  },
+  {
+    path: "/forgot-password",
+    Component: ForgotPassword,
   },
 
   {

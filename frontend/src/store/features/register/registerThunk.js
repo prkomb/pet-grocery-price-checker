@@ -1,16 +1,19 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { auth } from "@/helpers/auth/firebaseConfig";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import axios from "axios";
 
 export const registerUser = createAsyncThunk(
   "register/registerUser",
   async ({ email, password }) => {
-    const register = await createUserWithEmailAndPassword(
-      auth,
-      email,
-      password
-    );
+    try {
+      const response = await axios({
+        method: "POST",
+        url: "/api/auth",
+        data: { email, password },
+      });
 
-    console.log(register);
+      return response.data;
+    } catch (error) {
+      console.error(error.response.data.message);
+    }
   }
 );

@@ -35,7 +35,6 @@ const Header = () => {
 
   const dispatch = useDispatch();
   const user = useSelector((state) => state.login.user?.payload);
-  console.log(user);
 
   const handleLogout = () => {
     dispatch(logout({ navigate }));

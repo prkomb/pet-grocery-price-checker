@@ -15,10 +15,12 @@ const register = createSlice({
   extraReducers: (builder) => {
     builder.addCase(registerUser.fulfilled, (state, action) => {
       console.log("here");
+
       return { ...state, user: action.payload };
     });
     builder.addCase(registerUser.rejected, (state, action) => {
       console.log("Here");
+
       return {
         ...state,
         error: action.payload,
