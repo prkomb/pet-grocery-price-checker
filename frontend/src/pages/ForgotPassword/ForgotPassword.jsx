@@ -10,6 +10,8 @@ import {
 } from "@mui/material";
 import { PersonOutlineOutlined } from "@mui/icons-material";
 import { NavLink } from "react-router-dom";
+import ForgotPasswordHeader from "./ForgotPasswordHeader";
+import ForgotPasswordContent from "./ForgotPasswordContent";
 
 const ForgotPassword = () => {
   return (
@@ -28,43 +30,10 @@ const ForgotPassword = () => {
           alignItems: "center",
         }}
       >
-        <Box sx={{ width: "500px", bgcolor: "#ffff" }}>
-          <Typography variant="body1" color="initial" textAlign="center">
-            Forgot Password
-          </Typography>
+        <Box sx={{ width: "500px", bgcolor: "#ffff", borderRadius: "10px" }}>
+          <ForgotPasswordHeader />
 
-          <Typography variant="body1" color="initial" textAlign="center">
-            No worries we’ll send you reset instruction
-          </Typography>
-
-          <Box sx={{ width: "calc(100% - 100px)", margin: "0 auto" }}>
-            <FormControl fullWidth>
-              <FormLabel>Enter your email</FormLabel>
-              <TextField
-                size="small"
-                placeholder="Enter your email"
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <PersonOutlineOutlined></PersonOutlineOutlined>
-                    </InputAdornment>
-                  ),
-                }}
-              ></TextField>
-            </FormControl>
-            <Stack spacing={2} direction="column">
-              <Button sx={{ bgcolor: "#34D399" }} color="black">
-                Reset Password
-              </Button>
-              <Button sx={{ bgcolor: "#E5F0EC" }}>Back to Login</Button>
-            </Stack>
-
-            <Box textAlign="center">
-              <Typography variant="body1" color="initial">
-                Don’t have an account? <NavLink to="/register">Sign Up</NavLink>
-              </Typography>
-            </Box>
-          </Box>
+          <ForgotPasswordContent />
         </Box>
       </Box>
     </Box>

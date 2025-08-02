@@ -109,9 +109,6 @@ function AuthForm() {
                   opacity: 1,
                 },
 
-                "&:hover": {
-                  color: "white",
-                },
                 "&:hover .MuiButton-startIcon": {
                   transform: "translateX(-10px)", // уезжает влево
                   opacity: 0, // исчезает
@@ -190,7 +187,11 @@ function AuthForm() {
                   />
                 </FormGroup>
 
-                <Button sx={{ color: "#474BCA", textTransform: "capitalize" }}>
+                <Button
+                  sx={{ color: "#474BCA", textTransform: "capitalize" }}
+                  component={NavLink}
+                  to="/forgot-password"
+                >
                   Forgot Password?
                 </Button>
               </Stack>
