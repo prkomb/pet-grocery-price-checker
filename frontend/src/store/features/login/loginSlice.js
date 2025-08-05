@@ -1,11 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { loginUser } from "./loginThunk";
-import { saveUser } from "../../../helpers/localStorage";
-import { logout } from "../logout";
-
-import { getAuth } from "firebase/auth";
-
-const auth = getAuth();
 
 const initialState = {
   user: null,

@@ -12,6 +12,7 @@ import Categories from "../pages/Categories";
 import CurrentCategory from "../pages/CurrentCategory";
 import ProductPage from "../pages/ProductPage";
 import ForgotPassword from "../pages/ForgotPassword/ForgotPassword";
+import ResetPassword from "../pages/ResetPassword/ResetPassword";
 
 export default createBrowserRouter([
   {
@@ -73,6 +74,7 @@ export default createBrowserRouter([
     path: "/forgot-password",
     Component: ForgotPassword,
   },
+  { path: "/reset-password", Component: ResetPassword },
 
   {
     path: "/refresh",

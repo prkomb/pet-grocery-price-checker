@@ -1,15 +1,4 @@
-import {
-  Box,
-  Typography,
-  Button,
-  FormControl,
-  FormLabel,
-  TextField,
-  Stack,
-  InputAdornment,
-} from "@mui/material";
-import { PersonOutlineOutlined } from "@mui/icons-material";
-import { NavLink } from "react-router-dom";
+import { Box } from "@mui/material";
 import ForgotPasswordHeader from "./ForgotPasswordHeader";
 import ForgotPasswordContent from "./ForgotPasswordContent";
 

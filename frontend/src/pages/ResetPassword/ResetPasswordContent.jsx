@@ -10,49 +10,68 @@ import {
 } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import { PersonOutlineOutlined } from "@mui/icons-material";
-import { useForm } from "react-hook-form";
-import { forgotPassword } from "../../store/features/forgotPassword/forgotPasswordThunk";
-
 import { useDispatch } from "react-redux";
+import { useForm } from "react-hook-form";
 
-const ForgotPasswordContent = () => {
-  const { register, handleSubmit } = useForm();
+const ResetPasswordContent = () => {
+  const { register } = useForm();
 
-  const dispatch = useDispatch();
-
-  const saveEmail = (data) => {
-    dispatch(forgotPassword(data));
+  const changePassword = (data) => {
     console.log(data);
   };
 
   return (
     <Box sx={{ width: "calc(100% - 100px)", margin: "0 auto" }}>
-      <FormControl fullWidth sx={{ marginTop: "10px" }}>
-        <FormLabel sx={{ color: "#000000", fontSize: "12px" }}>
-          Enter your email
-        </FormLabel>
+      <FormControl fullWidth sx={{ marginTop: "10px", padding: "10px" }}>
         <TextField
-          size="small"
-          placeholder="Enter your email"
-          {...register("email")}
+          type="password"
+          {...register("password")}
+          size="medium"
+          placeholder="Set new password"
           sx={{
             bgcolor: "#EEEEEE",
+            borderRadius: "20px",
+
             "& .MuiInputBase-input::placeholder": {
               color: "#808080",
               opacity: 0.3,
             },
-          }}
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <PersonOutlineOutlined></PersonOutlineOutlined>
-              </InputAdornment>
-            ),
+            "& .MuiOutlinedInput-root": {
+              "& fieldset": {
+                border: "none",
+              },
+            },
           }}
         ></TextField>
       </FormControl>
-      <Stack spacing={2} mt={3} direction="column">
+
+      <FormControl fullWidth sx={{ padding: "10px" }}>
+        <TextField
+          {...register("confirmPassword")}
+          size="medium"
+          type="password"
+          placeholder="Confirm new password"
+          sx={{
+            bgcolor: "#EEEEEE",
+            borderRadius: "20px",
+
+            "& .MuiInputBase-input::placeholder": {
+              color: "#808080",
+              opacity: 0.3,
+            },
+
+            "& .MuiOutlinedInput-root": {
+              "& fieldset": {
+                border: "none",
+              },
+            },
+          }}
+        ></TextField>
+      </FormControl>
+
+      <Box mt={3} sx={{ padding: 1 }}>
         <Button
+          fullWidth
           sx={{
             bgcolor: "#34D399",
             padding: "10px 0",
@@ -60,22 +79,10 @@ const ForgotPasswordContent = () => {
             borderRadius: "10px",
           }}
           color="#0000"
-          onClick={handleSubmit(saveEmail)}
         >
           Reset Password
         </Button>
-        <Button
-          sx={{
-            bgcolor: "#E5F0EC",
-            textTransform: "capitalize",
-            padding: "10px 0",
-            color: "#000000",
-            borderRadius: "10px",
-          }}
-        >
-          Back to Login
-        </Button>
-      </Stack>
+      </Box>
 
       <Box textAlign="center" my={3}>
         <Typography
@@ -103,4 +110,4 @@ const ForgotPasswordContent = () => {
   );
 };
 
-export default ForgotPasswordContent;
+export default ResetPasswordContent;

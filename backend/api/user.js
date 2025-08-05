@@ -8,6 +8,8 @@ import { checkUserExitence } from "./../utils/checkUserExistence.js";
 import { userValidator } from "../validators/userValidator.mjs";
 import { registerValidator } from "../validators/registerValidators/registerValidator.js";
 import { getHashPassword } from "../utils/getHashPassword.js";
+import { generateResetToken } from "./../utils/generateResetToken.js";
+import sendForgotPasswordEmail from "../utils/sendForgotPasswordEmail.js";
 
 const router = express.Router();
 const prisma = new PrismaClient();
@@ -92,6 +94,34 @@ router.post("/api/auth", async (request, response) => {
   return response
     .status(200)
     .send({ message: "User is created", user: newUser });
+});
+
+router.post("/api/forgotPassword", async (request, response) => {
+  const {
+    body: { email },
+  } = request;
+
+  const newToken = generateResetToken();
+
+  const user = await prisma.user.findUnique({
+    where: { email },
+  });
+
+  await prisma.passwordReset.create({
+    data: {
+      userId: user.id,
+      tokenHash: newToken.hashToken,
+      expiresAt: newToken.expires,
+    },
+  });
+
+  sendForgotPasswordEmail(newToken.token);
+
+  // if (!user) {
+  //   return response.status(400).send({ message: "User is not found" });
+  // }
+
+  return response.status(200).send({ message: "User is founded" });
 });
 
 export default router;
