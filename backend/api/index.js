@@ -6,15 +6,28 @@ import path from 'node:path';
 import { fileURLToPath } from "node:url";
 import { PrismaClient } from "@prisma/client";
 import { getHashPassword } from "../utils/getHashPassword.js";
+import { checkEnvironment } from "../utils/checkEnvironment.js";
 import userRouter from "./user.js"
 import profileRouter from './profile.js'
-
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 
+try {
+  checkEnvironment();
+} catch (error) {
+  console.error('Environment check failed:', error.message);
+}
+
 const app = express();
-const prisma = new PrismaClient()
+
+// Инициализация Prisma с обработкой ошибок
+let prisma;
+try {
+  prisma = new PrismaClient();
+} catch (error) {
+  console.error('Failed to initialize Prisma Client:', error);
+}
 
 app.use(express.json());
 app.set('views', path.join(__dirname, '..' ,'views'))
@@ -22,61 +35,55 @@ app.set('view engine', 'ejs');
 app.use(userRouter)
 app.use(profileRouter)
 
+// Middleware для обработки ошибок
+app.use((err, req, res, next) => {
+  console.error('Error:', err);
+  res.status(500).json({ error: 'Internal Server Error' });
+});
 
 app.get('/api', (request, response) => {
-  response.render('index', { 
-    title: 'Home Page', 
-    price: 23.99, 
-    count: data?.length * 5 || 0,
-    shopsList: shops
-  })
+  try {
+    response.render('index', { 
+      title: 'Home Page', 
+      price: 23.99, 
+      count: data?.length * 5 || 0,
+      shopsList: shops
+    })
+  } catch (error) {
+    console.error('Error rendering index:', error);
+    response.status(500).json({ error: 'Failed to render page' });
+  }
 })
 
-
-
 app.get("/api/products", (request, response) => {
-  
-  response.send(data);
+  try {
+    response.send(data);
+  } catch (error) {
+    console.error('Error fetching products:', error);
+    response.status(500).json({ error: 'Failed to fetch products' });
+  }
 });
 
 app.get('/api/discounts', (request, response) => {
-  response.status(200).send(discounts)
+  try {
+    response.status(200).send(discounts)
+  } catch (error) {
+    console.error('Error fetching discounts:', error);
+    response.status(500).json({ error: 'Failed to fetch discounts' });
+  }
 })
 
+// Graceful shutdown для Prisma
+process.on('beforeExit', async () => {
+  if (prisma) {
+    await prisma.$disconnect();
+  }
+});
 
-// app.post('/api/profile', async (request, response) => {
-//   const {body: {userId, ...profileData}} = request
-
-//   const profile = await prisma.profile.create({
-//     data: {
-//       ...profileData,         
-//       user: { connect: { id: userId } }  
-//     }
-//   });
-
-
-//   return response.status(201).json({
-//     message: "Profile created successfully",
-//     profile
-//   }); 
-// })
-
-// app.get('/api/profile/:userID', async (request, response) => {
-//   const {params: {userID}} = request
-
-//   const currentUserProfile = await prisma.profile.findUnique({where: {userId: parseInt(userID)}, include: {user: true}})
-
-//   if (!currentUserProfile) {
-//     return response.status(404).json({ message: 'User profile is not created yet' });
-    
-//   }
-
-//   return response.status(200).json({message: "Profile fetched successfully", userProfile: currentUserProfile})
-// })
-
-
-app.listen(3000, () => {
-  console.log('Groccery app is started')
-})
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(3000, () => {
+    console.log('Grocery app is started')
+  })
+}
 
 export default app;

@@ -8,7 +8,8 @@
     "start": "node api/index.js",
     "api:dev": "nodemon ./index.js",
     "dev": "node app.js",
-    "build": "echo 'No build step required'"
+    "build": "prisma generate",
+    "postinstall": "prisma generate"
   },
   "keywords": [],
   "author": "",
