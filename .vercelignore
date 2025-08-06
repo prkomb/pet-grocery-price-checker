@@ -1,4 +1,8 @@
 node_modules
-package-lock.json
-frontend/node_modules
-frontend/package-lock.json 
+.git
+.env
+.env.local
+.env.production
+README.md
+*.log
+.DS_Store 
