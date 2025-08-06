@@ -28,6 +28,4 @@ const sendForgotPasswordEmail = (token) => {
   });
 };
 
-sendForgotPasswordEmail();
-
 export default sendForgotPasswordEmail;

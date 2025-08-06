@@ -6,14 +6,14 @@ const forgotPassword = createAsyncThunk(
   async ({ email }, { rejectWithValue }) => {
     console.log(email);
     try {
-      const response = axios({
+      const response = await axios({
         method: "POST",
         url: "/api/forgotPassword",
         data: { email },
       });
       return response.data;
     } catch (error) {
-      return rejectWithValue(error);
+      return rejectWithValue(error.response?.data?.message);
     }
   }
 );

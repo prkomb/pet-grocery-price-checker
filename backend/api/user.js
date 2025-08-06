@@ -1,5 +1,6 @@
 import express from "express";
 import { createJWT } from "./../utils/createNewJwt.js";
+import crypto from "crypto";
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcrypt";
 import { body, validationResult } from "express-validator";
@@ -60,7 +61,6 @@ router.post("/api/auth", async (request, response) => {
   const {
     body: { email, password },
   } = request;
-  console.log(request.body);
 
   const availableUser = await checkUserExitence(email);
 
@@ -101,11 +101,18 @@ router.post("/api/forgotPassword", async (request, response) => {
     body: { email },
   } = request;
 
+  console.log(email);
+
   const newToken = generateResetToken();
 
+  if (!email) {
+    throw new Error("Email is required to find the user");
+  }
   const user = await prisma.user.findUnique({
     where: { email },
   });
+
+  await prisma.passwordReset.deleteMany({ where: { userId: user.id } });
 
   await prisma.passwordReset.create({
     data: {
@@ -117,11 +124,34 @@ router.post("/api/forgotPassword", async (request, response) => {
 
   sendForgotPasswordEmail(newToken.token);
 
-  // if (!user) {
-  //   return response.status(400).send({ message: "User is not found" });
-  // }
-
   return response.status(200).send({ message: "User is founded" });
+});
+
+router.post("/api/resetPassword", async (request, response) => {
+  const {
+    data: { password },
+  } = request.body;
+  const token = request.body.token;
+  const hashedToken = crypto.createHash("sha256").update(token).digest("hex");
+
+  const userRequest = await prisma.passwordReset.findFirst({
+    where: { tokenHash: hashedToken },
+  });
+
+  const userId = userRequest.userId;
+
+  const currentUser = await prisma.user.findUnique({ where: { id: userId } });
+
+  const hashedPassword = await bcrypt.hash(password, 10);
+
+  await prisma.user.update({
+    where: { id: userId },
+    data: {
+      passwordHash: hashedPassword,
+    },
+  });
+
+  return response.status(200).send({ name: "Password is changed" });
 });
 
 export default router;

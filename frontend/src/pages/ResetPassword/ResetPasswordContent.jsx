@@ -8,15 +8,21 @@ import {
   Button,
   Stack,
 } from "@mui/material";
-import { NavLink } from "react-router-dom";
+import { NavLink, useSearchParams } from "react-router-dom";
 import { PersonOutlineOutlined } from "@mui/icons-material";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
+import { resetPassword } from "../../store/features/resetPassword/resetPasswordThunk";
 
 const ResetPasswordContent = () => {
-  const { register } = useForm();
+  const dispatch = useDispatch();
+  const [searchParams] = useSearchParams();
+  const token = searchParams.get("token");
+
+  const { register, handleSubmit } = useForm();
 
   const changePassword = (data) => {
+    dispatch(resetPassword({ data, token }));
     console.log(data);
   };
 
@@ -71,6 +77,7 @@ const ResetPasswordContent = () => {
 
       <Box mt={3} sx={{ padding: 1 }}>
         <Button
+          onClick={handleSubmit(changePassword)}
           fullWidth
           sx={{
             bgcolor: "#34D399",
