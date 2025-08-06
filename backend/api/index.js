@@ -21,7 +21,6 @@ try {
 
 const app = express();
 
-// Инициализация Prisma с обработкой ошибок
 let prisma;
 try {
   prisma = new PrismaClient();
@@ -35,7 +34,6 @@ app.set('view engine', 'ejs');
 app.use(userRouter)
 app.use(profileRouter)
 
-// Middleware для обработки ошибок
 app.use((err, req, res, next) => {
   console.error('Error:', err);
   res.status(500).json({ error: 'Internal Server Error' });
