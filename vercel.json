@@ -1,16 +1,11 @@
 {
   "version": 2,
   "builds": [
-    {
-      "src": "api/index.js",
-      "use": "@vercel/node",
-      "config": {
-        "maxLambdaSize": "15mb"
-      }
-    }
+    { "src": "frontend/package.json", "use": "@vercel/next" },
+    { "src": "backend/api/index.js", "use": "@vercel/node" }
   ],
-  "routes": [{ "src": "/(.*)", "dest": "/api/index.js" }],
-  "env": {
-    "NODE_ENV": "production"
-  }
+  "routes": [
+    { "src": "/api/(.*)", "dest": "backend/api/index.js" },
+    { "src": "/(.*)", "dest": "frontend/$1" }
+  ]
 }
