@@ -16,13 +16,15 @@ import Brand from "@/assets/images/Brand.svg";
 import { Search, Close } from "@mui/icons-material";
 import { responsiveHeaderPages } from "./ResponsiveHeaderData";
 import { NavLink, Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logout } from "@/store/features/logout";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 const ResponsiveHeader = ({ closeDrawer, userName, userSurname }) => {
-  const [user] = useState(JSON.parse(localStorage.getItem("user")));
+  // const [user] = useState(JSON.parse(localStorage.getItem("user")));
+  const user = useSelector((state) => state.login.user.payload);
+  console.log(user);
 
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -83,7 +85,7 @@ const ResponsiveHeader = ({ closeDrawer, userName, userSurname }) => {
                       {user?.email ? (
                         <>
                           <Avatar
-                            src={`https://ui-avatars.com/api/?name=${userName}+${userSurname}&background=34D399`}
+                            src={`https://ui-avatars.com/api/?name=${user?.profile.name}+${user?.profile.surname}&background=34D399`}
                           ></Avatar>
                           <Typography
                             aria-controls={open ? "basic-menu" : undefined}
@@ -98,7 +100,7 @@ const ResponsiveHeader = ({ closeDrawer, userName, userSurname }) => {
                               borderRadius: "8px",
                             }}
                           >
-                            {userName} {userSurname}
+                            {user?.profile.name} {user?.profile.surname}
                           </Typography>
 
                           <Menu
