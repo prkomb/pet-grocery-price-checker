@@ -23,7 +23,6 @@ const ResetPasswordContent = () => {
 
   const changePassword = (data) => {
     dispatch(resetPassword({ data, token }));
-    console.log(data);
   };
 
   return (

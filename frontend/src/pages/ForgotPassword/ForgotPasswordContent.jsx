@@ -22,7 +22,6 @@ const ForgotPasswordContent = () => {
 
   const saveEmail = (data) => {
     dispatch(forgotPassword(data));
-    console.log(data);
   };
 
   return (

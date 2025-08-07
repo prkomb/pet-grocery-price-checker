@@ -21,9 +21,7 @@ const sendForgotPasswordEmail = (token) => {
 
   transporter.sendMail(mailOptions, function (error, info) {
     if (error) {
-      console.log("Error: " + error);
-    } else {
-      console.log("Email sent: " + info.response);
+      // Error handling
     }
   });
 };

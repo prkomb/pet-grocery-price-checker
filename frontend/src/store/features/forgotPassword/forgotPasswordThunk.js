@@ -4,7 +4,6 @@ import axios from "axios";
 const forgotPassword = createAsyncThunk(
   "forgot/forgotPassword",
   async ({ email }, { rejectWithValue }) => {
-    console.log(email);
     try {
       const response = await axios({
         method: "POST",

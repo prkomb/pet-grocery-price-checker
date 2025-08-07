@@ -7,7 +7,7 @@ export const saveProfile = createAsyncThunk(
     try {
       const jwtToken = localStorage.getItem("token");
 
-      const request = await axios({
+      await axios({
         method: "patch",
         url: "/api/profile",
         data: profileData,
@@ -15,8 +15,6 @@ export const saveProfile = createAsyncThunk(
           authorization: `Bearer ${jwtToken}`,
         },
       });
-      const response = request.data;
-      console.log(response);
     } catch (error) {
       throw new Error(error.message);
     }

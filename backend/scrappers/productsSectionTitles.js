@@ -57,4 +57,4 @@ async function productsSectionTitles() {
   await browser.close();
 }
 
-productsSectionTitles().then(() => console.log);
+productsSectionTitles();

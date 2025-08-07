@@ -4,7 +4,6 @@ import axios from "axios";
 
 export const loginUser = createAsyncThunk(
   "login/loginUser",
-
   async ({ email, password }, { rejectWithValue }) => {
     try {
       const userCredential = await axios({
@@ -12,10 +11,7 @@ export const loginUser = createAsyncThunk(
         url: "/api/login",
         data: { email, password },
       });
-
-      localStorage.setItem("token", await userCredential.data.jwtToken);
-
-      console.log(userCredential);
+      localStorage.setItem("token", userCredential.data.jwtToken);
       return userCredential.data;
     } catch (error) {
       return rejectWithValue(error.response.data || "Login error");

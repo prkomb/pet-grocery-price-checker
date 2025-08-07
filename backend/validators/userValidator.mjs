@@ -6,9 +6,7 @@ const userValidator = [
     .notEmpty()
     .withMessage("Password shouldn't be empty")
     .isLength({ min: 5 })
-    .withMessage("Minimum 5 character")
-    .matches(/\d/)
-    .withMessage("Must have 1 digit"),
+    .withMessage("Minimum 5 character"),
 
   (request, response, next) => {
     const errors = validationResult(request);

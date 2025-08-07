@@ -50,4 +50,4 @@ export async function discounts() {
   await browser.close();
 }
 
-discounts().then(() => console.log);
+discounts();

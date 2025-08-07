@@ -18,9 +18,7 @@ const loginSlice = createSlice({
   },
   extraReducers(builder) {
     builder.addCase(loginUser.fulfilled, (state, action) => {
-      const currentUser = action.payload.user;
-      console.log(currentUser);
-      return { ...state, user: currentUser };
+      return { ...state };
     });
   },
 });

@@ -47,7 +47,7 @@ function AuthForm() {
       dispatch(registerUser({ email: data.email, password: data.password }));
     } else if (location == "/login") {
       dispatch(loginUser({ email: data.email, password: data.password }));
-      navigate("/home");
+      // navigate("/home");
     }
   };
 

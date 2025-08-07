@@ -29,8 +29,6 @@ router.patch(
       body: { ...profileBody },
     } = request;
 
-    console.log(profileBody);
-
     const userId = request.params.id;
 
     const userProfile = await prisma.profile.findUnique({
@@ -52,7 +50,6 @@ router.patch(
 
 router.patch("/api/profile", async (request, response) => {
   const { body } = request;
-  console.log(body);
 
   const jwtToken = getJWTheader(request.headers.authorization);
 
@@ -77,7 +74,6 @@ router.get("/api/profile", async (request, response) => {
   const {
     payload: { email },
   } = await jwtVerify(authToken, secret);
-  console.log(email);
 
   const user = await prisma.user.findUnique({ where: { email: email } });
   const profile = await prisma.profile.findUnique({

@@ -13,7 +13,6 @@ export const dummyJsonSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(getProducts.fulfilled, (state, action) => {
-      console.log(action.payload);
       return {
         ...state,
         products: action.payload,

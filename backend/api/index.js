@@ -80,7 +80,7 @@ process.on('beforeExit', async () => {
 
 if (process.env.NODE_ENV !== 'production') {
   app.listen(3000, () => {
-    console.log('Grocery app is started')
+    // Server started
   })
 }
 

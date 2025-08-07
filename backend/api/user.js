@@ -101,8 +101,6 @@ router.post("/api/forgotPassword", async (request, response) => {
     body: { email },
   } = request;
 
-  console.log(email);
-
   const newToken = generateResetToken();
 
   if (!email) {

@@ -8,7 +8,6 @@ function getFormattedRoutes(app) {
   const cleaned = uniqueRoutePaths.map((route) =>
     route.replace("/api/", "").replace("/api", "")
   );
-  console.log(cleaned);
 
   return uniqueRoutePaths;
 }

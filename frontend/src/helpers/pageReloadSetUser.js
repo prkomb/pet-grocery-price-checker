@@ -11,13 +11,12 @@ const pageReloadSetUser = async () => {
       });
 
       const result = await request.data;
-      console.log(result);
       return result;
     } else {
       throw new Error("JWT is not found on LocalStorage");
     }
-  } catch (error) {
-    console.log(error);
+  } catch {
+    // Error handling
   }
 };
 

@@ -10,14 +10,13 @@ import {
   Checkbox,
   Button,
 } from "@mui/material";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 function Content() {
   const { register, handleSubmit } = useForm();
-  console.log(handleSubmit);
-  const onSave = (data) => {
-    console.log(data);
+  const onSave = () => {
+    // Handle form submission
   };
 
   return (

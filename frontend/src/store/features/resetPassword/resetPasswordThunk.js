@@ -5,13 +5,13 @@ export const resetPassword = createAsyncThunk(
   "reset/resetPassword",
   async (data) => {
     try {
-      const response = await axios({
+      await axios({
         method: "POST",
         url: "/api/resetPassword",
         data,
       });
-    } catch (error) {
-      console.log(error);
+    } catch {
+      // Error handling
     }
   }
 );

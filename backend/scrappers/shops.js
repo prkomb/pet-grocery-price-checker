@@ -18,7 +18,6 @@ export async function getShops() {
       (element) => element.textContent
     );
 
-    console.log({ title });
     shops.push({ title });
   }
 
@@ -27,4 +26,4 @@ export async function getShops() {
   await browser.close();
 }
 
-getShops().then(() => console.log);
+getShops();

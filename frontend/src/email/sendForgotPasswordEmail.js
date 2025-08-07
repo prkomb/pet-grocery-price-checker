@@ -17,11 +17,9 @@ const sendForgotPasswordEmail = () => {
     text: "That was easy!",
   };
 
-  transporter.sendMail(mailOptions, function (error, info) {
+  transporter.sendMail(mailOptions, function (error) {
     if (error) {
-      console.log("Error: " + error);
-    } else {
-      console.log("Email sent: " + info.response);
+      // Error handling
     }
   });
 };
