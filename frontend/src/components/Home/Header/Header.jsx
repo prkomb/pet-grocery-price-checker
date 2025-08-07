@@ -17,15 +17,13 @@ import { Search, Logout, Person, Bookmark } from "@mui/icons-material";
 import MenuIcon from "@mui/icons-material/Menu";
 import Brand from "@/assets/images/Brand.svg";
 import CustomDrawer from "./Drawer";
-import { useEffect, useRef, useState } from "react";
-import { getUser } from "../../../helpers/localStorage";
-import { useDispatch } from "react-redux";
+import { useRef, useState } from "react";
+
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../../../store/features/logout";
-import { getUserByData } from "@/helpers/firestore/getUserByData";
 
 const Header = () => {
-  const user = getUser();
   const [userData, setUserData] = useState(null);
   const anchorElement = useRef();
   const navigate = useNavigate();
@@ -35,18 +33,8 @@ const Header = () => {
     setOpen(false);
   };
 
-  useEffect(() => {
-    if (!user?.uid) return;
-
-    const fetchUserData = async () => {
-      const data = await getUserByData(user.uid);
-      setUserData(data);
-    };
-
-    fetchUserData();
-  }, [user?.uid]);
-
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.login.user?.payload);
 
   const handleLogout = () => {
     dispatch(logout({ navigate }));
@@ -108,11 +96,12 @@ const Header = () => {
                   onClick={setOpen}
                 >
                   <Avatar
-                    src={`https://ui-avatars.com/api/?name=${userData?.name}+${userData?.surname}&background=34D399`}
+                    src={`https://ui-avatars.com/api/?name=${user.profile?.name}+${user.profile?.surname}&background=34D399`}
                   ></Avatar>
                   <Typography variant="body1" color="initial">
-                    {/* {user.email} */}
-                    {userData?.name} {userData?.surname}
+                    {user.profile?.name && user.profile?.surname
+                      ? `${user.profile?.name} ${user.profile?.surname}`
+                      : user?.email}
                   </Typography>
                 </Box>
 

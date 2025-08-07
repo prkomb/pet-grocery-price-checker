@@ -1,0 +1,282 @@
+[
+  {
+    "title": "Milk Powders",
+    "products": [
+      {
+        "brand": "Marvel",
+        "description": "Original Dried Skimmed Milk Powder",
+        "price": "£4.00"
+      },
+      {
+        "brand": "Aptamil",
+        "description": "1 First Baby Milk Formula Powder from Birth - Tub",
+        "price": "£12.00"
+      },
+      {
+        "brand": "Cow & Gate",
+        "description": "Hungry First Baby Milk Formula Powder from Birth",
+        "price": "£10.48"
+      },
+      {
+        "brand": "Cow & Gate",
+        "description": "1 First Baby Milk Formula Powder from Birth - Tub",
+        "price": "£8.99"
+      },
+      {
+        "brand": "Grace",
+        "description": "Coconut Milk Powder",
+        "price": "£0.93"
+      }
+    ]
+  },
+  {
+    "title": "Cat Foods Wet",
+    "products": [
+      {
+        "brand": "Felix",
+        "description": "Doubly Delicious Meat Cat Food",
+        "price": "£4.45"
+      },
+      {
+        "brand": "Sheba",
+        "description": "Fine Flakes Cat Food Pouches Poultry in Jelly Giant Pack",
+        "price": "£27.49"
+      },
+      {
+        "brand": "Harringtons",
+        "description": "Meaty Selection in Jelly Wet Cat Food Multipack",
+        "price": "£5.38"
+      },
+      {
+        "brand": "Felix",
+        "description": "As Good As It Looks Mixed Selection in Jelly Wet Cat Food 40x100",
+        "price": "£14.99"
+      },
+      {
+        "brand": "Whiskas",
+        "description": "1+ Poultry Feasts in Jelly Mega Pack",
+        "price": "£11.75"
+      }
+    ]
+  },
+  {
+    "title": "Beef Stock Cubes",
+    "products": [
+      {
+        "brand": "Knorr",
+        "description": "Gluten Free Rich Beef Stock Cube",
+        "price": "£2.00"
+      },
+      { "brand": "Knorr", "description": "Beef Stock Cubes", "price": "£1.68" },
+      {
+        "brand": "Kallo",
+        "description": "Organic Very Low Salt Beef Stock Cubes",
+        "price": "£1.40"
+      },
+      {
+        "brand": "Oxo",
+        "description": "Reduced Salt Beef Stock 12 Cubes",
+        "price": "£1.88"
+      },
+      { "brand": "Oxo", "description": "24 Beef Stock Cubes", "price": "£2.98" }
+    ]
+  },
+  {
+    "title": "Rich Tea Biscuits",
+    "products": [
+      { "brand": "M&S", "description": "Rich Tea Biscuits", "price": "£0.75" },
+      {
+        "brand": "McVitie's",
+        "description": "Rich Tea Classic Biscuits Twin Pack",
+        "price": "£2.49"
+      },
+      {
+        "brand": "Schar",
+        "description": "Gluten Free Rich Tea Biscuits",
+        "price": "£1.68"
+      },
+      {
+        "brand": "Sainsbury's",
+        "description": "Rich Tea Biscuits",
+        "price": "£0.50"
+      },
+      { "brand": "ASDA", "description": "Rich Tea Biscuits", "price": "£0.55" }
+    ]
+  },
+  {
+    "title": "Brown Basmati Rices",
+    "products": [
+      {
+        "brand": "Tilda",
+        "description": "Brown Wholegrain Basmati Rice",
+        "price": "£2.50"
+      },
+      {
+        "brand": "Laila",
+        "description": "Gluten Free Basmati Rice",
+        "price": "£8.49"
+      },
+      {
+        "brand": "Waitrose Ltd",
+        "description": "Essential Brown Basmati Rice",
+        "price": "£2.50"
+      },
+      { "brand": "Laila", "description": "Basmati Rice", "price": "£4.98" },
+      {
+        "brand": "Laila",
+        "description": "Brown Basmati Rice",
+        "price": "£5.25"
+      }
+    ]
+  },
+  {
+    "title": "Non Bio Washing Detergents",
+    "products": [
+      {
+        "brand": "Ocado",
+        "description": "Non-Bio Liquid Detergent 50 Wash",
+        "price": "£3.40"
+      },
+      {
+        "brand": "Persil",
+        "description": "Non Bio Washing Liquid Detergent 24 Washes",
+        "price": "£3.00"
+      },
+      {
+        "brand": "Persil",
+        "description": "Non Bio Fabric Cleaning Washing Powder - 60 Washes",
+        "price": "£9.99"
+      },
+      {
+        "brand": "Fairy",
+        "description": "Non Bio Washing Powder for Sensitive Skin 50 Washes",
+        "price": "£10.50"
+      },
+      {
+        "brand": "Persil",
+        "description": "Non Bio Fabric Cleaning Washing Powder 21 Washes 1.05 kg",
+        "price": "£3.49"
+      }
+    ]
+  },
+  {
+    "title": "Laundries",
+    "products": [
+      {
+        "brand": "Persil",
+        "description": "Bio 3 in 1 Laundry Detergent Washing Capsules 15 Washes",
+        "price": "£6.00"
+      },
+      {
+        "brand": "Persil",
+        "description": "3 In 1 Non Bio Laundry Washing Capsules 50 Washes",
+        "price": "£12.00"
+      },
+      {
+        "brand": "Surcare",
+        "description": "Non Bio Laundry Liquid 28 washes",
+        "price": "£6.00"
+      },
+      {
+        "brand": "Persil",
+        "description": "Bio Laundry Washing Liquid Detergent 53 Washes",
+        "price": "£8.98"
+      },
+      {
+        "brand": "Surf",
+        "description": "Tropical Lily Concentrated Laundry Detergent 44 Washes",
+        "price": "£5.50"
+      }
+    ]
+  },
+  {
+    "title": "Soft Cheeses",
+    "products": [
+      {
+        "brand": "Sainsbury's",
+        "description": "White Soft Cheese",
+        "price": "£2.25"
+      },
+      {
+        "brand": "Philadelphia",
+        "description": "Light Low Fat Soft Cream Cheese",
+        "price": "£1.25"
+      },
+      {
+        "brand": "Philadelphia",
+        "description": "Lightest Low Fat Soft Cream Cheese",
+        "price": "£1.25"
+      },
+      {
+        "brand": "M&S",
+        "description": "Full Fat Soft Cheese",
+        "price": "£2.00"
+      },
+      {
+        "brand": "Philadelphia",
+        "description": "Original Soft Cheese",
+        "price": "£1.25"
+      }
+    ]
+  },
+  {
+    "title": "Decaf Teas",
+    "products": [
+      {
+        "brand": "Taylors of Harrogate",
+        "description": "Yorkshire Tea Bedtime Brew 40 Tea Bags",
+        "price": "£1.98"
+      },
+      {
+        "brand": "Tetley",
+        "description": "Decaf 120 Tea Bags",
+        "price": "£3.00"
+      },
+      {
+        "brand": "Tetley",
+        "description": "Decaffeinated Tea Bags",
+        "price": "£5.25"
+      },
+      {
+        "brand": "Birchall Tea",
+        "description": "Birchall Great Rift Decaf Everyday Tea Bags",
+        "price": "£3.00"
+      },
+      {
+        "brand": "Sainsbury's",
+        "description": "Decaffeinated Red Label Tea Bags",
+        "price": "£1.65"
+      }
+    ]
+  },
+  {
+    "title": "Sharing Crisps",
+    "products": [
+      {
+        "brand": "Tyrrells",
+        "description": "Sweet Chilli & Red Pepper Crisps",
+        "price": "£1.75"
+      },
+      {
+        "brand": "ASDA Extra Special",
+        "description": "Sweet Chilli Hand Cooked Sharing Crisps",
+        "price": "£1.34"
+      },
+      {
+        "brand": "Pipers",
+        "description": "Kirkby Malham Chorizo Sharing Crisps",
+        "price": "£3.00"
+      },
+      {
+        "brand": "Tyrrells",
+        "description": "Mature Cheddar & Chive Sharing Crisps",
+        "price": "£1.75"
+      },
+      {
+        "brand": "Walkers",
+        "description": "Sensations Thai Sweet Chilli Sharing Crisps",
+        "price": "£1.99"
+      }
+    ]
+  }
+]

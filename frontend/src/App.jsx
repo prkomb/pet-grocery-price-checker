@@ -7,26 +7,19 @@ import { setUser } from "./store/features/login/loginSlice.js";
 import { useDispatch } from "react-redux";
 import { getUid } from "./store/features/profile/profileSlice.js";
 import { getProducts } from "./store/features/data/dummyJsonThunk.js";
+import { pageReloadSetUser } from "./helpers/pageReloadSetUser.js";
 const auth = getAuth();
 
 const App = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getProducts());
+    const getUser = async () => {
+      const user = await pageReloadSetUser();
+      dispatch(setUser(user));
+    };
 
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        const userData = {
-          uid: user.uid,
-          email: user.email,
-          displayName: user.displayName,
-          photoURL: user.photoURL,
-        };
-        dispatch(setUser(userData));
-        dispatch(getUid(user.uid));
-      }
-    });
-  });
+    getUser();
+  }, [dispatch]);
   return <RouterProvider router={router}></RouterProvider>;
 };
 

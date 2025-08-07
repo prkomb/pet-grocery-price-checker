@@ -12,9 +12,8 @@ export const logout = createAsyncThunk(
 
       localStorage.removeItem("user");
       localStorage.removeItem("currentUser");
+      localStorage.removeItem("token");
     } catch (error) {
-      console.log("Here");
-      console.log(error);
       return rejectWithValue(error.message);
     }
   }

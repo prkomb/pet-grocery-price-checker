@@ -46,9 +46,8 @@ function AuthForm() {
     if (location == "/register") {
       dispatch(registerUser({ email: data.email, password: data.password }));
     } else if (location == "/login") {
-      dispatch(
-        loginUser({ email: data.email, password: data.password, navigate })
-      );
+      dispatch(loginUser({ email: data.email, password: data.password }));
+      navigate("/home");
     }
   };
 
@@ -110,9 +109,6 @@ function AuthForm() {
                   opacity: 1,
                 },
 
-                "&:hover": {
-                  color: "white",
-                },
                 "&:hover .MuiButton-startIcon": {
                   transform: "translateX(-10px)", // уезжает влево
                   opacity: 0, // исчезает
@@ -191,7 +187,11 @@ function AuthForm() {
                   />
                 </FormGroup>
 
-                <Button sx={{ color: "#474BCA", textTransform: "capitalize" }}>
+                <Button
+                  sx={{ color: "#474BCA", textTransform: "capitalize" }}
+                  component={NavLink}
+                  to="/forgot-password"
+                >
                   Forgot Password?
                 </Button>
               </Stack>

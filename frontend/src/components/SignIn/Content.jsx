@@ -15,9 +15,8 @@ import { useForm } from "react-hook-form";
 
 function Content() {
   const { register, handleSubmit } = useForm();
-  console.log(handleSubmit);
-  const onSave = (data) => {
-    console.log(data);
+  const onSave = () => {
+    // Handle form submission
   };
 
   return (
@@ -139,7 +138,6 @@ function Content() {
 
             <Button
               type="submit"
-              // component="button"
               variant="outlined"
               sx={{
                 margin: "20px 0",

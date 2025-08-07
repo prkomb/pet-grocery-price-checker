@@ -45,9 +45,9 @@ export async function discounts() {
     });
   }
 
-  console.log(items);
-  fs.writeFileSync("server.json", JSON.stringify(items));
+  fs.writeFileSync("results/discounts.json", JSON.stringify(items));
+
   await browser.close();
 }
 
-// aldiScrapper();
+discounts();

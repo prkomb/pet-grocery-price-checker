@@ -22,14 +22,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { saveProfile } from "@/store/features/profile/profileFormThunk";
 import { useEffect, useState } from "react";
 import { getProfile } from "@/store/features/profile/profileFormThunk";
-import { createContext } from "react";
 import CustomSnackBar from "@/layouts/CustomSnackBar";
 
 const Profile = () => {
   const dispatch = useDispatch();
-  const profile = useSelector((state) => state.profile);
-  const usersProfile = useSelector((state) => state.profile.profile);
-  const profileError = useSelector((state) => state.profile.error);
+  const profile = useSelector((state) => state.profile.profile?.profile);
 
   const [isOpenPushNotification, setIsOpenPushNotification] = useState(false);
   const [isErrorOpenPushNotification, setErrorOpenPushNotification] =
@@ -42,31 +39,21 @@ const Profile = () => {
   } = useForm({
     resolver: yupResolver(profileFormValidation),
     values: {
-      name: usersProfile?.name,
-      surname: usersProfile?.surname,
-      phone: usersProfile?.phone,
-      city: usersProfile?.city,
-      town: usersProfile?.town,
-      postcode: usersProfile?.postcode,
-      bio: usersProfile?.bio,
+      name: profile?.name,
+      surname: profile?.surname,
+      phone: profile?.phone,
+      city: profile?.city,
+      town: profile?.town,
+      postcode: profile?.postcode,
+      bio: profile?.bio,
     },
   });
   useEffect(() => {
-    if (profile.uid) {
-      dispatch(getProfile(profile.uid));
-    }
-  }, [profile.uid]);
+    dispatch(getProfile());
+  }, []);
 
   const onSaveForm = (data) => {
-    console.log(data);
-    dispatch(saveProfile({ uid: profile.uid, ...data }));
-    if (!profileError) {
-      setTimeout(() => {
-        setIsOpenPushNotification(true);
-      }, 2000);
-    } else {
-      setErrorOpenPushNotification(true);
-    }
+    dispatch(saveProfile(data));
   };
 
   return (

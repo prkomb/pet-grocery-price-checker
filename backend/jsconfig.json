@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "es2020",
+    "module": "commonjs",
+    "baseUrl": "./utils",
+    "paths": {
+      "@prisma/client": ["../node_modules/@prisma/client"]
+    },
+    "allowJs": true,
+    "checkJs": false,
+    "moduleResolution": "node"
+  }
+}

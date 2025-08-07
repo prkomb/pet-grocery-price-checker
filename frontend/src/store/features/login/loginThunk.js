@@ -1,27 +1,20 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { auth } from "../../../helpers/auth/firebaseConfig";
-import {
-  signInWithEmailAndPassword,
-  setPersistence,
-  browserLocalPersistence,
-} from "firebase/auth";
+
+import axios from "axios";
 
 export const loginUser = createAsyncThunk(
   "login/loginUser",
-  async ({ email, password, navigate }) => {
+  async ({ email, password }, { rejectWithValue }) => {
     try {
-      await setPersistence(auth, browserLocalPersistence);
-      const userCredential = await signInWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-      navigate("/home");
-      return {
-        ...userCredential.user,
-      };
+      const userCredential = await axios({
+        method: "POST",
+        url: "/api/login",
+        data: { email, password },
+      });
+      localStorage.setItem("token", userCredential.data.jwtToken);
+      return userCredential.data;
     } catch (error) {
-      throw new Error(error.message);
+      return rejectWithValue(error.response.data || "Login error");
     }
   }
 );

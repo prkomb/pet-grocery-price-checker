@@ -2,7 +2,6 @@ import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { emojiMap } from "./emojiArray";
 import { Title } from "@mui/icons-material";
-import getCategories from "./helpers/getCategories";
 import getProductsData from "./helpers/getProducts";
 
 export const getProducts = createAsyncThunk("data/getProducts", async () => {
@@ -27,7 +26,6 @@ export const getProducts = createAsyncThunk("data/getProducts", async () => {
         return arc;
       }, [])
       .map((item) => {
-        console.log(item);
         return {
           title: item,
           icon: emojiMap[item].emoji,

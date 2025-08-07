@@ -2,7 +2,6 @@ import { Box, Typography, Button, Stack, Rating } from "@mui/material";
 import { StarRounded, StarBorderRounded } from "@mui/icons-material";
 
 const SecondaryInformation = ({ availabilityStatus, stock, averageRating }) => {
-  console.log(averageRating);
   return (
     <Box alignSelf={{ xs: "start", md: "center" }}>
       <Box

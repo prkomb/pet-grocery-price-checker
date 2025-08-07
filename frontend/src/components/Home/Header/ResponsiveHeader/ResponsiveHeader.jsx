@@ -31,7 +31,6 @@ const ResponsiveHeader = ({ closeDrawer, userName, userSurname }) => {
 
   const navigate = useNavigate();
   const handleLogout = () => {
-    console.log("Here");
     dispatch(logout({ navigate }));
   };
 

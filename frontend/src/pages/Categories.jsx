@@ -7,60 +7,14 @@ import {
   Button,
   Icon,
 } from "@mui/material";
-import { useState } from "react";
 import { KeyboardBackspace } from "@mui/icons-material";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
 const Categories = () => {
-  const [categories] = useState([
-    {
-      title: "Organic & Special Diet",
-      description:
-        "Organic, gluten-free and vegan items—tailored deals for any diet.",
-      icon: "🌱", // Replace with your actual icon/image path
-      key: "organic",
-    },
-    {
-      title: "Meat & Poultry",
-      description:
-        "Daily deals on chicken, turkey, beef, pork and ground meat.",
-      icon: "🥩",
-      key: "meat",
-    },
-    {
-      title: "Beverages",
-      description:
-        "Juices, sodas, water, coffee and tea—filter by cost per litre.",
-      icon: "🧃",
-      key: "beverages",
-    },
-    {
-      title: "Dairy & Eggs",
-      description: "Compare prices on milk, yogurt, cheese, butter and eggs.",
-      icon: "🧀",
-      key: "dairy",
-    },
-    {
-      title: "Seafood",
-      description:
-        "Fresh and frozen fish, shrimp, mussels—catch the best price.",
-      icon: "🐟",
-      key: "seafood",
-    },
-    {
-      title: "Fruits & Vegetables",
-      description:
-        "Seasonal produce and salad essentials—sorted by price and freshness.",
-      icon: "🍎",
-      key: "produce",
-    },
-  ]);
-
   const topProducts = useSelector(
     (state) => state.dummyJson?.products?.productCategories
   )?.slice(0, 6);
-  console.log(topProducts);
 
   return (
     <Box
