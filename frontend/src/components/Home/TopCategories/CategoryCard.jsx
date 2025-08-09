@@ -1,12 +1,13 @@
 import { Card, CardContent, Box, Typography } from "@mui/material";
 
-const CategoryCard = ({ icon, label }) => {
+const CategoryCard = ({ category }) => {
   return (
     <Card
       sx={{
         width: "170px",
         height: "170px",
         textAlign: "center",
+
         backgroundColor: "#E5E7EB",
         borderRadius: "16px",
         transition: "all 2s linear ease",
@@ -17,11 +18,7 @@ const CategoryCard = ({ icon, label }) => {
         },
       }}
     >
-      <CardContent className="flex flex-col justify-between items-center h-full text-center px-4">
-        <Box component="div" className="text-5xl ">
-          {icon}
-        </Box>
-
+      <CardContent className="flex text-center items-center justify-center h-full px-4">
         <Typography
           variant="body1"
           className="text-gray-800 text-center font-medium"
@@ -31,7 +28,7 @@ const CategoryCard = ({ icon, label }) => {
             textTransform: "capitalize",
           }}
         >
-          {label}
+          {category}
         </Typography>
       </CardContent>
     </Card>

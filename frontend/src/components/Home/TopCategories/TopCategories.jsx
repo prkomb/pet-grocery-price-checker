@@ -5,22 +5,20 @@ import CategoryCard from "./CategoryCard";
 import { useSelector } from "react-redux";
 
 export default function TopCategories() {
-  const topProducts = useSelector(
-    (state) => state.dummyJson?.products?.productCategories
+  const topCategories = useSelector(
+    (state) => state.products.categories
   )?.slice(0, 4);
+
+  console.log(topCategories);
 
   return (
     <Box>
       <h2 className="text-2xl text-center mt-[64px]">Top Categories</h2>
 
       <div className="flex justify-center gap-6 mt-[58px] flex-wrap">
-        {topProducts?.map((category) => {
+        {topCategories?.map((category) => {
           return (
-            <CategoryCard
-              key={category.title}
-              icon={category.icon}
-              label={category.title}
-            ></CategoryCard>
+            <CategoryCard key={category} category={category}></CategoryCard>
           );
         })}
       </div>

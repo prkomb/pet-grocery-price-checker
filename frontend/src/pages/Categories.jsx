@@ -12,9 +12,9 @@ import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
 const Categories = () => {
-  const topProducts = useSelector(
-    (state) => state.dummyJson?.products?.productCategories
-  )?.slice(0, 6);
+  const topProducts = useSelector((state) => state.products.categories);
+
+  console.log(topProducts);
 
   return (
     <Box
@@ -97,11 +97,6 @@ const Categories = () => {
                   },
                 }}
               >
-                <CardMedia title={category.title}>
-                  <Box textAlign="center" fontSize={40}>
-                    {category.icon}
-                  </Box>
-                </CardMedia>
                 <CardContent>
                   <Typography
                     variant="body1"
@@ -110,22 +105,22 @@ const Categories = () => {
                     sx={{
                       fontFamily: "Poppins",
                       fontWeight: "bold",
-                      fontSize: "10px",
+                      fontSize: "15px",
                       textTransform: "capitalize",
                     }}
                   >
-                    {category.title}
+                    {category}
                   </Typography>
 
                   <Typography
                     sx={{
                       mt: "10px",
                       fontFamily: "Poppins",
-                      fontSize: "10px",
+                      fontSize: "50px",
                       textAlign: "center",
                     }}
                   >
-                    {category.description}
+                    🥫
                   </Typography>
                 </CardContent>
               </Card>
