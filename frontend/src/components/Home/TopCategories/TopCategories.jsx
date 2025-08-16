@@ -6,8 +6,8 @@ import { useSelector } from "react-redux";
 
 export default function TopCategories() {
   const topCategories = useSelector(
-    (state) => state.products.categories
-  )?.slice(0, 4);
+    (state) => state?.products?.categories
+  ).slice(0, 4);
 
   console.log(topCategories);
 

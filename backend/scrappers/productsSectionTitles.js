@@ -2,6 +2,7 @@ import puppeteer from "puppeteer";
 import fs from "fs";
 
 const MAIN_LINK = "https://www.trolley.co.uk/explore";
+const MAIN_IMG_LINK = "https://www.trolley.co.uk";
 
 const products = [];
 const categoryAndProduct = [];
@@ -46,7 +47,17 @@ async function productsSectionTitles() {
         (element) => element.textContent.trim().split(" ").at(0)
       );
 
-      const results = { brand, description, price };
+      const image = await product.$eval("a > div._img > img", (img) =>
+        img.getAttribute("src")
+      );
+      console.log(image);
+
+      const results = {
+        brand,
+        description,
+        price,
+        image: `${MAIN_IMG_LINK}${image}`,
+      };
       currentProducts.push(results);
     }
     categoryAndProduct.push({ title, products: currentProducts });

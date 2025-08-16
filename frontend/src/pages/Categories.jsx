@@ -1,18 +1,17 @@
-import {
-  Box,
-  Card,
-  Typography,
-  CardContent,
-  CardMedia,
-  Button,
-  Icon,
-} from "@mui/material";
+import { Box, Card, Typography, CardContent, Button } from "@mui/material";
 import { KeyboardBackspace } from "@mui/icons-material";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { getProductsList } from "../store/features/products/productsSlice";
 
 const Categories = () => {
-  const topProducts = useSelector((state) => state.products.categories);
+  const dispatch = useDispatch();
+  const topProducts = useSelector((state) => state?.products?.categories);
+
+  function getCategoryItems(categoryTitle) {
+    // console.log(categoryTitle);
+    dispatch(getProductsList(categoryTitle));
+  }
 
   console.log(topProducts);
 
@@ -77,12 +76,13 @@ const Categories = () => {
           justifyContent="space-evenly"
           alignItems="center"
         >
-          {topProducts?.map((category) => {
+          {topProducts.map((category) => {
             return (
               <Card
                 component={NavLink}
-                to="/category"
-                key={category.title}
+                to="/category-products"
+                onClick={() => getCategoryItems(category)}
+                key={category}
                 sx={{
                   width: "170px",
                   height: "170px",
