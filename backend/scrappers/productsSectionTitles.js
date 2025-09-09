@@ -50,7 +50,6 @@ async function productsSectionTitles() {
       const image = await product.$eval("a > div._img > img", (img) =>
         img.getAttribute("src")
       );
-      console.log(image);
 
       const results = {
         brand,

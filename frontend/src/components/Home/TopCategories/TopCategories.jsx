@@ -9,7 +9,6 @@ export default function TopCategories() {
     (state) => state?.products?.categories
   ).slice(0, 4);
 
-  console.log(topCategories);
 
   return (
     <Box>

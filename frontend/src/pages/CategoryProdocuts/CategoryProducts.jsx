@@ -20,7 +20,6 @@ const CategoryProducts = () => {
     if (products && products.length > 0) {
       const sorted = sortedProducts(products);
       setItems(sorted);
-      console.log(items);
     }
   };
 
@@ -28,7 +27,6 @@ const CategoryProducts = () => {
     if (products && products.length > 0) {
       const sorted = maxSortProducts(products);
       setItems(sorted);
-      console.log(items);
     }
   };
 

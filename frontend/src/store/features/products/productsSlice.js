@@ -17,7 +17,6 @@ const productsSlice = createSlice({
   initialState,
   reducers: {
     getProductsList(state, action) {
-      console.log(action.payload);
       const originalState = original(state.products);
 
       const currentCategory = originalState.find(

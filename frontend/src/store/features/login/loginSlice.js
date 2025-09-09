@@ -18,7 +18,6 @@ const loginSlice = createSlice({
   },
   extraReducers(builder) {
     builder.addCase(loginUser.fulfilled, (state, action) => {
-      console.log(action.payload);
       return { ...state, user: action.payload };
     });
   },

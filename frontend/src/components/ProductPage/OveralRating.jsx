@@ -29,7 +29,6 @@ const OveralRating = ({ averageRating }) => {
     try {
       return savedUser ? JSON.parse(savedUser) : null;
     } catch (error) {
-      console.error("Error parsing currentUser from localStorage:", error);
       return null;
     }
   });

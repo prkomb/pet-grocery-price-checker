@@ -9,11 +9,9 @@ const Categories = () => {
   const topProducts = useSelector((state) => state?.products?.categories);
 
   function getCategoryItems(categoryTitle) {
-    // console.log(categoryTitle);
     dispatch(getProductsList(categoryTitle));
   }
 
-  console.log(topProducts);
 
   return (
     <Box

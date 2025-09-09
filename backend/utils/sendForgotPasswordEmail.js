@@ -21,7 +21,10 @@ const sendForgotPasswordEmail = (token) => {
 
   transporter.sendMail(mailOptions, function (error, info) {
     if (error) {
-      // Error handling
+      console.error("Ошибка при отправке:", error);
+    } else {
+      // Для Ethereal даёт ссылку на просмотр письма в браузере
+      // Чтобы видеть текст письма прямо в консоли
     }
   });
 };

@@ -7,7 +7,6 @@ export const getProducts = createAsyncThunk(
     try {
       const products = await axios({ url: "/api/products", method: "GET" });
 
-      console.log(products.data);
 
       const categories = products.data.map((product) => {
         return product.title;

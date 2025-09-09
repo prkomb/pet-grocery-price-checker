@@ -24,7 +24,6 @@ import { useNavigate } from "react-router-dom";
 import { logout } from "../../../store/features/logout";
 
 const Header = () => {
-  const [userData, setUserData] = useState(null);
   const anchorElement = useRef();
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
@@ -198,7 +197,7 @@ const Header = () => {
             </Box>
           )}
 
-          <CustomDrawer userData={userData}></CustomDrawer>
+          <CustomDrawer userData={user?.profile}></CustomDrawer>
         </Toolbar>
       </AppBar>
     </Box>

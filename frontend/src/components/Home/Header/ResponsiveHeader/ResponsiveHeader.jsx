@@ -24,7 +24,6 @@ import { useState } from "react";
 const ResponsiveHeader = ({ closeDrawer, userName, userSurname }) => {
   // const [user] = useState(JSON.parse(localStorage.getItem("user")));
   const user = useSelector((state) => state.login.user.payload);
-  console.log(user);
 
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
