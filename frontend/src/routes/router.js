@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 
 import Home from "../pages/Home";
 import Products from "../pages/Products";
+import StoreProducts from "../pages/StoreProducts";
 import NotFound from "../pages/NotFound";
 import WelcomePage from "../pages/WelcomePage";
 import AuthForm from "../layouts/AuthForm";
@@ -27,6 +28,7 @@ export default createBrowserRouter([
     children: [
       { path: "home", Component: Home },
       { path: "products", Component: Products },
+      { path: "shop", Component: StoreProducts },
       { path: "profile", Component: Profile },
       {
         path: "/product/:productId",

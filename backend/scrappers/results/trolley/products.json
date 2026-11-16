@@ -1,0 +1,112 @@
+[
+  {
+    "id": "RTB805",
+    "path": "/product/crown-farms-raw-black-tiger-king-prawns/RTB805",
+    "title": "Crown Farms Raw Black Tiger King Prawns (200g)",
+    "prices": [
+      {
+        "store": "tesco",
+        "price": 4.25,
+        "unitPrice": "£2.13 per 100g"
+      }
+    ],
+    "categorySlugs": [
+      "crown-farms",
+      "prawns",
+      "king-prawns",
+      "seafoods"
+    ]
+  },
+  {
+    "id": "ARN916",
+    "path": "/product/sainsburys-frozen-raw-peeled-jumbo-king-prawns-asc-taste-the-difference/ARN916",
+    "title": "Sainsbury's Frozen Raw Peeled Jumbo King Prawns ASC Taste the Difference (225g)",
+    "prices": [
+      {
+        "store": "sainsburys",
+        "price": 5.25,
+        "unitPrice": "£2.33 per 100g"
+      }
+    ],
+    "categorySlugs": [
+      "raw-prawns",
+      "king-prawns",
+      "sainsburys",
+      "prawns",
+      "seafoods"
+    ]
+  },
+  {
+    "id": "UXO398",
+    "path": "/product/sainsburys-frozen-cooked-peeled-jumbo-king-prawns-asc-taste-the-difference/UXO398",
+    "title": "Sainsbury's Frozen Cooked & Peeled Jumbo King Prawns ASC Taste the Difference (225g)",
+    "prices": [
+      {
+        "store": "sainsburys",
+        "price": 5.25,
+        "unitPrice": "£2.33 per 100g"
+      }
+    ],
+    "categorySlugs": [
+      "frozen-prawns",
+      "king-prawns",
+      "sainsburys",
+      "prawns",
+      "seafoods"
+    ]
+  },
+  {
+    "id": "DTE973",
+    "path": "/product/tesco-finest-cooked-jumbo-king-prawns/DTE973",
+    "title": "Tesco Finest Cooked Jumbo King Prawns (150g)",
+    "prices": [
+      {
+        "store": "tesco",
+        "price": 4.25,
+        "unitPrice": "£2.83 per 100g"
+      }
+    ],
+    "categorySlugs": [
+      "king-prawns",
+      "tesco-finest",
+      "prawns",
+      "seafoods"
+    ]
+  },
+  {
+    "id": "EJL822",
+    "path": "/product/tesco-finest-raw-jumbo-king-prawns/EJL822",
+    "title": "Tesco Finest Raw Jumbo King Prawns (165g)",
+    "prices": [
+      {
+        "store": "tesco",
+        "price": 3.95,
+        "unitPrice": "£2.39 per 100g"
+      }
+    ],
+    "categorySlugs": [
+      "king-prawns",
+      "tesco-finest",
+      "prawns",
+      "seafoods"
+    ]
+  },
+  {
+    "id": "GOU784",
+    "path": "/product/tesco-finest-jumbo-raw-king-prawns/GOU784",
+    "title": "Tesco Finest Jumbo Raw King Prawns (240g)",
+    "prices": [
+      {
+        "store": "tesco",
+        "price": 5.5,
+        "unitPrice": "£2.29 per 100g"
+      }
+    ],
+    "categorySlugs": [
+      "tesco-finest",
+      "prawns",
+      "king-prawns",
+      "seafoods"
+    ]
+  }
+]

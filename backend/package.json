@@ -9,7 +9,8 @@
     "api:dev": "nodemon ./index.js",
     "dev": "node app.js",
     "build": "prisma generate",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate",
+    "crawl": "node ./scrappers/trolley/crawl.js"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +20,7 @@
   "dependencies": {
     "@prisma/client": "^6.11.1",
     "bcrypt": "^6.0.0",
+    "cheerio": "^1.2.0",
     "cors": "^2.8.5",
     "country-state-city": "^3.2.1",
     "crypto": "^1.0.1",

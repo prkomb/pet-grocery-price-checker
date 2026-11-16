@@ -9,6 +9,7 @@ import { getHashPassword } from "../utils/getHashPassword.js";
 import { checkEnvironment } from "../utils/checkEnvironment.js";
 import userRouter from "./user.js"
 import profileRouter from './profile.js'
+import productsRouter from './products.js'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
@@ -33,6 +34,7 @@ app.set('views', path.join(__dirname, '..' ,'views'))
 app.set('view engine', 'ejs');
 app.use(userRouter)
 app.use(profileRouter)
+app.use(productsRouter)
 
 app.use((err, req, res, next) => {
   console.error('Error:', err);
