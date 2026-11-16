@@ -13,7 +13,6 @@ export const registerUser = createAsyncThunk(
 
       return response.data;
     } catch (error) {
-      console.error(error.response.data.message);
     }
   }
 );

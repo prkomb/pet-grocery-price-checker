@@ -1,20 +1,17 @@
-import {
-  Box,
-  Card,
-  Typography,
-  CardContent,
-  CardMedia,
-  Button,
-  Icon,
-} from "@mui/material";
+import { Box, Card, Typography, CardContent, Button } from "@mui/material";
 import { KeyboardBackspace } from "@mui/icons-material";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { getProductsList } from "../store/features/products/productsSlice";
 
 const Categories = () => {
-  const topProducts = useSelector(
-    (state) => state.dummyJson?.products?.productCategories
-  )?.slice(0, 6);
+  const dispatch = useDispatch();
+  const topProducts = useSelector((state) => state?.products?.categories);
+
+  function getCategoryItems(categoryTitle) {
+    dispatch(getProductsList(categoryTitle));
+  }
+
 
   return (
     <Box
@@ -77,12 +74,13 @@ const Categories = () => {
           justifyContent="space-evenly"
           alignItems="center"
         >
-          {topProducts?.map((category) => {
+          {topProducts.map((category) => {
             return (
               <Card
                 component={NavLink}
-                to="/category"
-                key={category.title}
+                to="/category-products"
+                onClick={() => getCategoryItems(category)}
+                key={category}
                 sx={{
                   width: "170px",
                   height: "170px",
@@ -97,11 +95,6 @@ const Categories = () => {
                   },
                 }}
               >
-                <CardMedia title={category.title}>
-                  <Box textAlign="center" fontSize={40}>
-                    {category.icon}
-                  </Box>
-                </CardMedia>
                 <CardContent>
                   <Typography
                     variant="body1"
@@ -110,22 +103,22 @@ const Categories = () => {
                     sx={{
                       fontFamily: "Poppins",
                       fontWeight: "bold",
-                      fontSize: "10px",
+                      fontSize: "15px",
                       textTransform: "capitalize",
                     }}
                   >
-                    {category.title}
+                    {category}
                   </Typography>
 
                   <Typography
                     sx={{
                       mt: "10px",
                       fontFamily: "Poppins",
-                      fontSize: "10px",
+                      fontSize: "50px",
                       textAlign: "center",
                     }}
                   >
-                    {category.description}
+                    🥫
                   </Typography>
                 </CardContent>
               </Card>
