@@ -1,88 +1,79 @@
-import {
-  Box,
-  Typography,
-  InputAdornment,
-  Container,
-  OutlinedInput,
-  IconButton,
-  Button,
-} from "@mui/material";
-import Star from "@/assets/images/Star.svg";
-import BigStar from "@/assets/images/BigStar.svg";
-import { Search } from "@mui/icons-material";
+import SearchRounded from "@mui/icons-material/SearchRounded";
+import PetsRounded from "@mui/icons-material/PetsRounded";
+import ShoppingBasketRounded from "@mui/icons-material/ShoppingBasketRounded";
 import "./HeroSection.css";
-import LeftStartsPair from "./HeroStars/LeftPair";
-import RightStartsPair from "./HeroStars/RigtPair";
+
+const stats = [
+  { value: "Compare", label: "prices across stores" },
+  { value: "Track", label: "price drops" },
+  { value: "Save", label: "on every shop" },
+];
 
 const HeroSection = () => {
   return (
-    <Box
-      component="section"
-      className="hero-section h-[452px]"
-      display="flex"
-      alignItems="center"
-      sx={{ margin: "15px 20px", borderRadius: "16px", position: "relative" }}
+    <section
+      aria-labelledby="hero-title"
+      className="hero-section relative mx-4 mt-4 overflow-hidden rounded-[28px] px-5 py-14 sm:mx-6 sm:py-20 lg:py-24"
     >
-      <LeftStartsPair></LeftStartsPair>
-      <RightStartsPair></RightStartsPair>
+      <div className="hero-blob hero-blob--a" aria-hidden="true" />
+      <div className="hero-blob hero-blob--b" aria-hidden="true" />
 
-      <Container sx={{ width: "780px", maxWidth: "100%" }}>
-        <Box sx={{ width: "759px", maxWidth: "100%" }}>
-          <Typography
-            className="sm: text-2xl"
-            sx={{
-              textAlign: "center",
-              fontSize: { xs: "24px", sm: "32px", md: "40px", lg: "56px" },
+      <div className="relative mx-auto max-w-3xl text-center">
+        <p className="mb-4 inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-1.5 text-sm font-semibold text-white">
+          <ShoppingBasketRounded fontSize="small" aria-hidden="true" />
+          <PetsRounded fontSize="small" aria-hidden="true" />
+          Groceries &amp; pet supplies
+        </p>
 
-              // fontSize: "56px",
-              fontFamily: "Poppins",
-              fontWeight: 600,
-              fontStyle: "italic",
-            }}
-          >
-            Find the Best Grocery Prices in Your Area
-          </Typography>
-        </Box>
+        <h1
+          id="hero-title"
+          className="!text-white text-[clamp(2rem,1.2rem+3.6vw,3.75rem)] font-extrabold leading-[1.08] tracking-tight"
+        >
+          Find the best grocery prices in your area
+        </h1>
+        <p className="mx-auto mt-4 max-w-xl text-base text-teal-50 sm:text-lg">
+          Compare prices across stores in seconds and stop overpaying for
+          everyday essentials.
+        </p>
 
-        <Box className="text-center">
-          <OutlinedInput
-            className="bg-white w-[572px] h-[76px] max-w-[100%]"
-            sx={{
-              borderRadius: "24px",
-              marginX: "8px",
-              marginTop: "79px",
-            }}
-            placeholder="Search for a product (e.g., Milk, Bread)"
-            startAdornment={
-              <InputAdornment position="start">
-                <IconButton>
-                  <Search></Search>
-                </IconButton>
-              </InputAdornment>
-            }
-            endAdornment={
-              <InputAdornment position="end">
-                <Button
-                  variant="outlined"
-                  sx={{
-                    paddingX: "35px",
-                    paddingY: "15px",
-                    borderRadius: "16px",
-                    backgroundColor: "#00FF84",
-                    border: "none",
-                    textTransform: "capitalize",
-                    fontFamily: "Pacifico",
-                    fontSize: "18px",
-                  }}
-                >
-                  Search
-                </Button>
-              </InputAdornment>
-            }
-          ></OutlinedInput>
-        </Box>
-      </Container>
-    </Box>
+        <form
+          role="search"
+          onSubmit={(e) => e.preventDefault()}
+          className="mx-auto mt-8 flex max-w-xl flex-col gap-3 rounded-3xl bg-white p-2 shadow-xl sm:flex-row sm:items-center"
+        >
+          <label htmlFor="hero-search" className="sr-only">
+            Search for a product
+          </label>
+          <div className="flex flex-1 items-center gap-2 px-3">
+            <SearchRounded className="text-primary" aria-hidden="true" />
+            <input
+              id="hero-search"
+              type="search"
+              placeholder="Search a product, e.g. milk, bread"
+              className="h-12 w-full bg-transparent text-base text-ink placeholder:text-slate-500 focus:outline-none"
+            />
+          </div>
+          <button type="submit" className="btn-primary">
+            Search
+          </button>
+        </form>
+
+        <dl className="mt-10 grid grid-cols-3 gap-4 text-white">
+          {stats.map((s) => (
+            <div key={s.label}>
+              <dt className="sr-only">{s.label}</dt>
+              <dd className="font-heading text-2xl font-extrabold sm:text-3xl">
+                {s.value}
+              </dd>
+              <dd className="text-xs text-teal-50 sm:text-sm" aria-hidden="true">
+                {s.label}
+              </dd>
+            </div>
+          ))}
+        </dl>
+
+      </div>
+    </section>
   );
 };
 

@@ -6,7 +6,9 @@ const HeaderLayout = () => {
   return (
     <>
       <Header></Header>
-      <Outlet></Outlet>
+      <main id="main" tabIndex={-1} className="min-h-[60vh] focus:outline-none">
+        <Outlet></Outlet>
+      </main>
       <Footer />
     </>
   );

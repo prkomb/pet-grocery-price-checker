@@ -1,80 +1,21 @@
-import {
-  Card,
-  CardContent,
-  Avatar,
-  Box,
-  Typography,
-  Rating,
-} from "@mui/material";
+import { Avatar, Rating } from "@mui/material";
 
 function TestimonalsCard({ name, location, rating, quote, image }) {
   return (
-    <>
-      <Card
-        sx={{
-          width: "100%",
-          maxWidth: 350,
-          background: "#fff",
-          boxShadow: "0 4px 24px rgba(0,0,0,0.1)",
-          borderRadius: 3,
-
-          p: 3,
-          transition: "transform 0.3s ease",
-          "&:hover": {
-            transform: "translateY(-5px)",
-          },
-        }}
-      >
-        <CardContent>
-          <Box
-            display="flex"
-            justifyContent="center"
-            sx={{ marginBottom: "10px" }}
-          >
-            <Avatar sx={{ textAlign: "center" }} src={image}></Avatar>
-          </Box>
-
-          <Box>
-            <Typography
-              variant="body1"
-              color="initial"
-              textAlign="center"
-              sx={{ fontFamily: "Poppins" }}
-            >
-              {name}
-            </Typography>
-            <Typography
-              variant="body1"
-              color="initial"
-              textAlign="center"
-              sx={{ fontFamily: "Poppins" }}
-            >
-              {location}
-            </Typography>
-            <Box textAlign="center">
-              <Rating
-                defaultValue={rating}
-                readOnly
-                max={rating}
-                sx={{ color: "#FFD700" }}
-              ></Rating>
-            </Box>
-
-            <Typography
-              variant="body1"
-              color="initial"
-              textAlign="center"
-              sx={{
-                fontStyle: "italic",
-                fontWeight: "normal",
-              }}
-            >
-              "{quote}"
-            </Typography>
-          </Box>
-        </CardContent>
-      </Card>
-    </>
+    <figure className="card-lift flex h-full w-full max-w-[350px] flex-col items-center rounded-[var(--radius-card)] border border-border bg-surface p-7 text-center shadow-card">
+      <Avatar alt="" src={image} sx={{ width: 56, height: 56 }} />
+      <Rating
+        value={rating}
+        readOnly
+        max={rating}
+        sx={{ mt: 2, color: "#d97706" }}
+      />
+      <blockquote className="mt-3 text-base text-ink">&ldquo;{quote}&rdquo;</blockquote>
+      <figcaption className="mt-4">
+        <span className="block font-heading font-bold text-ink">{name}</span>
+        <span className="block text-sm text-muted-foreground">{location}</span>
+      </figcaption>
+    </figure>
   );
 }
 

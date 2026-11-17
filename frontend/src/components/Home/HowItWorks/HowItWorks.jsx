@@ -1,67 +1,48 @@
-import { Typography, Box, Card, Icon } from "@mui/material";
-import Grid from "@mui/material/Grid";
-import SearchIcon from "@mui/icons-material/Search";
-import CompareIcon from "@mui/icons-material/Compare";
-import TrackChangesIcon from "@mui/icons-material/TrackChanges";
+import SearchIcon from "@mui/icons-material/SearchRounded";
+import CompareIcon from "@mui/icons-material/CompareArrowsRounded";
+import TrackChangesIcon from "@mui/icons-material/NotificationsActiveRounded";
 import StepCard from "./StepCard";
 
 const features = [
   {
-    id: "1",
-    icon: <SearchIcon className="text-white w-10 h-10" />,
-    title: "Search Product",
-    description: "Quickly find products by name or barcode input.",
-    bg: "linear-gradient(90deg, #6366F1 0%, #8B5CF6 100%)",
+    id: 1,
+    icon: <SearchIcon fontSize="large" aria-hidden="true" />,
+    title: "Search product",
+    description: "Quickly find products by name or barcode.",
   },
   {
     id: 2,
-    icon: <CompareIcon className="text-white w-10 h-10" />,
-    title: "Compare Prices",
-    description: "Compare prices across stores to find the best deal.",
-    bg: "linear-gradient(to right, #3B82F6 0%, #38BDF8 100%);",
+    icon: <CompareIcon fontSize="large" aria-hidden="true" />,
+    title: "Compare prices",
+    description: "See prices across stores side by side and spot the best deal.",
   },
   {
     id: 3,
-    icon: <TrackChangesIcon className="text-white w-10 h-10" />,
-    title: "Track & Save",
+    icon: <TrackChangesIcon fontSize="large" aria-hidden="true" />,
+    title: "Track & save",
     description: "Set alerts and track price drops for saved products.",
-    bg: "linear-gradient(to right, #10B981 0%, #34D399 100%);",
   },
 ];
 
 const HowItWorks = () => {
   return (
-    <Box className="container mx-auto">
-      <Typography
-        className="text-center font-bold"
-        sx={{ fontFamily: "Poppins", fontSize: "28px", marginTop: "35px" }}
-      >
-        How it works?
-      </Typography>
+    <section
+      aria-labelledby="how-title"
+      className="mx-auto max-w-6xl px-4 py-16 sm:px-6"
+    >
+      <div className="text-center">
+        <span className="section-eyebrow">Simple as 1-2-3</span>
+        <h2 id="how-title" className="section-title mt-2">
+          How it works
+        </h2>
+      </div>
 
-      <Box sx={{ display: "flex", justifyContent: "center" }}>
-        <Grid
-          container
-          justifyContent="center"
-          alignItems="center"
-          spacing={6}
-          sx={{ marginTop: "30px" }}
-        >
-          {features.map(({ id, title, description, icon, bg }) => {
-            return (
-              <StepCard
-                key={id}
-                id={id}
-                title={title}
-                description={description}
-                icon={icon}
-                bg={bg}
-              ></StepCard>
-            );
-          })}
-        </Grid>
-      </Box>
-    </Box>
+      <ol className="mt-10 grid gap-6 md:grid-cols-3">
+        {features.map((f, i) => (
+          <StepCard key={f.id} step={i + 1} {...f} />
+        ))}
+      </ol>
+    </section>
   );
 };
 

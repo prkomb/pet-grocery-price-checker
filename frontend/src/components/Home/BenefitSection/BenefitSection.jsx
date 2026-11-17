@@ -1,52 +1,55 @@
-import { Typography } from "@mui/material";
+import SavingsRounded from "@mui/icons-material/SavingsRounded";
+import BoltRounded from "@mui/icons-material/BoltRounded";
+import HowToRegRounded from "@mui/icons-material/HowToRegRounded";
 
 const benefits = [
   {
-    icon: "🐝",
-    title: "Save up to 30%",
+    icon: <SavingsRounded aria-hidden="true" />,
+    title: "Save on every shop",
     description: "Compare prices and find the best deals every day.",
   },
   {
-    icon: "⚡",
-    title: "Real-Time Updates",
-    description: "Get fresh data from stores with no delays.",
+    icon: <BoltRounded aria-hidden="true" />,
+    title: "Fresh price data",
+    description: "Prices are pulled from stores and kept up to date.",
   },
   {
-    icon: "🙌",
-    title: "Quick Sign-Up, Full Access",
+    icon: <HowToRegRounded aria-hidden="true" />,
+    title: "Quick sign-up, full access",
     description:
-      "Create an account in seconds and unlock personalized features",
+      "Create an account in seconds and unlock personalised features.",
   },
 ];
 
 export default function WhyPriceHunt() {
   return (
-    <section className="py-16 px-4 text-center bg-white">
-      <Typography
-        className=" md:text-3xl font-bold text-gray-800 mb-12"
-        sx={{ fontFamily: "Poppins", fontWeight: "600" }}
-      >
-        Why PriceHunt?
-      </Typography>
+    <section
+      aria-labelledby="why-title"
+      className="bg-surface px-4 py-16 sm:px-6"
+    >
+      <div className="mx-auto max-w-6xl">
+        <div className="text-center">
+          <span className="section-eyebrow">Why us</span>
+          <h2 id="why-title" className="section-title mt-2">
+            Why PriceHunt?
+          </h2>
+        </div>
 
-      <ul className="grid-cols-1 md:grid-cols-4  gap-4 max-w-6xl mx-auto mt-15 flex justify-center m-auto flex-wrap">
-        {benefits.map((item, index) => (
-          <li
-            key={index}
-            className="bg-white rounded-2xl shadow-md p-8 flex flex-col items-center justify-start text-center hover:shadow-lg transition"
-          >
-            <Typography
-              className="text-lg font-bold text-gray-900 mb-3"
-              sx={{ fontFamily: "Poppins", fontWeight: "600" }}
+        <ul className="mt-10 grid gap-6 md:grid-cols-3">
+          {benefits.map(({ icon, title, description }) => (
+            <li
+              key={title}
+              className="card-lift flex flex-col items-start gap-4 rounded-[var(--radius-card)] border border-border bg-background p-7"
             >
-              {item.icon} {item.title}
-            </Typography>
-            <p className="text-gray-500 mt-[85px] text-sm w-[224px]  leading-relaxed">
-              {item.description}
-            </p>
-          </li>
-        ))}
-      </ul>
+              <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-accent-soft text-accent">
+                {icon}
+              </span>
+              <h3 className="text-lg font-bold">{title}</h3>
+              <p className="text-base text-muted-foreground">{description}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
     </section>
   );
 }

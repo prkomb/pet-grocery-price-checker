@@ -1,206 +1,142 @@
 import "@/components/Home/Header/Header.css";
-import { NavLink } from "react-router-dom";
-import { Menu, MenuItem, ListItem } from "@mui/material";
-
-import {
-  Box,
-  AppBar,
-  Toolbar,
-  Typography,
-  OutlinedInput,
-  InputAdornment,
-  IconButton,
-  Button,
-  Avatar,
-} from "@mui/material";
-import { Search, Logout, Person, Bookmark } from "@mui/icons-material";
-import MenuIcon from "@mui/icons-material/Menu";
+import { NavLink, useNavigate } from "react-router-dom";
+import { Menu, MenuItem, ListItemIcon, Avatar } from "@mui/material";
+import SearchRounded from "@mui/icons-material/SearchRounded";
+import LogoutRounded from "@mui/icons-material/LogoutRounded";
+import PersonRounded from "@mui/icons-material/PersonRounded";
+import BookmarkRounded from "@mui/icons-material/BookmarkRounded";
+import KeyboardArrowDownRounded from "@mui/icons-material/KeyboardArrowDownRounded";
 import Brand from "@/assets/images/Brand.svg";
 import CustomDrawer from "./Drawer";
 import { useRef, useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { logout } from "../../../store/features/logout";
 
 const Header = () => {
-  const anchorElement = useRef();
+  const anchorElement = useRef(null);
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
-
-  const handleClose = () => {
-    setOpen(false);
-  };
 
   const dispatch = useDispatch();
   const user = useSelector((state) => state.login.user?.payload);
 
   const handleLogout = () => {
+    setOpen(false);
     dispatch(logout({ navigate }));
   };
 
+  const displayName =
+    user?.profile?.name && user?.profile?.surname
+      ? `${user.profile.name} ${user.profile.surname}`
+      : user?.email;
+
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" sx={{ paddingY: "20px" }} color="">
-        <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-            component={NavLink}
-            to="/"
-          >
-            <Box component="img" src={Brand}></Box>
-          </IconButton>
-          <Typography sx={{ ml: 1 }} className="text-poppins-800">
+    <header className="sticky top-0 z-40 border-b border-border/70 bg-white/85 backdrop-blur">
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-2 focus:rounded-lg focus:bg-primary focus:px-4 focus:py-2 focus:text-white"
+      >
+        Skip to main content
+      </a>
+
+      <div className="mx-auto flex h-[72px] max-w-7xl items-center gap-4 px-4 sm:px-6">
+        <NavLink
+          to="/"
+          aria-label="PriceHunt home"
+          className="flex shrink-0 items-center gap-2"
+        >
+          <img src={Brand} alt="" className="h-9 w-9" />
+          <span className="font-heading text-xl font-extrabold tracking-tight text-ink">
             PriceHunt
-          </Typography>
-          <Box sx={{ flexGrow: 1 }}></Box>
+          </span>
+        </NavLink>
 
-          <OutlinedInput
-            sx={{
-              width: "502px",
-              height: "49px",
-              borderRadius: "80px",
-              backgroundColor: "#efefef",
-              display: {
-                xs: "none",
-                lg: "flex",
-              },
-            }}
-            size="small"
-            startAdornment={
-              <InputAdornment position="start">
-                <IconButton>
-                  <Search></Search>
-                </IconButton>
-              </InputAdornment>
-            }
+        <form
+          role="search"
+          onSubmit={(e) => e.preventDefault()}
+          className="mx-auto hidden w-full max-w-lg items-center gap-2 rounded-full bg-muted px-4 focus-within:ring-2 focus-within:ring-primary lg:flex"
+        >
+          <SearchRounded className="text-muted-foreground" aria-hidden="true" />
+          <label htmlFor="header-search" className="sr-only">
+            Search for a product
+          </label>
+          <input
+            id="header-search"
+            type="search"
             placeholder="Search for a product (e.g., Milk, Bread)"
-          ></OutlinedInput>
+            className="h-11 w-full bg-transparent text-sm text-ink placeholder:text-slate-600 focus:outline-none"
+          />
+        </form>
 
-          <Box sx={{ flexGrow: 1 }}></Box>
-
+        <div className="ml-auto flex items-center gap-2 lg:ml-0">
           {user ? (
-            <>
-              <Box sx={{ display: { xs: "none", sm: "flex" } }}>
-                <Box
-                  display="flex"
-                  alignItems="center"
-                  aria-controls={open && "basic-menu"}
-                  gap={2}
-                  ref={anchorElement}
-                  onClick={setOpen}
-                >
-                  <Avatar
-                    src={`https://ui-avatars.com/api/?name=${user.profile?.name}+${user.profile?.surname}&background=34D399`}
-                  ></Avatar>
-                  <Typography variant="body1" color="initial">
-                    {user.profile?.name && user.profile?.surname
-                      ? `${user.profile?.name} ${user.profile?.surname}`
-                      : user?.email}
-                  </Typography>
-                </Box>
+            <div className="hidden sm:block">
+              <button
+                ref={anchorElement}
+                type="button"
+                onClick={() => setOpen(true)}
+                aria-haspopup="menu"
+                aria-expanded={open}
+                aria-controls={open ? "user-menu" : undefined}
+                className="flex min-h-11 items-center gap-2 rounded-full py-1 pl-1 pr-3 hover:bg-muted"
+              >
+                <Avatar
+                  alt=""
+                  sx={{ width: 36, height: 36 }}
+                  src={`https://ui-avatars.com/api/?name=${user.profile?.name}+${user.profile?.surname}&background=0f766e&color=fff`}
+                />
+                <span className="max-w-[160px] truncate text-sm font-semibold text-ink">
+                  {displayName}
+                </span>
+                <KeyboardArrowDownRounded fontSize="small" aria-hidden="true" />
+              </button>
 
-                <Menu
-                  open={open}
-                  anchorEl={anchorElement.current}
-                  onClose={handleClose}
-                >
-                  <MenuItem>
-                    <Button
-                      component={NavLink}
-                      to="/profile"
-                      sx={{
-                        textTransform: "capitalize",
-                        fontFamily: "Poppins",
-                      }}
-                      startIcon={<Person fontSize="small" />}
-                      fullWidth
-                    >
-                      Profile
-                    </Button>
-                  </MenuItem>
-                  <MenuItem>
-                    <Button fullWidth startIcon={<Bookmark fontSize="small" />}>
-                      <Typography sx={{ textTransform: "capitalize" }}>
-                        Saved
-                      </Typography>
-                    </Button>
-                  </MenuItem>
-                  <MenuItem>
-                    <Button
-                      fullWidth
-                      startIcon={<Logout fontSize="small" />}
-                      onClick={() => handleLogout()}
-                      sx={{
-                        fontSize: "Poppins",
-                        fontWeight: "bold",
-                        textTransform: "capitalize",
-                        color: "red",
-                      }}
-                    >
-                      Logout
-                    </Button>
-                  </MenuItem>
-                </Menu>
-              </Box>
-            </>
+              <Menu
+                id="user-menu"
+                open={open}
+                anchorEl={anchorElement.current}
+                onClose={() => setOpen(false)}
+                slotProps={{ paper: { sx: { mt: 1, borderRadius: 3, minWidth: 190 } } }}
+              >
+                <MenuItem component={NavLink} to="/profile" onClick={() => setOpen(false)}>
+                  <ListItemIcon>
+                    <PersonRounded fontSize="small" />
+                  </ListItemIcon>
+                  Profile
+                </MenuItem>
+                <MenuItem onClick={() => setOpen(false)}>
+                  <ListItemIcon>
+                    <BookmarkRounded fontSize="small" />
+                  </ListItemIcon>
+                  Saved
+                </MenuItem>
+                <MenuItem onClick={handleLogout} sx={{ color: "error.main" }}>
+                  <ListItemIcon sx={{ color: "inherit" }}>
+                    <LogoutRounded fontSize="small" />
+                  </ListItemIcon>
+                  Logout
+                </MenuItem>
+              </Menu>
+            </div>
           ) : (
-            <Box display="flex">
-              <Button
-                component={NavLink}
+            <div className="hidden items-center gap-2 sm:flex">
+              <NavLink
                 to="/login"
-                variant="outlined"
-                sx={{
-                  mr: 2,
-                  width: "91px",
-                  height: "54px",
-                  borderRadius: "76px",
-                  color: "#170f49",
-                  border: "1px solid #d9dbe9",
-                  display: {
-                    xs: "none",
-                    sm: "block",
-                    md: "flex",
-                  },
-                }}
+                className="inline-flex min-h-11 items-center rounded-full px-5 font-heading font-bold text-ink hover:bg-muted"
               >
                 Login
-              </Button>
-
-              <Button
-                variant="outlined"
-                className="text-poppins-800"
-                component={NavLink}
-                to="/register"
-                sx={{
-                  backgroundColor: "#34d399",
-                  fontSize: "16px",
-                  borderRadius: "40px",
-                  width: "153px",
-                  height: "49px",
-                  color: "white",
-                  border: "none",
-                  textTransform: "capitalize",
-                  display: {
-                    xs: "none",
-                    sm: "none",
-                    md: "flex",
-                  },
-                }}
-              >
+              </NavLink>
+              <NavLink to="/register" className="btn-primary">
                 Get started
-              </Button>
-            </Box>
+              </NavLink>
+            </div>
           )}
 
-          <CustomDrawer userData={user?.profile}></CustomDrawer>
-        </Toolbar>
-      </AppBar>
-    </Box>
+          <CustomDrawer userData={user?.profile} />
+        </div>
+      </div>
+    </header>
   );
 };
 

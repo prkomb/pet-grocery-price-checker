@@ -8,6 +8,7 @@ import { PrismaClient } from "@prisma/client";
 import { getHashPassword } from "../utils/getHashPassword.js";
 import { checkEnvironment } from "../utils/checkEnvironment.js";
 import userRouter from "./user.js"
+import testimonialsRouter from "./testimonials.js"
 import profileRouter from './profile.js'
 import productsRouter from './products.js'
 
@@ -33,6 +34,7 @@ app.use(express.json());
 app.set('views', path.join(__dirname, '..' ,'views'))
 app.set('view engine', 'ejs');
 app.use(userRouter)
+app.use(testimonialsRouter)
 app.use(profileRouter)
 app.use(productsRouter)
 

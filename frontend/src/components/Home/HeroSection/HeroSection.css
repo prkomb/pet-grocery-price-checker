@@ -1,10 +1,26 @@
-@import "tailwindcss";
-
-@theme {
-  --hero-section-color: #1b1f3b;
+.hero-section {
+  background: linear-gradient(135deg, #0f766e 0%, #0d9488 55%, #115e59 100%);
+  color: white;
 }
 
-.hero-section {
-  background-color: var(--hero-section-color);
-  color: white;
+.hero-blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(60px);
+  opacity: 0.45;
+  pointer-events: none;
+}
+.hero-blob--a {
+  width: 340px;
+  height: 340px;
+  background: #fb923c;
+  top: -120px;
+  right: -80px;
+}
+.hero-blob--b {
+  width: 300px;
+  height: 300px;
+  background: #5eead4;
+  bottom: -140px;
+  left: -90px;
 }

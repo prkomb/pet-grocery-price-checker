@@ -1,50 +1,42 @@
-import { Card, CardContent, Typography, Button, Box } from "@mui/material";
 import { NavLink } from "react-router-dom";
+import ArrowForwardRounded from "@mui/icons-material/ArrowForwardRounded";
 import CategoryCard from "./CategoryCard";
 
 import { useSelector } from "react-redux";
 
 export default function TopCategories() {
-  const topCategories = useSelector(
-    (state) => state?.products?.categories
+  const topCategories = (
+    useSelector((state) => state?.products?.categories) ?? []
   ).slice(0, 4);
 
-
   return (
-    <Box>
-      <h2 className="text-2xl text-center mt-[64px]">Top Categories</h2>
-
-      <div className="flex justify-center gap-6 mt-[58px] flex-wrap">
-        {topCategories?.map((category) => {
-          return (
-            <CategoryCard key={category} category={category}></CategoryCard>
-          );
-        })}
-      </div>
-
-      <div className="text-center mt-10">
-        <Button
-          component={NavLink}
+    <section
+      aria-labelledby="categories-title"
+      className="mx-auto max-w-6xl px-4 py-16 sm:px-6"
+    >
+      <div className="flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <span className="section-eyebrow">Browse</span>
+          <h2 id="categories-title" className="section-title mt-2 !text-left">
+            Top categories
+          </h2>
+        </div>
+        <NavLink
           to="/categories"
-          sx={{
-            boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.25)",
-            px: 2.25,
-            py: 0.875,
-            color: "black",
-            fontFamily: "Poppins",
-            textTransform: "none",
-            cursor: "pointer",
-            transition: "all 0.2s linear",
-            "&:hover": {
-              bgcolor: "#34D399",
-              boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.25)",
-              color: "white",
-            },
-          }}
+          className="inline-flex min-h-11 items-center gap-1 font-heading font-bold text-primary hover:text-primary-hover"
         >
-          Show More
-        </Button>
+          Show all
+          <ArrowForwardRounded fontSize="small" aria-hidden="true" />
+        </NavLink>
       </div>
-    </Box>
+
+      <ul className="mt-8 grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
+        {topCategories.map((category) => (
+          <li key={category}>
+            <CategoryCard category={category} />
+          </li>
+        ))}
+      </ul>
+    </section>
   );
 }

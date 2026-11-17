@@ -1,46 +1,65 @@
-import { Box, Typography, Container } from "@mui/material";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { Box, Typography, Container, Button } from "@mui/material";
+import ReviewDialog from "./ReviewDialog";
 import TestimonalsCard from "./TestimonalsCard";
-import testimonials from "./TestimonalsData";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Keyboard, Autoplay } from "swiper/modules";
+import { Keyboard, Autoplay } from "swiper/modules";
 import "swiper/css";
-import "swiper/css/navigation";
 
 const Testimonals = () => {
-  return (
-    <Box>
-      <Container maxWidth="lg">
-        <Typography
-          variant="body1"
-          color="initial"
-          textAlign="center"
-          sx={{
-            fontFamily: "Poppins",
-            fontWeight: 600,
-            color: "#AAAAAA",
-          }}
-        >
-          What are People saying
-        </Typography>
+  const [open, setOpen] = useState(false);
+  const [fetched, setFetched] = useState([]);
 
+  useEffect(() => {
+    axios
+      .get("/api/testimonials")
+      .then(({ data }) => setFetched(data.testimonials ?? []))
+      .catch(() => {});
+  }, []);
+
+  const items = fetched;
+
+  return (
+    <section aria-labelledby="reviews-title" className="px-4 py-16 sm:px-6">
+      <Container maxWidth="lg" disableGutters>
+        <div className="text-center">
+          <span className="section-eyebrow">Reviews</span>
+          <h2 id="reviews-title" className="section-title mt-2">
+            What people are saying
+          </h2>
+        </div>
+
+        {items.length === 0 && (
+          <Typography textAlign="center" sx={{ py: 5, color: "text.secondary" }}>
+            No reviews yet. Be the first to leave one!
+          </Typography>
+        )}
+
+        {items.length > 0 && (
         <Swiper
-          slidesPerView={3}
-          modules={[Navigation, Keyboard, Autoplay]}
+          modules={[Keyboard, Autoplay]}
+          slidesPerView={1}
+          spaceBetween={24}
+          loop={items.length > 3}
+          grabCursor
+          a11y={{ enabled: true }}
           keyboard={{ enabled: true, pageUpDown: true }}
-          speed={1000}
+          speed={700}
           autoplay={{
-            delay: 1000,
+            delay: 3500,
             disableOnInteraction: false,
+            pauseOnMouseEnter: true,
           }}
           breakpoints={{
-            320: { slidesPerView: 1 },
             640: { slidesPerView: 2 },
             1024: { slidesPerView: 3 },
           }}
+          style={{ padding: "24px 8px 32px" }}
         >
-          {testimonials.map((testimonial, index) => (
-            <SwiperSlide key={index} className="mt-2 flex">
-              <Box display="flex">
+          {items.map((testimonial, index) => (
+            <SwiperSlide key={index} style={{ height: "auto" }}>
+              <Box display="flex" justifyContent="center" height="100%">
                 <TestimonalsCard
                   image={testimonial.image}
                   name={testimonial.name}
@@ -52,8 +71,16 @@ const Testimonals = () => {
             </SwiperSlide>
           ))}
         </Swiper>
+        )}
+
+        <Box textAlign="center" pb={3}>
+          <Button variant="contained" onClick={() => setOpen(true)}>
+            Leave a review
+          </Button>
+        </Box>
+        <ReviewDialog open={open} onClose={() => setOpen(false)} />
       </Container>
-    </Box>
+    </section>
   );
 };
 

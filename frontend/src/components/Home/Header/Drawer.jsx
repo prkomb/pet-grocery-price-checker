@@ -1,5 +1,5 @@
 import { Drawer, IconButton } from "@mui/material";
-import { Menu } from "@mui/icons-material";
+import MenuRounded from "@mui/icons-material/MenuRounded";
 import ResponsiveHeader from "./ResponsiveHeader/ResponsiveHeader";
 import { useState } from "react";
 
@@ -13,13 +13,20 @@ const CustomDrawer = ({ userData }) => {
   return (
     <>
       <IconButton
-        sx={{ display: { xs: "block", sm: "none" } }}
+        aria-label="Open menu"
+        aria-expanded={open}
+        sx={{ display: { xs: "inline-flex", sm: "none" } }}
         onClick={() => setOpen(true)}
       >
-        <Menu></Menu>
+        <MenuRounded />
       </IconButton>
 
-      <Drawer anchor="top" open={open}>
+      <Drawer
+        anchor="top"
+        open={open}
+        onClose={closeDrawer}
+        slotProps={{ paper: { sx: { borderRadius: "0 0 24px 24px" } } }}
+      >
         <ResponsiveHeader
           closeDrawer={closeDrawer}
           userName={userData?.name}

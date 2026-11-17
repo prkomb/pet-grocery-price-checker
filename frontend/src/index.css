@@ -1,6 +1,132 @@
 @import "tailwindcss";
 
-.text-poppins-800 {
-  font-family: "Poppins", sans-serif;
-  font-weight: bold;
+/* PriceHunt design tokens (ui-ux-pro-max: caring teal + warm orange CTA).
+   Text/background pairs checked for WCAG AA 4.5:1. */
+@theme {
+  --color-primary: #0f766e;
+  --color-primary-hover: #115e59;
+  --color-primary-soft: #ccfbf1;
+  --color-secondary: #14b8a6;
+  --color-accent: #c2410c;
+  --color-accent-hover: #9a3412;
+  --color-accent-soft: #ffedd5;
+  --color-background: #f0fdfa;
+  --color-surface: #ffffff;
+  --color-foreground: #134e4a;
+  --color-muted: #e8f1f4;
+  --color-muted-foreground: #475569;
+  --color-border: #99f6e4;
+  --color-danger: #dc2626;
+  --color-ink: #0f2e2b;
+
+  --font-heading: "Manrope Variable", "Inter Variable", system-ui, sans-serif;
+  --font-body: "Inter Variable", system-ui, sans-serif;
+
+  --radius-card: 1.25rem;
+  --shadow-card: 0 1px 2px rgb(19 78 74 / 0.06), 0 8px 24px rgb(19 78 74 / 0.08);
+  --shadow-card-hover: 0 2px 4px rgb(19 78 74 / 0.08), 0 16px 36px rgb(19 78 74 / 0.14);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-heading);
+  color: var(--color-ink);
+  text-wrap: balance;
+}
+
+/* Keep keyboard focus always visible */
+:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+a,
+button,
+[role="button"] {
+  cursor: pointer;
+}
+
+/* Shared helpers */
+.section-title {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: clamp(1.5rem, 1.1rem + 1.6vw, 2.25rem);
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+  text-align: center;
+}
+
+.section-eyebrow {
+  display: inline-block;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+.price {
+  font-variant-numeric: tabular-nums;
+}
+
+.card-lift {
+  transition: transform 200ms ease-out, box-shadow 200ms ease-out;
+}
+.card-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 0.625rem 1.5rem;
+  border-radius: 9999px;
+  background: var(--color-accent);
+  color: #fff;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  transition: background-color 200ms ease-out, transform 200ms ease-out;
+}
+.btn-primary:hover {
+  background: var(--color-accent-hover);
+}
+.btn-primary:active {
+  transform: scale(0.97);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  .card-lift:hover {
+    transform: none;
+  }
+}
+
+.auth-bg {
+  background: linear-gradient(135deg, #0f766e 0%, #14b8a6 60%, #fb923c 130%);
 }

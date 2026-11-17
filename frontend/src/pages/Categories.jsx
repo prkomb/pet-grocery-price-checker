@@ -1,147 +1,55 @@
-import { Box, Card, Typography, CardContent, Button } from "@mui/material";
-import { KeyboardBackspace } from "@mui/icons-material";
-import { useSelector, useDispatch } from "react-redux";
+import ArrowBackRounded from "@mui/icons-material/ArrowBackRounded";
+import CategoryRounded from "@mui/icons-material/CategoryRounded";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { getProductsList } from "../store/features/products/productsSlice";
 
 const Categories = () => {
   const dispatch = useDispatch();
-  const topProducts = useSelector((state) => state?.products?.categories);
+  const categories = useSelector((state) => state?.products?.categories) ?? [];
 
   function getCategoryItems(categoryTitle) {
     dispatch(getProductsList(categoryTitle));
   }
 
-
   return (
-    <Box
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      sx={(theme) => ({
-        height: { xs: "100%", md: "100vh" },
-
-        backgroundImage: `linear-gradient(${theme.palette.brandColor.royalBlue}, ${theme.palette.brandColor.teal})`,
-      })}
-    >
-      <Box
-        sx={{
-          width: "50%",
-          maxWidth: "100%",
-          height: "100dvh",
-          maxHeight: "100vh",
-        }}
+    <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 md:py-14">
+      <NavLink
+        to="/home"
+        className="inline-flex min-h-11 items-center gap-1 font-heading font-bold text-primary hover:text-primary-hover"
       >
-        <Typography
-          variant="body1"
-          textAlign="center"
-          gap={2}
-          sx={{ fontFamily: "Poppins", fontWeight: "bold" }}
-          mt={3}
-        >
-          <Typography
-            component="span"
-            variant="body1"
-            mr={1}
-            sx={(theme) => ({
-              color: theme.palette.BrandTitle.mainColor,
-            })}
-          >
-            PriceHunt
-          </Typography>
-          Categories
-        </Typography>
-        <Box
-          mt={2}
-          sx={{
-            border: "1px solid #FFFFFF",
-            borderRadius: "12px",
-            overflowY: "scroll",
-            height: "475px",
-            scrollbarWidth: "none",
-            msOverflowStyle: "none",
-            "&::-webkit-scrollbar": {
-              display: "none",
-            },
-          }}
-          p={2}
-          mb={2}
-          mx={2}
-          gap={10}
-          display="flex"
-          flexWrap="wrap"
-          flexBasis={3}
-          justifyContent="space-evenly"
-          alignItems="center"
-        >
-          {topProducts.map((category) => {
-            return (
-              <Card
-                component={NavLink}
-                to="/category-products"
-                onClick={() => getCategoryItems(category)}
-                key={category}
-                sx={{
-                  width: "170px",
-                  height: "170px",
-                  textAlign: "center",
-                  backgroundColor: "#E5E7EB",
-                  borderRadius: "16px",
-                  transition: "all 2s linear ease",
-                  cursor: "pointer",
-                  "&:hover": {
-                    backgroundColor: "white",
-                    boxShadow: "0px 0px 19px 4px rgba(0,0,0,0.75)",
-                  },
-                }}
-              >
-                <CardContent>
-                  <Typography
-                    variant="body1"
-                    color="initial"
-                    textAlign="center"
-                    sx={{
-                      fontFamily: "Poppins",
-                      fontWeight: "bold",
-                      fontSize: "15px",
-                      textTransform: "capitalize",
-                    }}
-                  >
-                    {category}
-                  </Typography>
+        <ArrowBackRounded fontSize="small" aria-hidden="true" />
+        Back home
+      </NavLink>
 
-                  <Typography
-                    sx={{
-                      mt: "10px",
-                      fontFamily: "Poppins",
-                      fontSize: "50px",
-                      textAlign: "center",
-                    }}
-                  >
-                    🥫
-                  </Typography>
-                </CardContent>
-              </Card>
-            );
-          })}
-        </Box>
-        <Box textAlign="center" mt={4}>
-          <Button
-            component={NavLink}
-            to="/home"
-            startIcon={<KeyboardBackspace />}
-            variant="contained"
-            fullWidth
-            sx={(theme) => ({
-              color: "black",
-              bgcolor: `${theme.palette.BrandTitle.mainColor}`,
-            })}
-          >
-            Back Home
-          </Button>
-        </Box>
-      </Box>
-    </Box>
+      <header className="mb-10 mt-4 text-center">
+        <h1 className="text-[clamp(1.75rem,1.2rem+2vw,2.75rem)] font-extrabold tracking-tight">
+          <span className="text-primary">PriceHunt</span> categories
+        </h1>
+        <p className="mt-2 text-base text-muted-foreground">
+          Pick a category to compare prices across stores.
+        </p>
+      </header>
+
+      <ul className="grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-6 md:grid-cols-4">
+        {categories.map((category) => (
+          <li key={category}>
+            <NavLink
+              to="/category-products"
+              onClick={() => getCategoryItems(category)}
+              className="card-lift flex h-full flex-col items-center gap-3 rounded-[var(--radius-card)] border border-border bg-surface p-6 text-center shadow-card"
+            >
+              <span className="flex h-16 w-16 items-center justify-center rounded-2xl bg-primary-soft text-primary">
+                <CategoryRounded fontSize="large" aria-hidden="true" />
+              </span>
+              <span className="font-heading text-base font-bold capitalize text-ink">
+                {category}
+              </span>
+            </NavLink>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 };
 

@@ -51,6 +51,18 @@ model Profile {
   user   User @relation(fields: [userId], references: [id])
 }
 
+model Testimonial {
+  id        Int      @id @default(autoincrement())
+  name      String
+  location  String
+  quote     String
+  rating    Int
+  approved  Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@index([approved, createdAt])
+}
+
 model InviteCode {
   code      String    @id
   isUsed    Boolean   @default(false)

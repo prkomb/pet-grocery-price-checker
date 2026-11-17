@@ -66,7 +66,7 @@ export default createBrowserRouter([
     loader() {
       return {
         title: "Create Account",
-        buttonText: "Sing Up",
+        buttonText: "Sign Up",
         bottomText: "Already have an account?",
         bottomLinkText: "Login",
         bottomLinkHref: "/login",

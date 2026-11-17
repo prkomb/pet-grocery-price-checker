@@ -1,253 +1,196 @@
+import { useState } from "react";
 import {
-  Stack,
-  Box,
-  Typography,
-  FormLabel,
-  FormControl,
-  TextField,
-  FormGroup,
-  FormControlLabel,
+  Alert,
   Checkbox,
-  Button,
-  FormHelperText,
+  CircularProgress,
+  FormControlLabel,
+  IconButton,
+  InputAdornment,
+  Stack,
+  TextField,
 } from "@mui/material";
-import { ChevronLeft } from "@mui/icons-material";
-
+import {
+  ChevronLeft,
+  Visibility,
+  VisibilityOff,
+} from "@mui/icons-material";
 import {
   useLoaderData,
-  useNavigate,
   useLocation,
+  useNavigate,
   NavLink,
 } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
-
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 
 import { loginUser } from "../store/features/login/loginThunk";
 import { registerUser } from "../store/features/register/registerThunk";
 import { loginSchema } from "../helpers/yupHandler/loginFormValidation";
+import registerSchema from "../helpers/yupHandler/registerFormValidation";
+import Brand from "@/assets/images/Brand.svg";
 
 function AuthForm() {
   const navigate = useNavigate();
-  const location = useLocation().pathname;
+  const dispatch = useDispatch();
+  const isRegister = useLocation().pathname === "/register";
 
   const { title, buttonText, bottomText, bottomLinkHref, bottomLinkText } =
     useLoaderData();
+
+  const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [serverError, setServerError] = useState("");
+  const [success, setSuccess] = useState("");
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ resolver: yupResolver(loginSchema) });
-  const dispatch = useDispatch();
+  } = useForm({
+    resolver: yupResolver(isRegister ? registerSchema : loginSchema),
+  });
 
-  const onSaveForm = (data) => {
-    if (location == "/register") {
-      dispatch(registerUser({ email: data.email, password: data.password }));
-    } else if (location == "/login") {
-      dispatch(loginUser({ email: data.email, password: data.password }));
-      navigate("/home");
+  const onSaveForm = async ({ email, password }) => {
+    setServerError("");
+    setSuccess("");
+    setLoading(true);
+
+    try {
+      if (isRegister) {
+        await dispatch(registerUser({ email, password })).unwrap();
+        setSuccess(
+          "Account created. Check your email to confirm it, then log in."
+        );
+      } else {
+        await dispatch(loginUser({ email, password })).unwrap();
+        navigate("/home");
+      }
+    } catch (error) {
+      setServerError(error?.message || "Something went wrong. Try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
-  const refreshPage = ({ to }) => {
-    navigate("/refresh");
-    setTimeout(() => {
-      navigate(to, { replace: true });
-    }, 50);
-  };
-
   return (
-    <>
-      <Box
-        sx={{
-          height: "100vh",
-
-          backgroundImage: "linear-gradient(#1E40AF, #34D399)",
-        }}
-      >
-        <Stack
-          direction="row"
-          justifyContent="space-around"
-          alignItems="center"
-          flexWrap="wrap"
-          sx={{ minHeight: "100vh", px: 5 }}
+    <div className="auth-bg flex min-h-dvh items-center justify-center px-4 py-8">
+      <main className="w-full max-w-[440px] rounded-[28px] bg-surface p-6 shadow-[0_24px_60px_rgb(15_46_43/0.28)] sm:p-10">
+        <NavLink
+          to="/home"
+          className="-ml-2 inline-flex min-h-11 items-center gap-1 rounded-full px-2 text-sm font-semibold text-muted-foreground hover:text-primary"
         >
-          <Box sx={{ maxWidth: "400px", width: "100%" }}>
-            <Typography
-              variant="h2"
-              sx={{
-                fontFamily: "Poppins",
-                fontWeight: 700,
-                fontSize: "48px",
-                mb: 4,
-                color: "white",
-                textAlign: "center",
-              }}
-            >
-              {title}
-            </Typography>
+          <ChevronLeft fontSize="small" aria-hidden="true" />
+          Back to home
+        </NavLink>
 
-            <Button
-              component={NavLink}
-              to="/home"
-              variant="text"
-              disableRipple
-              disableFocusRipple
-              sx={{
-                color: "rgba(255, 255, 255, 0.85)",
-                marginBottom: "23px",
-                fontSize: "13px",
-                textTransform: "capitalize",
-                "&:hover": {
-                  color: "white",
-                },
+        <div className="mb-1 mt-2 flex items-center gap-2">
+          <img src={Brand} alt="" width={30} height={30} />
+          <span className="font-heading text-lg font-extrabold text-ink">
+            PriceHunt
+          </span>
+        </div>
 
-                "& .MuiButton-startIcon": {
-                  transition: "transform 0.3s ease, opacity 3s ease",
-                  opacity: 1,
-                },
+        <h1 className="mb-6 text-[clamp(1.75rem,1.4rem+1.4vw,2.25rem)] font-extrabold tracking-tight">
+          {title}
+        </h1>
 
-                "&:hover .MuiButton-startIcon": {
-                  transform: "translateX(-10px)", // уезжает влево
-                  opacity: 0, // исчезает
-                },
-              }}
-              startIcon={<ChevronLeft />}
-            >
-              Back to Home
-            </Button>
+        <div aria-live="polite">
+          {serverError && (
+            <Alert severity="error" sx={{ mb: 2 }}>
+              {serverError}
+            </Alert>
+          )}
+          {success && (
+            <Alert severity="success" sx={{ mb: 2 }}>
+              {success}
+            </Alert>
+          )}
+        </div>
 
-            <Stack
-              component="form"
-              spacing={3}
-              onSubmit={handleSubmit(onSaveForm)}
-            >
-              <FormControl fullWidth>
-                <FormLabel sx={{ mb: 1, color: "white" }}>Email</FormLabel>
-                <TextField
-                  size="small"
-                  {...register("email")}
-                  name="email"
-                  placeholder="Enter your email"
-                  variant="outlined"
-                  fullWidth
-                  sx={{
-                    background: "linear-gradient(#10B981, #34D399)",
-                    borderRadius: "10px",
-                    "& .MuiOutlinedInput-notchedOutline": { border: "none" },
-                    "& .MuiInputBase-input::placeholder": {
-                      color: "white",
-                      opacity: "25%",
-                      fontWeight: "bold",
-                    },
-                  }}
-                />
-                <FormHelperText sx={{ color: "#DC2626" }}>
-                  {errors.email?.message}
-                </FormHelperText>
-              </FormControl>
+        <Stack
+          component="form"
+          spacing={2.5}
+          noValidate
+          onSubmit={handleSubmit(onSaveForm)}
+        >
+          <TextField
+            {...register("email")}
+            label="Email"
+            type="email"
+            autoComplete="email"
+            fullWidth
+            error={!!errors.email}
+            helperText={errors.email?.message}
+          />
 
-              <FormControl fullWidth>
-                <FormLabel sx={{ mb: 1, color: "white" }}>Password</FormLabel>
-                <TextField
-                  {...register("password")}
-                  name="password"
-                  size="small"
-                  placeholder="Enter your password"
-                  variant="outlined"
-                  fullWidth
-                  sx={{
-                    background: "linear-gradient(#10B981, #34D399)",
-                    borderRadius: "10px",
-                    "& .MuiOutlinedInput-notchedOutline": { border: "none" },
-                    "& .MuiInputBase-input::placeholder": {
-                      color: "white",
-                      opacity: "25%",
-                      fontWeight: "bold",
-                    },
-                  }}
-                  type="password"
-                />
-                <FormHelperText sx={{ color: "#DC2626" }}>
-                  {errors.password?.message}
-                </FormHelperText>
-              </FormControl>
+          <TextField
+            {...register("password")}
+            label="Password"
+            type={showPassword ? "text" : "password"}
+            autoComplete={isRegister ? "new-password" : "current-password"}
+            fullWidth
+            error={!!errors.password}
+            helperText={errors.password?.message}
+            slotProps={{
+              input: {
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label={
+                        showPassword ? "Hide password" : "Show password"
+                      }
+                      aria-pressed={showPassword}
+                      onClick={() => setShowPassword((prev) => !prev)}
+                      edge="end"
+                    >
+                      {showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              },
+            }}
+          />
 
-              <Stack
-                direction="row"
-                justifyContent="space-between"
-                alignItems="center"
+          {!isRegister && (
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <FormControlLabel
+                control={<Checkbox size="small" />}
+                label={<span className="text-sm">Remember me</span>}
+              />
+              <NavLink
+                to="/forgot-password"
+                className="inline-flex min-h-11 items-center text-sm font-semibold text-primary hover:text-primary-hover hover:underline"
               >
-                <FormGroup>
-                  <FormControlLabel
-                    control={<Checkbox />}
-                    label={<Typography color="white">Remember Me</Typography>}
-                  />
-                </FormGroup>
+                Forgot password?
+              </NavLink>
+            </div>
+          )}
 
-                <Button
-                  sx={{ color: "#474BCA", textTransform: "capitalize" }}
-                  component={NavLink}
-                  to="/forgot-password"
-                >
-                  Forgot Password?
-                </Button>
-              </Stack>
+          <button
+            type="submit"
+            disabled={loading}
+            className="btn-primary w-full disabled:cursor-not-allowed disabled:opacity-60"
+          >
+            {loading ? (
+              <CircularProgress size={22} color="inherit" aria-label="Loading" />
+            ) : (
+              buttonText
+            )}
+          </button>
 
-              <Button
-                type="submit"
-                variant="contained"
-                fullWidth
-                sx={{
-                  backgroundImage:
-                    "linear-gradient(to right, #4F46E5, #10B981)",
-                  color: "white",
-                  borderRadius: "12px",
-                  textTransform: "capitalize",
-                  py: 1.5,
-                }}
-              >
-                {buttonText}
-              </Button>
-
-              <Typography
-                variant="body2"
-                textAlign="center"
-                sx={{ color: "rgba(255,255,255,0.8)", mt: 2 }}
-              >
-                {bottomText}{" "}
-                <Box
-                  component="a"
-                  href={bottomLinkHref}
-                  sx={{
-                    color: "#474BCA",
-                    fontWeight: 600,
-                    cursor: "pointer",
-                    ml: 0.5,
-                  }}
-                >
-                  {bottomLinkText}
-                </Box>
-                <Box
-                  onClick={() => refreshPage({ to: bottomLinkHref })}
-                  component={NavLink}
-                  sx={{
-                    color: "white",
-                    textDecoration: "underline",
-                    display: "inline-block",
-                    marginLeft: "10px",
-                  }}
-                >
-                  SignUp
-                </Box>
-              </Typography>
-            </Stack>
-          </Box>
+          <p className="text-center text-sm text-muted-foreground">
+            {bottomText}{" "}
+            <NavLink
+              to={bottomLinkHref}
+              className="font-bold text-primary hover:text-primary-hover hover:underline"
+            >
+              {bottomLinkText}
+            </NavLink>
+          </p>
         </Stack>
-      </Box>
-    </>
+      </main>
+    </div>
   );
 }
 

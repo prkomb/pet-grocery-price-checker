@@ -1,72 +1,26 @@
-import { Box, Typography, Button } from "@mui/material";
-
 const Subscribe = () => {
   return (
-    <>
-      <Box
-        sx={{
-          height: "423px",
-          display: "flex",
-          alignItems: "center",
-          flexWrap: "wrap",
-        }}
-      >
-        <Box
-          gap={{ xs: "4px" }}
-          sx={{
-            maxWidth: "1293px",
-            width: "100%",
-            mx: "auto",
-            px: { xs: 4, md: 8 },
-            bgcolor: "#1B1F3B",
-            borderRadius: "20px",
-          }}
-        >
-          <Box
-            sx={{ padding: "64px", boxSizing: "border-box" }}
-            display="flex"
-            justifyContent="space-between"
-            alignItems="center"
-            flexWrap="wrap"
+    <section
+      aria-labelledby="subscribe-title"
+      className="px-4 py-16 sm:px-6 md:py-20"
+    >
+      <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-8 rounded-[28px] bg-ink px-6 py-12 text-center md:flex-row md:px-14 md:text-left">
+        <div className="max-w-lg">
+          <h2
+            id="subscribe-title"
+            className="!text-white text-2xl font-extrabold md:text-3xl"
           >
-            <Typography
-              variant="body1"
-              sx={{
-                fontFamily: "Poppins",
-                fontWeight: "bold",
-                color: "white",
-
-                fontSize: {
-                  sm: "14px",
-                  md: "34px",
-                },
-
-                textAlign: { xs: "center" },
-                margin: { sm: "20px 0", xl: "0" },
-                width: "507px",
-              }}
-            >
-              Don't miss out on discounts — subscribe to notifications
-            </Typography>
-            <Box sx={{ mx: { xs: "auto", sm: "auto", md: "0" } }}>
-              <Button
-                variant="contained"
-                sx={{
-                  marginTop: { xs: "15px", sm: "0" },
-                  color: "#000",
-                  borderRadius: "50px",
-                  fontFamily: "Poppins",
-                  fontWeight: "bold",
-                  bgcolor: "white",
-                }}
-              >
-                Subscribe
-              </Button>
-            </Box>
-          </Box>
-        </Box>
-      </Box>
-    </>
+            Don&apos;t miss out on discounts
+          </h2>
+          <p className="mt-2 text-base text-teal-100">
+            Subscribe to notifications and get alerted when prices drop.
+          </p>
+        </div>
+        <button type="button" className="btn-primary shrink-0">
+          Subscribe
+        </button>
+      </div>
+    </section>
   );
 };
 

@@ -31,7 +31,11 @@ export const getProducts = createAsyncThunk("data/getProducts", async () => {
           icon: emojiMap[item].emoji,
           description: emojiMap[item].description,
         };
-      });
+      })
+      .filter(
+        (category, index, all) =>
+          all.findIndex((c) => c.title === category.title) === index
+      );
 
     const products = productsData.map(getProductsData);
     return { productCategories: productsTag, products };

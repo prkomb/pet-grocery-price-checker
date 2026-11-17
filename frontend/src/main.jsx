@@ -8,6 +8,7 @@ import "@fontsource/poppins/800-italic.css";
 import "@fontsource/manrope/600.css";
 
 import "@fontsource-variable/manrope";
+import "@fontsource-variable/inter";
 import "@fontsource/pacifico";
 import "./index.css";
 import App from "./App.jsx";

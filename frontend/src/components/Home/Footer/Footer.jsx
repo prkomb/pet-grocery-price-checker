@@ -1,190 +1,80 @@
-import {
-  Box,
-  Divider,
-  Typography,
-  Stack,
-  TextField,
-  Button,
-} from "@mui/material";
 import { Link, Form } from "react-router-dom";
 import { navLinks, rulesLinks } from "./FooterData";
 import Brand from "@/assets/images/Brand.png";
 
 const Footer = () => {
   return (
-    <Box
-      component="footer"
-      sx={{
-        bgcolor: "#1B1F3B",
-        padding: "20px 0",
-        // maxWidth: "100%",
-        height: "319px",
-        minHeight: "fit-content",
-        maxHeight: "100%",
-        display: "flex",
-        alignItems: "center",
-      }}
-    >
-      <Box
-        sx={{
-          mx: "auto",
-
-          width: "80%",
-          maxWidth: "100%",
-        }}
-      >
-        <Box
-          display="flex"
-          justifyContent={{ xs: "center", md: "space-between" }}
-          flexWrap="wrap"
-          sx={{ width: "100%" }}
-        >
-          <Box>
-            <Box>
-              <Typography
-                variant="body1"
-                color="initial"
-                sx={{
-                  color: "#fff",
-                  position: "relative",
-                  pl: 5,
-                  fontFamily: "Poppins",
-                  fontWeight: 600,
-                  "&::before": {
-                    content: '""',
-                    position: "absolute",
-                    left: "0",
-                    top: "50%",
-                    transform: "translateY(-50%)",
-                    width: 24,
-                    height: 24,
-                    backgroundImage: `url(${Brand})`,
-                    backgroundSize: "contain",
-                    backgroundRepeat: "no-repeat",
-                    backgroundPosition: "center",
-                  },
-                }}
-              >
+    <footer className="bg-ink text-teal-50">
+      <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
+        <div className="flex flex-col gap-10 md:flex-row md:justify-between">
+          <div>
+            <Link to="/" className="inline-flex items-center gap-2">
+              <img src={Brand} alt="" className="h-7 w-7" />
+              <span className="font-heading text-xl font-extrabold text-white">
                 PriceHunt
-              </Typography>
-              <Box component="nav">
-                <Stack
-                  component="ul"
-                  direction={{ xs: "column", md: "row" }}
-                  spacing={4}
-                  sx={{
-                    color: "white",
-                    textAlign: { xs: "center", lg: "left" },
-                    margin: "39px 0",
-
-                    fontFamily: "Poppins",
-                    fontWeight: 400,
-                  }}
-                >
-                  {navLinks.map((link) => {
-                    return (
-                      <>
-                        <Link key={link.id} to={link.path}>
-                          {link.label}
-                        </Link>
-                      </>
-                    );
-                  })}
-                </Stack>
-              </Box>
-            </Box>
-          </Box>
-          <Box
-            textAlign={{ xs: "center", md: "left" }}
-            width={{ xs: "100%", md: "50%" }}
-          >
-            <Typography
-              variant="body1"
-              sx={{ color: "white", fontFamily: "Poppins", fontWeight: "600" }}
-            >
-              Get the best deals straight to your e-mail.
-            </Typography>
-
-            <Stack sx={{ margin: "10px 0" }}>
-              <Form action="post" className="flex gap-4">
-                <TextField
-                  placeholder="Enter your email"
-                  variant="outlined"
-                  size="small"
-                  sx={{
-                    "& .MuiInputBase-input": {
-                      width: "251px",
-                      borderRadius: "24px",
-                      bgcolor: "#F9FAFB",
-                      border: "1px solid #fff",
-                      color: "white",
-                      "&::placeholder": {
-                        color: "black",
-                        fontSize: "12px",
-                        fontWeight: "normal",
-                      },
-                    },
-                  }}
-                ></TextField>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  sx={{
-                    fontFamily: "Pacifico",
-                    textTransform: "capitalize",
-                    border: "10",
-                    bgcolor: "#34D399",
-                    borderRadius: "24px",
-                    width: "128px",
-                    height: "43px",
-                  }}
-                >
-                  Subscribe
-                </Button>
-              </Form>
-            </Stack>
-          </Box>
-        </Box>
-        <Divider color="white" sx={{ margin: "15px 0" }} />
-        <Box
-          display="flex"
-          justifyContent="space-between"
-          alignItems={{ xs: "center", md: "flex-start" }}
-          sx={{ mt: "20px", color: "white" }}
-        >
-          <Box>
-            <Typography variant="body1" color="initial" sx={{ color: "white" }}>
-              &#64; PriceHunt, All Right Reserved.
-            </Typography>
-          </Box>
-          <Box>
-            <Stack
-              direction={{ xs: "column", md: "row" }}
-              spacing={3}
-              justifyContent={{ xs: "center", md: "flex-end" }}
-            >
-              {rulesLinks.map((rule) => {
-                return (
-                  <>
+              </span>
+            </Link>
+            <nav aria-label="Footer" className="mt-6">
+              <ul className="grid grid-cols-2 gap-x-8 gap-y-1 sm:grid-cols-3">
+                {navLinks.map((link) => (
+                  <li key={link.path}>
                     <Link
-                      key={rule.id}
-                      sx={{
-                        fontFamily: "Poppins",
-                        fontWeight: "400",
-                        fontSize: "12px",
-                      }}
-                      to={rule.path}
+                      to={link.path}
+                      className="inline-flex min-h-11 items-center text-teal-100 hover:text-white hover:underline"
                     >
-                      {rule.label}
+                      {link.label}
                     </Link>
-                  </>
-                );
-              })}
-            </Stack>
-          </Box>
-        </Box>
-      </Box>
-    </Box>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </div>
+
+          <div className="w-full max-w-sm">
+            <h2 className="!text-white text-base font-bold">
+              Get the best deals straight to your inbox
+            </h2>
+            <Form
+              method="post"
+              className="mt-3 flex flex-col gap-3 sm:flex-row"
+            >
+              <label htmlFor="footer-email" className="sr-only">
+                Email address
+              </label>
+              <input
+                id="footer-email"
+                name="email"
+                type="email"
+                autoComplete="email"
+                placeholder="Enter your email"
+                className="h-11 w-full rounded-full border border-white/30 bg-white/10 px-4 text-sm text-white placeholder:text-teal-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+              />
+              <button type="submit" className="btn-primary shrink-0">
+                Subscribe
+              </button>
+            </Form>
+          </div>
+        </div>
+
+        <hr className="my-8 border-white/15" />
+
+        <div className="flex flex-col items-center justify-between gap-4 text-sm text-teal-100 md:flex-row">
+          <p>&copy; {new Date().getFullYear()} PriceHunt. All rights reserved.</p>
+          <ul className="flex items-center gap-2">
+            {rulesLinks.map((rule) => (
+              <li key={rule.id}>
+                <Link
+                  to={rule.path}
+                  className="inline-flex min-h-11 items-center px-2 hover:text-white hover:underline"
+                >
+                  {rule.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </footer>
   );
 };
 
